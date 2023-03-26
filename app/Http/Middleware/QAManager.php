@@ -6,7 +6,7 @@ use Auth;
 use Closure;
 use Illuminate\Http\Request;
 
-class checkPass
+class QAManager
 {
     /**
      * Handle an incoming request.
@@ -17,11 +17,10 @@ class checkPass
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() === true) {
-            if (Auth::user()->isPassReset === 0) {
-                return redirect('/account/change-password');
-            }
+        if (Auth::check() && Auth::user()->roleID === 2) {
+            return $next($request);
+        } else {
+            return redirect()->back();
         }
-        return $next($request);
     }
 }
