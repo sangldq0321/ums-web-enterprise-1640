@@ -18,8 +18,11 @@ Route::post('/login', [LoginController::class, 'postLogin']);
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['checkPass'])->group(function () {
         Route::get('/', [MainController::class, 'index']);
+        Route::middleware(['checkQAManager'])->group(function () {
+            Route::get('/ideas', [MainController::class, 'ideaIndex']);
+        });
     });
-    Route::get('/account/set-up-password', [LoginController::class, 'getSetupPassword']);
-    Route::post('/account/set-up-password', [LoginController::class, 'postSetupPassword']);
+    Route::get('/account/change-password', [LoginController::class, 'getChangePassword']);
+    Route::post('/account/change-password', [LoginController::class, 'postChangePassword']);
     Route::get('/logout', [LoginController::class, 'logOut']);
 });

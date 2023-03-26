@@ -11,7 +11,7 @@ class LoginController extends Controller
 {
     public function getLogin()
     {
-        return view('login');
+        return view('accounts.login');
     }
     public function postLogin(Request $request)
     {
@@ -24,6 +24,7 @@ class LoginController extends Controller
             ]);
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             return redirect('/')->with('notify', 'loginsuccess');
+
         } else {
             return redirect('/login')->with('notify', 'loginfailed');
         }
@@ -33,11 +34,11 @@ class LoginController extends Controller
         Auth::logout();
         return redirect('/login')->with('notify', 'logoutsuccess');
     }
-    public function getSetupPassword()
+    public function getChangePassword()
     {
-        return view('setuppassword');
+        return view('accounts.change-password');
     }
-    public function postSetupPassword(Request $request)
+    public function postChangePassword(Request $request)
     {
         $this->validate($request, [
             'password' => 'confirmed|min:6',
@@ -48,5 +49,6 @@ class LoginController extends Controller
         $user->password = $afterHashPass;
         $user->isPassReset = 1;
         $user->update();
+        return redirect('/');
     }
 }

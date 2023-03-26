@@ -1,7 +1,8 @@
 @extends('layouts.main')
+@section('title','Change password')
 @section('content')
-<h4 class="text-center fw-bold mb-3">Setup your password</h4>
-<form action="/account/set-up-password" method="POST">
+<h4 class="text-center fw-bold mb-3">Change password</h4>
+<form action="/account/change-password" method="POST">
     @csrf
     @if ($errors->any())
     <div class="d-flex justify-content-center mb-3">
@@ -12,11 +13,13 @@
         </div>
     </div>
     @endif
+    @if(Auth::user()->isPassReset==0)
     <div class="d-flex justify-content-center mb-3">
         <div class="alert alert-info">
-            <div>Must change password to use the system !</div>
+            <div>You must set up new password to use the system !</div>
         </div>
     </div>
+    @endif
     <div class="form-floating mb-3">
         <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
         <label for="floatingPassword">Password</label>

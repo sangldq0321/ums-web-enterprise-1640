@@ -10,4 +10,8 @@ class MainController extends Controller
     {
         return view('index');
     }
+    public function ideaIndex()
+    {
+        return view('ideas.index');
+    }
 }
