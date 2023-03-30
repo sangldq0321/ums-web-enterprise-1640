@@ -45,6 +45,10 @@ class MainController extends Controller
     }
     public function postAddCategory(Request $request)
     {
+        $this->validate($request, [
+            'categoryName' => 'required',
+            'categoryDesc' => 'required',
+        ]);
         $category = new Category;
         $category->categoryName = $request->input('categoryName');
         $category->categoryDesc = $request->input('categoryDesc');
@@ -58,6 +62,10 @@ class MainController extends Controller
     }
     public function postEditCategory(Request $request, $id_category)
     {
+        $this->validate($request, [
+            'categoryName' => 'required',
+            'categoryDesc' => 'required',
+        ]);
         $category = Category::findOrFail($id_category);
         $category->categoryName = $request->input('categoryName');
         $category->categoryDesc = $request->input('categoryDesc');
@@ -77,6 +85,12 @@ class MainController extends Controller
     }
     public function postAddIdea(Request $request)
     {
+        $this->validate($request, [
+            'ideaName' => 'required',
+            'categoryID' => 'required',
+            'ideaContent' => 'required'
+
+        ]);
         $idea = new Idea;
         $idea->ideaName = $request->input('ideaName');
         $idea->categoryID = $request->input('categoryID');
@@ -93,6 +107,12 @@ class MainController extends Controller
     }
     public function postEditIdea(Request $request, $id_idea)
     {
+        $this->validate($request, [
+            'ideaName' => 'required',
+            'categoryID' => 'required',
+            'ideaContent' => 'required'
+
+        ]);
         $idea = Idea::findOrFail($id_idea);
         $idea->ideaName = $request->input('ideaName');
         $idea->categoryID = $request->input('categoryID');
@@ -117,6 +137,9 @@ class MainController extends Controller
     }
     public function postComment(Request $request)
     {
+        $this->validate($request, [
+            'commentContent' => 'required',
+        ]);
         $comment = new Comment;
         $comment->userID = Auth::user()->userID;
         $comment->commentContent = $request->input('commentContent');

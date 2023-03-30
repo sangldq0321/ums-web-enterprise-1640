@@ -38,6 +38,15 @@
 @endif
 <form action="/ideas/comment" method="post">
     @csrf
+    @if (count($errors) > 0)
+    <div class="d-flex justify-content-center mb-3">
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $err)
+            <div><i class="fa-solid fa-triangle-exclamation me-2"></i>{{ $err }}</div>
+            @endforeach
+        </div>
+    </div>
+    @endif
     <div class="form-floating my-3">
         <input type="text" class="form-control" placeholder="Comment content" name="commentContent">
         <label>Comment</label>
