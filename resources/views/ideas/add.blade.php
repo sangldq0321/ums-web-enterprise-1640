@@ -27,6 +27,12 @@
         <label class="form-label">Idea content</label>
         <textarea class="form-control ckeditor" rows="3" name="ideaContent"></textarea>
     </div>
+    <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required
+            oninvalid="this.setCustomValidity('You must agree to Terms and Conditions in order to submit idea !')"
+            oninput="setCustomValidity('')">
+        <label class="form-check-label" for="flexCheckDefault">I agree to <b>Terms and Conditions</b></label>
+    </div>
     <button type="submit" class="btn btn-success d-block mx-auto">Save</button>
 </form>
 <script>

@@ -2,9 +2,11 @@
 @section('title','Category')
 @section('content')
 <h3 class="text-center">Ideas</h3>
+@if (Auth::check() && Auth::user()->roleID !=3)
 <div class="d-flex justify-content-center mb-3">
     <a href="/ideas/add" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Add</a>
 </div>
+@endif
 <table class="table" id="datatable">
     <thead class="table-dark">
         <tr>
@@ -12,8 +14,10 @@
             <th scope="col">Ideas category</th>
             <th scope="col">Ideas name</th>
             <th scope="col">Uploader</th>
+            @if (Auth::check() && Auth::user()->roleID !=3)
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
+            @endif
         </tr>
     </thead>
     <tbody>
@@ -23,6 +27,7 @@
             <td>{{$categoryName}}</td>
             <td>{{$idea->ideaName}}</td>
             <td>Anonymous</td>
+            @if (Auth::check() && Auth::user()->roleID !=3)
             <td><a href="/ideas/edit/{{$idea->ideaID}}"><i class="fa-solid fa-pen-to-square me-2"></i>Edit</a></td>
             <td>
                 <form method="POST" action="/ideas/delete/{{ $idea->ideaID }}">
@@ -32,6 +37,7 @@
                             class="fa-solid fa-trash me-2"></i>Delete</a>
                 </form>
             </td>
+            @endif
         </tr>
         @endforeach
     </tbody>

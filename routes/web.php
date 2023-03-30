@@ -18,20 +18,26 @@ Route::post('/login', [LoginController::class, 'postLogin']);
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['checkPass'])->group(function () {
         Route::get('/', [MainController::class, 'index']);
-        Route::middleware(['checkQAManager'])->group(function () {
+        Route::middleware(['viewIdea'])->group(function () {
             Route::get('/ideas', [MainController::class, 'ideaIndex']);
+        });
+        Route::middleware(['viewIndexIdea'])->group(function () {
+            Route::get('/ideas/view/{id}', [MainController::class, 'viewIdea'])->name('viewIdea');
+        });
+        Route::middleware(['checkStaff'])->group(function () {
             Route::get('/ideas/add', [MainController::class, 'getAddIdea']);
             Route::post('/ideas/add', [MainController::class, 'postAddIdea']);
             Route::get('/ideas/edit/{id}', [MainController::class, 'getEditIdea']);
             Route::post('/ideas/edit/{id}', [MainController::class, 'postEditIdea']);
             Route::get('/ideas/delete/{id}', [MainController::class, 'deleteIdea']);
-            Route::get('/ideas/view/{id}', [MainController::class, 'viewIdea'])->name('viewIdea');
             Route::post('/ideas/comment', [MainController::class, 'postComment']);
             Route::get('/comments/edit/{id}', [MainController::class, 'getEditComment']);
             Route::post('/comments/edit/{id}', [MainController::class, 'postEditComment']);
             Route::get('/comments/delete/{id}', [MainController::class, 'deleteComment']);
         });
-        Route::middleware(['checkAdmin'])->group(function () {
+
+
+        Route::middleware(['checkQAManager'])->group(function () {
             Route::get('/categories', [MainController::class, 'categoryIndex']);
             Route::get('/categories/add', [MainController::class, 'getAddCategory']);
             Route::post('/categories/add', [MainController::class, 'postAddCategory']);

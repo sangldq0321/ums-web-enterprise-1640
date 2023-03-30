@@ -29,7 +29,7 @@ class MainController extends Controller
     }
     public function ideaIndex()
     {
-        $ideas = Idea::all();
+        $ideas = Idea::paginate(5);
         $getCategory = Idea::value('categoryID');
         $categoryName = Category::where('categoryID', '=', $getCategory)->value('categoryName');
         return view('ideas.index', compact('ideas', 'categoryName'));
@@ -89,7 +89,6 @@ class MainController extends Controller
             'ideaName' => 'required',
             'categoryID' => 'required',
             'ideaContent' => 'required'
-
         ]);
         $idea = new Idea;
         $idea->ideaName = $request->input('ideaName');
