@@ -8,6 +8,11 @@
 @if(Auth::user()->roleID==1)
 <h3 class="text-center fw-bold">Dashboard</h3>
 @else
+@if (Auth::check() && Auth::user()->roleID ==4 || Auth::user()->roleID ==5)
+<div class="d-flex justify-content-center mb-3">
+    <a href="/ideas/add" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Add</a>
+</div>
+@endif
 <div class="row">
     <div class="col-12 col-lg-9">
         @if(Auth::user()->roleID!==1)
@@ -59,7 +64,8 @@
             <div class="card-body">
                 <h5 class="card-title fw-bold">Latest idea</h5>
                 <p class="card-text">
-                <div class="fw-bold h5"><a href="/ideas/view/{{$latestIdea->ideaID}}">{{$latestIdea->ideaName}}</a></div>
+                <div class="fw-bold h5"><a href="/ideas/view/{{$latestIdea->ideaID}}">{{$latestIdea->ideaName}}</a>
+                </div>
                 <div>
                     <?php
                     $date=date_create($latestIdea->created_at);
