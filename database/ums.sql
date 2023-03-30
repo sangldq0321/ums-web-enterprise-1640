@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2023 at 01:55 PM
+-- Generation Time: Mar 30, 2023 at 06:54 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -45,6 +45,29 @@ INSERT INTO `categories` (`categoryID`, `categoryName`, `categoryDesc`, `created
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `commentID` bigint(20) UNSIGNED NOT NULL,
+  `userID` bigint(20) UNSIGNED NOT NULL,
+  `commentContent` text NOT NULL,
+  `ideaID` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`commentID`, `userID`, `commentContent`, `ideaID`, `created_at`, `updated_at`) VALUES
+(1, 2, '123', 1, '2023-03-30 16:34:19', '2023-03-30 16:34:19'),
+(2, 2, '123', 4, '2023-03-30 16:40:42', '2023-03-30 16:40:42');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ideas`
 --
 
@@ -63,7 +86,8 @@ CREATE TABLE `ideas` (
 --
 
 INSERT INTO `ideas` (`ideaID`, `ideaName`, `categoryID`, `ideaContent`, `uploader`, `created_at`, `updated_at`) VALUES
-(1, 'Demo', 1, '<p>Demo</p>', 2, '2023-03-30 04:13:09', '2023-03-30 04:33:12');
+(1, 'Demo', 1, '<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>', 2, '2023-03-30 04:13:09', '2023-03-30 05:13:09'),
+(4, 'Add dashboard', 1, '<p>Please add <strong>dashboard</strong></p>', 2, '2023-03-30 16:40:20', '2023-03-30 16:40:20');
 
 -- --------------------------------------------------------
 
@@ -126,6 +150,14 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`categoryID`);
 
 --
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`commentID`),
+  ADD KEY `ideaID` (`ideaID`),
+  ADD KEY `userID` (`userID`);
+
+--
 -- Indexes for table `ideas`
 --
 ALTER TABLE `ideas`
@@ -159,10 +191,16 @@ ALTER TABLE `categories`
   MODIFY `categoryID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `commentID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `ideas`
 --
 ALTER TABLE `ideas`
-  MODIFY `ideaID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ideaID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -179,6 +217,13 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`ideaID`) REFERENCES `ideas` (`ideaID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `ideas`
