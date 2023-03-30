@@ -10,6 +10,8 @@
     ?>
 </div>
 {!!$idea->ideaContent!!}
+@if (Auth::check() && Auth::user()->roleID !=4 && Auth::user()->roleID !=5)
+@else
 <div class="text-start">
     <span class="h3"><a href="" type="button" title="Thumb up"><i
                 class="fa-solid fa-thumbs-up text-primary"></i></a></span>
@@ -17,6 +19,7 @@
     <span class="h3"><a href="" type="button" title="Thump down"><i
                 class="fa-solid fa-thumbs-down text-danger"></i></a></span>
 </div>
+@endif
 <hr>
 <h3 class="fw-bold">Comment</h3>
 @if($comments->isNotEmpty())
@@ -30,6 +33,8 @@
         echo date_format($date," h:i A d/m/Y");
         ?>
         </div>
+        @if (Auth::check() && Auth::user()->roleID !=4 && Auth::user()->roleID !=5)
+        @else
         <div class="mt-2">
             <a href="/comments/edit/{{$comment->commentID}}" class="m-2"><i
                     class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
@@ -40,6 +45,7 @@
                         class="fa-solid fa-trash me-2"></i>Delete</a>
             </form>
         </div>
+        @endif
     </div>
 </div>
 @endforeach

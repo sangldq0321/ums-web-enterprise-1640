@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('title','Add idea')
 @section('content')
-<a href="/ideas" type="button" class="btn btn-dark mb-3"><i class="fa-solid fa-chevron-left me-2"></i>Back</a>
+<a href="/" type="button" class="btn btn-dark mb-3"><i class="fa-solid fa-chevron-left me-2"></i>Back</a>
 <form action="/comments/edit/{{$comment->commentID}}" method="POST">
     <h4 class="text-center fw-bold mb-3">Edit comment</h4>
     @csrf
