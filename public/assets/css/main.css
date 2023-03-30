@@ -23,3 +23,28 @@ html.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
     height: 100% !important;
     overflow-y: visible !important;
 }
+
+a {
+    color: inherit;
+    transition: .25s ease-in-out;
+}
+
+main {
+    animation-name: fade;
+    animation-duration: 1s;
+    animation-delay: 0s;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

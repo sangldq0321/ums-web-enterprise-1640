@@ -71,7 +71,7 @@
         </nav>
     </header>
     <main class="flex-shrink-0">
-        <div class="container my-3">
+        <div class="container-fluid my-3">
             @yield('content')
         </div>
     </main>

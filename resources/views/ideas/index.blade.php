@@ -22,7 +22,7 @@
             <th scope="row">{{$idea->ideaID}}</th>
             <td>{{$categoryName}}</td>
             <td>{{$idea->ideaName}}</td>
-            <td>{{$fullname}}</td>
+            <td>Anonymous</td>
             <td><a href="/ideas/edit/{{$idea->ideaID}}"><i class="fa-solid fa-pen-to-square me-2"></i>Edit</a></td>
             <td>
                 <form method="POST" action="/ideas/delete/{{ $idea->ideaID }}">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Idea;
 use Auth;
 use Illuminate\Foundation\Auth\User;
@@ -14,22 +15,24 @@ class MainController extends Controller
     {
         if (Auth::user()->roleID != 1) {
             $ideas = Idea::all();
+            $users = User::all();
             $getCategory = Idea::value('categoryID');
             $categoryName = Category::where('categoryID', '=', $getCategory)->value('categoryName');
             $getUploader = Idea::value('uploader');
             $fullname = User::where('userID', '=', $getUploader)->value('fullname');
-            return view('index', compact('ideas', 'categoryName', 'fullname'));
+            $latestIdea = Idea::latest('created_at')->first();
+            $latestComment = Comment::latest('created_at')->first();
+            $countComment = Comment::count();
+            return view('index', compact('ideas', 'categoryName', 'users', 'latestIdea', 'latestComment', 'countComment'));
         }
         return view('index');
     }
     public function ideaIndex()
     {
         $ideas = Idea::all();
-        $getUploader = Idea::value('uploader');
         $getCategory = Idea::value('categoryID');
-        $fullname = User::where('userID', '=', $getUploader)->value('fullname');
         $categoryName = Category::where('categoryID', '=', $getCategory)->value('categoryName');
-        return view('ideas.index', compact('ideas', 'fullname', 'categoryName'));
+        return view('ideas.index', compact('ideas', 'categoryName'));
     }
     public function categoryIndex()
     {
@@ -103,13 +106,22 @@ class MainController extends Controller
         $idea->delete();
         return redirect('/ideas');
     }
-    public function viewIdea($id_idea)
+    public function viewIdea(Request $request, $id_idea)
     {
         $idea = Idea::findOrFail($id_idea);
-        $getUploader = Idea::value('uploader');
-        $fullname = User::where('userID', '=', $getUploader)->value('fullname');
+        $request->session()->flash('ideaID', $id_idea);
         $getCategory = Idea::value('categoryID');
         $categoryName = Category::where('categoryID', '=', $getCategory)->value('categoryName');
-        return view('ideas.view', compact('idea', 'fullname', 'categoryName'));
+        $comments = Comment::orderByDesc('created_at')->get();
+        return view('ideas.view', compact('idea', 'categoryName', 'comments'));
+    }
+    public function postComment(Request $request)
+    {
+        $comment = new Comment;
+        $comment->userID = Auth::user()->userID;
+        $comment->commentContent = $request->input('commentContent');
+        $comment->ideaID = $request->session()->get('ideaID');
+        $comment->save();
+        return redirect()->route('viewIdea', ['id' => $request->session()->get('ideaID')]);
     }
 }
