@@ -1,31 +1,29 @@
 @extends('layouts.main')
 @section('title','Category')
 @section('content')
-<h3 class="text-center">Ideas</h3>
+<h3 class="text-center">Categories</h3>
 <div class="d-flex justify-content-center mb-3">
-    <a href="/ideas/add" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Add</a>
+    <a href="/categories/add" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Add</a>
 </div>
 <table class="table" id="datatable">
     <thead class="table-dark">
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Ideas category</th>
-            <th scope="col">Ideas name</th>
-            <th scope="col">Uploader</th>
+            <th scope="col">Category name</th>
+            <th scope="col">Category description</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($ideas as $idea)
+        @foreach ($categories as $category)
         <tr>
-            <th scope="row">{{$idea->ideaID}}</th>
-            <td>{{$categoryName}}</td>
-            <td>{{$idea->ideaName}}</td>
-            <td>{{$fullname}}</td>
-            <td><a href="/ideas/edit/{{$idea->ideaID}}"><i class="fa-solid fa-pen-to-square me-2"></i>Edit</a></td>
+            <th scope="row">{{$category->categoryID}}</th>
+            <td>{{$category->categoryName}}</td>
+            <td>{{$category->categoryDesc}}</td>
+            <td><a href="/categories/edit/{{$category->categoryID}}"><i class="fa-solid fa-pen-to-square me-2"></i>Edit</a></td>
             <td>
-                <form method="POST" action="/ideas/delete/{{ $idea->ideaID }}">
+                <form method="POST" action="/categories/delete/{{ $category->categoryID }}">
                     @csrf
                     <input name="_method" type="hidden" value="GET">
                     <a type="button" class="show_delete" data-toggle="tooltip"><i
@@ -61,7 +59,7 @@
         event.preventDefault();
         Swal.fire({
             title: 'Are you sure ?',
-            text: 'Are you sure to delete this idea ?',
+            text: 'Are you sure to delete this category ?',
             icon: 'question',
             showCancelButton: true,
             scrollbarPadding: false,

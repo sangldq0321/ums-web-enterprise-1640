@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="/assets/css/all.min.css">
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/main.css">
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css"
+        integrity="sha256-sWZjHQiY9fvheUAOoxrszw9Wphl3zqfVaz1kZKEvot8=" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"
+        integrity="sha256-t0FDfwj/WoMHIBbmFfuOtZv1wtA977QCfsFR3p1K4No=" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
 </head>
 
@@ -37,6 +42,11 @@
                         @if (Auth::user()->roleID!==1)
                         <li class="nav-item">
                             <a class="nav-link" href="/ideas">Ideas</a>
+                        </li>
+                        @endif
+                        @if (Auth::user()->roleID==1)
+                        <li class="nav-item">
+                            <a class="nav-link" href="/categories">Categories</a>
                         </li>
                         @endif
                         <li class="nav-item dropdown">
@@ -89,6 +99,14 @@ $(function () {
         }
     })
 });
+    </script>
+    <link
+        href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/fc-4.2.2/fh-3.3.2/r-2.4.1/sc-2.1.1/sp-2.1.2/datatables.min.css"
+        rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script
+        src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/fc-4.2.2/fh-3.3.2/r-2.4.1/sc-2.1.1/sp-2.1.2/datatables.min.js">
     </script>
 </body>
 

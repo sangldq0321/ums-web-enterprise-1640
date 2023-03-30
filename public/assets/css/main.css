@@ -1,6 +1,7 @@
-*{
+* {
     font-family: Arial;
 }
+
 .navbar {
     background-color: #2b3494;
     --bs-navbar-color: rgba(248, 249, 250, 0.75);
@@ -15,4 +16,10 @@
 
 footer {
     background-color: #2b3494;
+}
+
+body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown),
+html.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
+    height: 100% !important;
+    overflow-y: visible !important;
 }
