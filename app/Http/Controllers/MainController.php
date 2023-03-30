@@ -12,6 +12,14 @@ class MainController extends Controller
 {
     public function index()
     {
+        if (Auth::user()->roleID != 1) {
+            $ideas = Idea::all();
+            $getCategory = Idea::value('categoryID');
+            $categoryName = Category::where('categoryID', '=', $getCategory)->value('categoryName');
+            $getUploader = Idea::value('uploader');
+            $fullname = User::where('userID', '=', $getUploader)->value('fullname');
+            return view('index', compact('ideas', 'categoryName', 'fullname'));
+        }
         return view('index');
     }
     public function ideaIndex()
@@ -94,5 +102,14 @@ class MainController extends Controller
         $idea = Idea::findOrFail($id_idea);
         $idea->delete();
         return redirect('/ideas');
+    }
+    public function viewIdea($id_idea)
+    {
+        $idea = Idea::findOrFail($id_idea);
+        $getUploader = Idea::value('uploader');
+        $fullname = User::where('userID', '=', $getUploader)->value('fullname');
+        $getCategory = Idea::value('categoryID');
+        $categoryName = Category::where('categoryID', '=', $getCategory)->value('categoryName');
+        return view('ideas.view', compact('idea', 'fullname', 'categoryName'));
     }
 }
