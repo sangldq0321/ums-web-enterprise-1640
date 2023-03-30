@@ -59,7 +59,7 @@
             <div class="card-body">
                 <h5 class="card-title fw-bold">Latest idea</h5>
                 <p class="card-text">
-                <div class="fw-bold h5"><a href="/ideas/view/{{$idea->ideaID}}">{{$latestIdea->ideaName}}</a></div>
+                <div class="fw-bold h5"><a href="/ideas/view/{{$latestIdea->ideaID}}">{{$latestIdea->ideaName}}</a></div>
                 <div>
                     <?php
                     $date=date_create($latestIdea->created_at);
