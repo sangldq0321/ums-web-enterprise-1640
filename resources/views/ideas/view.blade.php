@@ -10,7 +10,7 @@
     ?>
 </div>
 {!!$idea->ideaContent!!}
-<div class="text-end">
+<div class="text-start">
     <span class="h3"><a href="" type="button" title="Thumb up"><i
                 class="fa-solid fa-thumbs-up text-primary"></i></a></span>
     <span class="mx-2"></span>
@@ -29,6 +29,16 @@
             <?php $date=date_create($comment->created_at);
         echo date_format($date," h:i A d/m/Y");
         ?>
+        </div>
+        <div class="mt-2">
+            <a href="/comments/edit/{{$comment->commentID}}" class="m-2"><i
+                    class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
+            <form method="POST" action="/comments/delete/{{$comment->commentID}}" class="d-inline-block m-2">
+                @csrf
+                <input name="_method" type="hidden" value="GET">
+                <a type="button" class="show_delete" data-toggle="tooltip"><i
+                        class="fa-solid fa-trash me-2"></i>Delete</a>
+            </form>
         </div>
     </div>
 </div>
@@ -89,5 +99,27 @@
                 ]
             }
         })
+</script>
+<script script type="text/javascript">
+    $('.show_delete').click(function(event) {
+        var form = $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        Swal.fire({
+            title: 'Are you sure ?',
+            text: 'Are you sure to delete this idea ?',
+            icon: 'question',
+            showCancelButton: true,
+            scrollbarPadding: false,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    });
 </script>
 @endsection

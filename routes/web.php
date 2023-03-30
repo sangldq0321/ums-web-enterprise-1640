@@ -27,6 +27,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/ideas/delete/{id}', [MainController::class, 'deleteIdea']);
             Route::get('/ideas/view/{id}', [MainController::class, 'viewIdea'])->name('viewIdea');
             Route::post('/ideas/comment', [MainController::class, 'postComment']);
+            Route::get('/comments/edit/{id}', [MainController::class, 'getEditComment']);
+            Route::post('/comments/edit/{id}', [MainController::class, 'postEditComment']);
+            Route::get('/comments/delete/{id}', [MainController::class, 'deleteComment']);
         });
         Route::middleware(['checkAdmin'])->group(function () {
             Route::get('/categories', [MainController::class, 'categoryIndex']);

@@ -129,7 +129,7 @@ class MainController extends Controller
     public function viewIdea(Request $request, $id_idea)
     {
         $idea = Idea::findOrFail($id_idea);
-        $request->session()->flash('ideaID', $id_idea);
+        $request->session()->put('ideaID', $id_idea);
         $getCategory = Idea::value('categoryID');
         $categoryName = Category::where('categoryID', '=', $getCategory)->value('categoryName');
         $comments = Comment::orderByDesc('created_at')->get();
@@ -147,4 +147,23 @@ class MainController extends Controller
         $comment->save();
         return redirect()->route('viewIdea', ['id' => $request->session()->get('ideaID')]);
     }
+    public function getEditComment($id_comment)
+    {
+        $comment = Comment::findOrFail($id_comment);
+        return view('ideas.editComment', compact('comment'));
+    }
+    public function postEditComment(Request $request, $id_comment)
+    {
+        $comment = Comment::findOrFail($id_comment);
+        $comment->commentContent = $request->input('commentContent');
+        $comment->update();
+        return redirect()->route('viewIdea', ['id' => $request->session()->get('ideaID')]);
+    }
+    public function deleteComment(Request $request, $id_comment)
+    {
+        $comment = Comment::findOrFail($id_comment);
+        $comment->delete();
+        return redirect()->route('viewIdea', ['id' => $request->session()->get('ideaID')]);
+    }
+
 }
