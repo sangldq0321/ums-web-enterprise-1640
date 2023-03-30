@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2023 at 06:54 PM
+-- Generation Time: Mar 30, 2023 at 11:42 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -62,8 +62,7 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`commentID`, `userID`, `commentContent`, `ideaID`, `created_at`, `updated_at`) VALUES
-(1, 2, '123', 1, '2023-03-30 16:34:19', '2023-03-30 16:34:19'),
-(2, 2, '123', 4, '2023-03-30 16:40:42', '2023-03-30 16:40:42');
+(11, 2, '1234', 4, '2023-03-30 18:08:54', '2023-03-30 18:09:00');
 
 -- --------------------------------------------------------
 
@@ -109,10 +108,9 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`roleID`, `roleName`, `created_at`, `updated_at`) VALUES
 (1, 'Administrator', '2023-03-26 07:42:39', '2023-03-25 17:00:00'),
 (2, 'QA Manager', '2023-03-26 07:44:27', '2023-03-26 07:44:27'),
-(3, 'Academic QA', '2023-03-26 09:04:13', '2023-03-26 09:04:13'),
-(4, 'Support QA', '2023-03-26 09:04:37', '2023-03-26 09:04:37'),
-(5, 'Academic staff', '2023-03-26 09:01:55', '2023-03-26 09:01:55'),
-(6, 'Support staff', '2023-03-26 09:03:54', '2023-03-26 09:03:54');
+(3, 'QA Coordinator', '2023-03-26 09:04:13', '2023-03-26 09:04:13'),
+(4, 'Academic staff', '2023-03-26 09:01:55', '2023-03-26 09:01:55'),
+(5, 'Support staff', '2023-03-26 09:03:54', '2023-03-26 09:03:54');
 
 -- --------------------------------------------------------
 
@@ -137,7 +135,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`userID`, `username`, `fullname`, `password`, `roleID`, `isPassReset`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'Administrator', '$2y$10$Gh4v05aAC0hl7xtq4y3CQuUzTnd7iO5qc/lOvZCfrQujajhkoYQoS', 1, 1, '2023-03-26 07:42:54', '2023-03-26 00:52:49'),
-(2, 'qamanager', 'QA Manager', '$2y$10$W0cv3X.R3FeBtgJKi.nSZOQ0Z74x8mnwQz.q8r2f4l.GONqAg5FvW', 2, 1, '2023-03-26 07:46:46', '2023-03-26 00:48:33');
+(2, 'qamanager', 'QA Manager', '$2y$10$W0cv3X.R3FeBtgJKi.nSZOQ0Z74x8mnwQz.q8r2f4l.GONqAg5FvW', 2, 1, '2023-03-26 07:46:46', '2023-03-26 00:48:33'),
+(3, 'qacoor', 'QA Coordinator', '$2a$10$XFm43675iWjRe4ULhtb7iuASSCmbPjF45fBJH8TJSM5k0/kUVyhf6', 3, 1, '2023-03-30 20:48:47', '2023-03-30 20:48:47'),
+(4, 'staff', 'Staff', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 4, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17');
 
 --
 -- Indexes for dumped tables
@@ -194,7 +194,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `commentID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `commentID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `ideas`
@@ -212,7 +212,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `userID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
