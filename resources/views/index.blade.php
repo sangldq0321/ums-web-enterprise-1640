@@ -29,8 +29,22 @@
             ?>
                     </div>
                     </p>
-                    <a href="/ideas/view/{{$idea->ideaID}}" class="btn btn-primary m-2">View more<i
-                            class="fa-solid fa-angle-right ms-2"></i></a>
+                    @if (Auth::check() && Auth::user()->roleID ==4 || Auth::user()->roleID ==5)
+                    <td><a href="/ideas/edit/{{$idea->ideaID}}" class="m-2"><i class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
+                    </td>
+                    <td>
+                        <form method="POST" action="/ideas/delete/{{ $idea->ideaID }}" class="d-inline-block">
+                            @csrf
+                            <input name="_method" type="hidden" value="GET">
+                            <a type="button" class="show_delete m-2" data-toggle="tooltip"><i
+                                    class="fa-solid fa-trash me-2"></i>Delete</a>
+                        </form>
+                    </td>
+                    @endif
+                    <div>
+                        <a href="/ideas/view/{{$idea->ideaID}}" class="btn btn-primary m-2">View more<i
+                                class="fa-solid fa-angle-right ms-2"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -106,4 +120,26 @@
         transition: box-shadow 0.5s;
     }
 </style>
+<script script type="text/javascript">
+    $('.show_delete').click(function(event) {
+        var form = $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        Swal.fire({
+            title: 'Are you sure ?',
+            text: 'Are you sure to delete this idea ?',
+            icon: 'question',
+            showCancelButton: true,
+            scrollbarPadding: false,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    });
+</script>
 @endsection
