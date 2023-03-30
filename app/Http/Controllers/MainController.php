@@ -14,7 +14,7 @@ class MainController extends Controller
     public function index()
     {
         if (Auth::user()->roleID != 1) {
-            $ideas = Idea::all();
+            $ideas = Idea::orderByDesc('created_at')->get();
             $users = User::all();
             $getCategory = Idea::value('categoryID');
             $categoryName = Category::where('categoryID', '=', $getCategory)->value('categoryName');
