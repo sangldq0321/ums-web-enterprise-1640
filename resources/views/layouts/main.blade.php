@@ -76,7 +76,9 @@
     </header>
     <main class="flex-shrink-0">
         <div class="container-fluid my-3">
-            @yield('content')
+            <div class="mx-3">
+                @yield('content')
+            </div>
         </div>
     </main>
     <footer class="mt-auto text-light" style="border-top:4px solid #f27228;">
@@ -88,40 +90,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
-    <script>
-        $(function () {
-    var path = window.location.href;
-    $('body header nav a.nav-link').each(function () {
-        if (this.href === path) {
-            $(this).addClass('active fw-bold');
-        }
-    });
-});
-$(function () {
-    $('a').click(function (e) {
-        var targetHref = $(this).prop('href');
-        var currentHref = window.location.href;
-        if (targetHref == currentHref) {
-            e.preventDefault();
-        }
-    })
-});
-let topButton = document.getElementById("topBtn");
-window.onscroll = function () { scrollFunction() };
-
-function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        topButton.style.display = "block";
-    } else {
-        topButton.style.display = "none";
-    }
-}
-function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
-$('input').attr('autocomplete', 'off')
-    </script>
     <link
         href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/fc-4.2.2/fh-3.3.2/r-2.4.1/sc-2.1.1/sp-2.1.2/datatables.min.css"
         rel="stylesheet" />
@@ -130,6 +98,7 @@ $('input').attr('autocomplete', 'off')
     <script
         src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/fc-4.2.2/fh-3.3.2/r-2.4.1/sc-2.1.1/sp-2.1.2/datatables.min.js">
     </script>
+    <script src="/assets/js/main.js"></script>
 </body>
 
 </html>

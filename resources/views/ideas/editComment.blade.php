@@ -19,6 +19,29 @@
             value="{{$comment->commentContent}}">
         <label>Comment</label>
     </div>
-    <button type="submit" class="btn btn-success d-block mx-auto">Save</button>
+    <button type="submit" class="btn btn-success d-block mx-auto edit_confirm" data-toggle="tooltip">Save</button>
 </form>
+<script script type="text/javascript">
+    $('.edit_confirm').click(function(event) {
+        var form = $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        Swal.fire({
+            title: 'Are you sure ?',
+            text: 'Are you sure to update this comment ?',
+            icon: 'question',
+            showCancelButton: true,
+            scrollbarPadding: false,
+            allowOutsideClick: false,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    });
+</script>
 @endsection

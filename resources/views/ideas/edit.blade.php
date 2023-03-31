@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('title','Edit idea')
 @section('content')
-<a href="/ideas" type="button" class="btn btn-dark mb-3"><i class="fa-solid fa-chevron-left me-2"></i>Back</a>
+<a href="/" type="button" class="btn btn-dark mb-3"><i class="fa-solid fa-chevron-left me-2"></i>Back</a>
 <form action="/ideas/edit/{{$idea->ideaID}}" method="POST">
     <h4 class="text-center fw-bold mb-3">Edit idea</h4>
     @csrf
@@ -78,6 +78,7 @@
             icon: 'question',
             showCancelButton: true,
             scrollbarPadding: false,
+            allowOutsideClick: false,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes',

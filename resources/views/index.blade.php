@@ -128,16 +128,6 @@
     </div>
 </div>
 @endif
-<style>
-    .card {
-        transition: box-shadow 0.5s;
-    }
-
-    .card:hover {
-        box-shadow: 10px 10px 5px rgb(0, 0, 0, 0.15);
-        transition: box-shadow 0.5s;
-    }
-</style>
 <script script type="text/javascript">
     $('.show_delete').click(function(event) {
         var form = $(this).closest("form");
@@ -149,6 +139,7 @@
             icon: 'question',
             showCancelButton: true,
             scrollbarPadding: false,
+            allowOutsideClick: false,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes',

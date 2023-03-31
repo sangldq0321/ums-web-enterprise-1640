@@ -145,3 +145,12 @@ main {
         opacity: 0;
     }
 }
+
+.card {
+    transition: box-shadow 0.5s;
+}
+
+.card:hover {
+    box-shadow: 10px 10px 5px rgb(0, 0, 0, 0.15);
+    transition: box-shadow 0.5s;
+}
