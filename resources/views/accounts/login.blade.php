@@ -27,7 +27,7 @@
 </head>
 
 <body class="h-100 d-flex align-items-center justify-content-center position-relative p-3" style="z-index: 1;">
-    <div class="w-100 rounded-3 bg-light text-dark p-3 shadow" style="max-width: 512px;">
+    <div class="w-100 rounded-3 bg-light text-dark p-3 shadow" style="max-width: 512px;border:4px solid #f27228;">
         <form action="/login" method="POST">
             <h4 class="text-center fw-bold mb-3">Login</h4>
             @csrf
