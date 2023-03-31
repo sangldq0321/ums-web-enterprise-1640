@@ -11,7 +11,7 @@
         integrity="sha256-+rLIGHyZHBDebNqckORMwB+/ueJuy2RqFcYAYlhjkCs=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/assets/img/logo.ico" type="image/x-icon">
     <style>
         body::before {
             content: "";
@@ -29,7 +29,8 @@
 <body class="h-100 d-flex align-items-center justify-content-center position-relative p-3" style="z-index: 1;">
     <div class="w-100 rounded-3 bg-light text-dark p-3 shadow" style="max-width: 512px;border:4px solid #f27228;">
         <form action="/login" method="POST">
-            <h4 class="text-center fw-bold mb-3">Login</h4>
+            <img src="/assets/img/logo.svg" class="d-block mx-auto" width="64px">
+            <h4 class="text-center fw-bold mb-3">Welcome to UMS !</h4>
             @csrf
             @if (count($errors) > 0)
             <div class="d-flex justify-content-center mb-3">

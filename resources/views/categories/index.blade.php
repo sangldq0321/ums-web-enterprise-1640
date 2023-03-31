@@ -20,8 +20,9 @@
         <tr>
             <th scope="row">{{$category->categoryID}}</th>
             <td>{{$category->categoryName}}</td>
-            <td>{{$category->categoryDesc}}</td>
-            <td><a href="/categories/edit/{{$category->categoryID}}"><i class="fa-solid fa-pen-to-square me-2"></i>Edit</a></td>
+            <td>{!!$category->categoryDesc!!}</td>
+            <td><a href="/categories/edit/{{$category->categoryID}}"><i
+                        class="fa-solid fa-pen-to-square me-2"></i>Edit</a></td>
             <td>
                 <form method="POST" action="/categories/delete/{{ $category->categoryID }}">
                     @csrf

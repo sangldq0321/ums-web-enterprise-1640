@@ -8,6 +8,7 @@ use App\Models\Idea;
 use Auth;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
+use Session;
 
 class MainController extends Controller
 {
@@ -22,8 +23,9 @@ class MainController extends Controller
             $fullname = User::where('userID', '=', $getUploader)->value('fullname');
             $latestIdea = Idea::latest('created_at')->first();
             $latestComment = Comment::latest('created_at')->first();
+            $mostViewIdea = Idea::orderByDesc('view')->first();
             $countComment = Comment::count();
-            return view('index', compact('ideas', 'categoryName', 'users', 'latestIdea', 'latestComment', 'countComment'));
+            return view('index', compact('ideas', 'categoryName', 'users', 'latestIdea', 'latestComment', 'countComment', 'mostViewIdea'));
         }
         return view('index');
     }
@@ -130,6 +132,11 @@ class MainController extends Controller
         $idea = Idea::findOrFail($id_idea);
         $request->session()->put('ideaID', $id_idea);
         $getCategory = Idea::value('categoryID');
+        $viewIdea = 'idea_' . $id_idea;
+        if (!Session::has($viewIdea)) {
+            Idea::where('ideaID', $id_idea)->increment('view');
+            Session::put($viewIdea, 1);
+        }
         $categoryName = Category::where('categoryID', '=', $getCategory)->value('categoryName');
         $comments = Comment::orderByDesc('created_at')->get();
         return view('ideas.view', compact('idea', 'categoryName', 'comments'));

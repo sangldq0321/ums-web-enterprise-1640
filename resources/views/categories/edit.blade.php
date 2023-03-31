@@ -21,7 +21,7 @@
     </div>
     <div class="mb-3">
         <label class="form-label">Category description</label>
-        <textarea class="form-control ckeditor" rows="3">{!!$category->categoryDesc!!}</textarea>
+        <textarea class="form-control ckeditor" rows="3" name="categoryDesc">{!!$category->categoryDesc!!}</textarea>
     </div>
     <button type="submit" class="btn btn-success d-block mx-auto edit_confirm">Save</button>
 </form>

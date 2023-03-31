@@ -17,14 +17,15 @@
         integrity="sha256-sWZjHQiY9fvheUAOoxrszw9Wphl3zqfVaz1kZKEvot8=" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"
         integrity="sha256-t0FDfwj/WoMHIBbmFfuOtZv1wtA977QCfsFR3p1K4No=" crossorigin="anonymous"></script>
-    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/assets/img/logo.ico" type="image/x-icon">
 </head>
 
 <body class="d-flex flex-column h-100">
     <header>
         <nav class="navbar navbar-expand-lg" style="border-bottom:4px solid #f27228;">
             <div class="container-fluid">
-                <a class="navbar-brand fw-bold" href="/">UMS</a>
+                <a class="navbar-brand fw-bold" href="/"><span class="d-flex align-items-center"><img
+                            src="/assets/img/logo.svg" width="32px" class="me-2"><span>UMS</span></span></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -34,15 +35,15 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             @if(Auth::user()->roleID===1)
-                            <a class="nav-link" href="/">Dashboard</a>
+                            <a class="nav-link" href="/"><i class="fa-solid fa-chart-line me-2"></i>Dashboard</a>
                             @elseif(Auth::user()->roleID!==1)
-                            <a class="nav-link" href="/">Home</a>
+                            <a class="nav-link" href="/"><i class="fa-solid fa-building-columns me-2"></i>Home</a>
                             @endif
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         @auth
-                        @if (Auth::user()->roleID==3 || Auth::user()->roleID==4 || Auth::user()->roleID==5 )
+                        @if (Auth::user()->roleID==2 || Auth::user()->roleID==3 )
                         <li class="nav-item">
                             <a class="nav-link" href="/ideas">Ideas</a>
                         </li>

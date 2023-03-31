@@ -14,6 +14,7 @@ class Idea extends Model
         'ideaName',
         'categoryID',
         'ideaContent',
-        'uploader'
+        'uploader',
+        'view'
     ];
 }

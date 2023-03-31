@@ -79,7 +79,16 @@
         <div class="card w-100 mb-3">
             <div class="card-body">
                 <h5 class="card-title fw-bold">Most viewed idea</h5>
-                <p class="card-text">Placeholder</p>
+                <p class="card-text">
+                <div class="fw-bold h5"><a href="/ideas/view/{{$mostViewIdea->ideaID}}">{{$mostViewIdea->ideaName}}</a>
+                </div>
+                <div>
+                    <?php
+                    $date=date_create($latestIdea->created_at);
+                    echo date_format($date,"h:i A d/m/Y");
+                    ?>
+                </div>
+                </p>
             </div>
         </div>
         <div class="card w-100 mb-3">

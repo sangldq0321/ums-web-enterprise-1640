@@ -6,6 +6,7 @@ use App\Models\User;
 use Auth;
 use Hash;
 use Illuminate\Http\Request;
+use Session;
 
 class LoginController extends Controller
 {
@@ -29,8 +30,13 @@ class LoginController extends Controller
             return redirect('/login')->with('notify', 'loginfailed');
         }
     }
-    public function logOut()
+    public function logOut(Request $request)
     {
+        $id_idea = $request->session()->get('ideaID');
+        $viewIdea = 'idea_' . $id_idea;
+        if (Session::has($viewIdea)) {
+            $request->session()->forget($viewIdea);
+        }
         Auth::logout();
         return redirect('/login')->with('notify', 'logoutsuccess');
     }

@@ -41,7 +41,7 @@
             <form method="POST" action="/comments/delete/{{$comment->commentID}}" class="d-inline-block m-2">
                 @csrf
                 <input name="_method" type="hidden" value="GET">
-                <a type="button" class="show_delete" data-toggle="tooltip"><i
+                <a type="button" class="show_delete_comment" data-toggle="tooltip"><i
                         class="fa-solid fa-trash me-2"></i>Delete</a>
             </form>
         </div>
@@ -117,6 +117,28 @@
         Swal.fire({
             title: 'Are you sure ?',
             text: 'Are you sure to delete this idea ?',
+            icon: 'question',
+            showCancelButton: true,
+            scrollbarPadding: false,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    });
+</script>
+<script script type="text/javascript">
+    $('.show_delete_comment').click(function(event) {
+        var form = $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        Swal.fire({
+            title: 'Are you sure ?',
+            text: 'Are you sure to delete this comment ?',
             icon: 'question',
             showCancelButton: true,
             scrollbarPadding: false,
