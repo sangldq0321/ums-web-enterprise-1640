@@ -30,7 +30,8 @@
                     </div>
                     </p>
                     @if (Auth::check() && Auth::user()->roleID ==4 || Auth::user()->roleID ==5)
-                    <td><a href="/ideas/edit/{{$idea->ideaID}}" class="m-2"><i class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
+                    <td><a href="/ideas/edit/{{$idea->ideaID}}" class="m-2"><i
+                                class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
                     </td>
                     <td>
                         <form method="POST" action="/ideas/delete/{{ $idea->ideaID }}" class="d-inline-block">
@@ -49,6 +50,9 @@
             </div>
         </div>
         @endforeach
+        <div class="d-flex justify-content-center mt-3">
+            {{ $ideas->links() }}
+        </div>
         @endif
     </div>
     <div class="col-12 col-lg-3 mt-3 mt-lg-0">
@@ -57,8 +61,12 @@
                 <h5 class="card-title fw-bold">User</h5>
                 <p class="card-text">
                     @foreach ($users->where('roleID',Auth::user()->roleID) as $user)
-                    @if($user->fullname==Auth::user()->fullname) {{$user->fullname}} (You) @endif
-                    @endforeach
+                    @if($user->fullname==Auth::user()->fullname)
+                <div><b>{{$user->fullname}} (You)</b></div>
+                @else
+                <div>{{$user->fullname}}</div>
+                @endif
+                @endforeach
                 </p>
             </div>
         </div>

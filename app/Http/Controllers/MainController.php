@@ -14,7 +14,7 @@ class MainController extends Controller
     public function index()
     {
         if (Auth::user()->roleID != 1) {
-            $ideas = Idea::orderByDesc('created_at')->get();
+            $ideas = Idea::orderByDesc('created_at')->paginate(5);
             $users = User::all();
             $getCategory = Idea::value('categoryID');
             $categoryName = Category::where('categoryID', '=', $getCategory)->value('categoryName');
@@ -29,7 +29,7 @@ class MainController extends Controller
     }
     public function ideaIndex()
     {
-        $ideas = Idea::paginate(5);
+        $ideas = Idea::all();
         $getCategory = Idea::value('categoryID');
         $categoryName = Category::where('categoryID', '=', $getCategory)->value('categoryName');
         return view('ideas.index', compact('ideas', 'categoryName'));
