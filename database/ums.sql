@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 30, 2023 at 11:42 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Host: sql207.epizy.com
+-- Generation Time: Mar 31, 2023 at 05:20 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.2.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ums`
+-- Database: `epiz_33912338_umsystem`
 --
 
 -- --------------------------------------------------------
@@ -29,8 +30,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categories` (
   `categoryID` bigint(20) UNSIGNED NOT NULL,
-  `categoryName` varchar(255) NOT NULL,
-  `categoryDesc` text DEFAULT NULL,
+  `categoryName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `categoryDesc` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -51,7 +52,7 @@ INSERT INTO `categories` (`categoryID`, `categoryName`, `categoryDesc`, `created
 CREATE TABLE `comments` (
   `commentID` bigint(20) UNSIGNED NOT NULL,
   `userID` bigint(20) UNSIGNED NOT NULL,
-  `commentContent` text NOT NULL,
+  `commentContent` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `ideaID` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -62,7 +63,8 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`commentID`, `userID`, `commentContent`, `ideaID`, `created_at`, `updated_at`) VALUES
-(11, 2, '1234', 4, '2023-03-30 18:08:54', '2023-03-30 18:09:00');
+(11, 2, 'Good idea !', 4, '2023-03-30 18:08:54', '2023-03-31 19:45:36'),
+(12, 5, 'Pending request', 8, '2023-03-31 20:00:23', '2023-03-31 20:01:12');
 
 -- --------------------------------------------------------
 
@@ -72,9 +74,9 @@ INSERT INTO `comments` (`commentID`, `userID`, `commentContent`, `ideaID`, `crea
 
 CREATE TABLE `ideas` (
   `ideaID` bigint(20) UNSIGNED NOT NULL,
-  `ideaName` varchar(255) NOT NULL,
+  `ideaName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `categoryID` bigint(20) UNSIGNED NOT NULL,
-  `ideaContent` text DEFAULT NULL,
+  `ideaContent` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `uploader` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -85,8 +87,12 @@ CREATE TABLE `ideas` (
 --
 
 INSERT INTO `ideas` (`ideaID`, `ideaName`, `categoryID`, `ideaContent`, `uploader`, `created_at`, `updated_at`) VALUES
-(1, 'Demo', 1, '<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>', 2, '2023-03-30 04:13:09', '2023-03-30 05:13:09'),
-(4, 'Add dashboard', 1, '<p>Please add <strong>dashboard</strong></p>', 2, '2023-03-30 16:40:20', '2023-03-30 16:40:20');
+(1, 'Add closure date for ideas', 1, '<p>Please add <strong>closure date</strong> for ideas</p>', 2, '2023-03-30 04:13:09', '2023-03-31 19:46:27'),
+(4, 'Add dashboard', 1, '<p>Please add <strong>dashboard</strong></p>', 2, '2023-03-30 16:40:20', '2023-03-30 16:40:20'),
+(5, 'Add report system', 1, '<p>Please add <strong>report system</strong></p>', 5, '2023-03-31 19:47:13', '2023-03-31 19:47:13'),
+(6, 'Add like function', 1, '<p>Please add <strong>like function</strong></p>', 5, '2023-03-31 19:47:48', '2023-03-31 19:47:48'),
+(7, 'Add dislike function', 1, '<p>Please add <strong>dislike function</strong></p>', 5, '2023-03-31 19:48:10', '2023-03-31 19:48:10'),
+(8, 'Add chatbox', 1, '<p>Please add <strong>chatbox</strong></p>', 5, '2023-03-31 19:48:39', '2023-03-31 19:48:39');
 
 -- --------------------------------------------------------
 
@@ -96,7 +102,7 @@ INSERT INTO `ideas` (`ideaID`, `ideaName`, `categoryID`, `ideaContent`, `uploade
 
 CREATE TABLE `roles` (
   `roleID` bigint(20) UNSIGNED NOT NULL,
-  `roleName` varchar(255) NOT NULL,
+  `roleName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -121,8 +127,8 @@ INSERT INTO `roles` (`roleID`, `roleName`, `created_at`, `updated_at`) VALUES
 CREATE TABLE `users` (
   `userID` bigint(20) UNSIGNED NOT NULL,
   `username` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
-  `fullname` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `fullname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `roleID` bigint(20) UNSIGNED NOT NULL,
   `isPassReset` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -136,8 +142,12 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`userID`, `username`, `fullname`, `password`, `roleID`, `isPassReset`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'Administrator', '$2y$10$Gh4v05aAC0hl7xtq4y3CQuUzTnd7iO5qc/lOvZCfrQujajhkoYQoS', 1, 1, '2023-03-26 07:42:54', '2023-03-26 00:52:49'),
 (2, 'qamanager', 'QA Manager', '$2y$10$W0cv3X.R3FeBtgJKi.nSZOQ0Z74x8mnwQz.q8r2f4l.GONqAg5FvW', 2, 1, '2023-03-26 07:46:46', '2023-03-26 00:48:33'),
-(3, 'qacoor', 'QA Coordinator', '$2a$10$XFm43675iWjRe4ULhtb7iuASSCmbPjF45fBJH8TJSM5k0/kUVyhf6', 3, 1, '2023-03-30 20:48:47', '2023-03-30 20:48:47'),
-(4, 'staff', 'Staff', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 4, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17');
+(3, 'qacoor1', 'QA Coordinator 1', '$2a$10$XFm43675iWjRe4ULhtb7iuASSCmbPjF45fBJH8TJSM5k0/kUVyhf6', 3, 1, '2023-03-30 20:48:47', '2023-03-30 20:48:47'),
+(4, 'acastaff1', 'Staff Academic 1', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 4, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17'),
+(5, 'acastaff2', 'Staff Academic 2', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 4, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17'),
+(6, 'qacoor2', 'QA Coordinator 2', '$2a$10$XFm43675iWjRe4ULhtb7iuASSCmbPjF45fBJH8TJSM5k0/kUVyhf6', 3, 1, '2023-03-30 20:48:47', '2023-03-30 20:48:47'),
+(7, 'supstaff1', 'Staff Support 1', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 5, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17'),
+(8, 'supstaff2', 'Staff Support 2', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 5, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17');
 
 --
 -- Indexes for dumped tables
@@ -194,13 +204,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `commentID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `commentID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `ideas`
 --
 ALTER TABLE `ideas`
-  MODIFY `ideaID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ideaID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -212,7 +222,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `userID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
