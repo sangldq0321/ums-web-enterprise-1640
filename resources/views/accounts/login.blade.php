@@ -21,10 +21,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: url('/assets/img/login-bg.jpg');
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+            background: #2b3494;
         }
     </style>
 </head>
@@ -59,14 +56,15 @@
             @endif
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
-                <label for="floatingInput">Username</label>
+                <label for="floatingInput"><i class="fa-solid fa-user me-2"></i>Username</label>
             </div>
             <div class="form-floating mb-3">
                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
                     name="password">
-                <label for="floatingPassword">Password</label>
+                <label for="floatingPassword"><i class="fa-solid fa-lock me-2"></i>Password</label>
             </div>
-            <button type="submit" class="btn btn-success d-block mx-auto">Login</button>
+            <button type="submit" class="btn btn-success d-block mx-auto"><i
+                    class="fa-solid fa-right-to-bracket me-2"></i>Login</button>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
