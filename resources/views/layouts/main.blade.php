@@ -43,7 +43,7 @@
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         @auth
-                        @if (Auth::user()->roleID==2 || Auth::user()->roleID==3 )
+                        @if (Auth::user()->roleID==3 )
                         <li class="nav-item">
                             <a class="nav-link" href="/ideas">Ideas</a>
                         </li>
