@@ -20,7 +20,7 @@
         <div class="card mb-3">
             {{-- <img src="..." class="card-img-top" alt="..."> --}}
             <div class="card-body">
-                <h1 class="card-title fw-bold">{{$idea->ideaName}}</h1>
+                <h3 class="card-title fw-bold">{{$idea->ideaName}}</h3>
                 <div class="card-text">
                     <div>Category: <b>{{$categoryName}}</b></div>
                     <div>Upload by: <b>Anonymous</b> at
@@ -104,7 +104,8 @@
                     @if ($countComment==0)
                 <div>There is no comment yet !</div>
                 @else
-                <div class="h6 fw-bold">Anonymous:</div>
+                <div class="h6 mb-0 fw-bold">Anonymous:</div>
+                <div>{{$latestComment->commentContent}}</div>
                 <div>
                     <?php
                     $date=date_create($latestComment->created_at);

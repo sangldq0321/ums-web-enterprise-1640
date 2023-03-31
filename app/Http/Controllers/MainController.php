@@ -96,7 +96,7 @@ class MainController extends Controller
         $idea->ideaContent = $request->input('ideaContent');
         $idea->uploader = Auth::user()->userID;
         $idea->save();
-        return redirect('/ideas');
+        return redirect('/');
     }
     public function getEditIdea($id_idea)
     {
@@ -117,13 +117,13 @@ class MainController extends Controller
         $idea->categoryID = $request->input('categoryID');
         $idea->ideaContent = $request->input('ideaContent');
         $idea->update();
-        return redirect('/ideas');
+        return redirect('/');
     }
     public function deleteIdea($id_idea)
     {
         $idea = Idea::findOrFail($id_idea);
         $idea->delete();
-        return redirect('/ideas');
+        return redirect('/');
     }
     public function viewIdea(Request $request, $id_idea)
     {

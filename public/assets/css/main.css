@@ -29,6 +29,10 @@ a {
     transition: .25s ease-in-out;
 }
 
+a:hover {
+    color: #f27228;
+}
+
 main {
     animation-name: fade;
     animation-duration: 1s;
