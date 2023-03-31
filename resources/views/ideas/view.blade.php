@@ -52,6 +52,8 @@
 @else
 <div class="h5 text-center">This idea not have any comment !</div>
 @endif
+@if (Auth::check() && Auth::user()->roleID !=4 && Auth::user()->roleID !=5)
+@else
 <form action="/ideas/comment" method="post">
     @csrf
     @if (count($errors) > 0)
@@ -69,6 +71,7 @@
     </div>
     <button type="submit" class="btn btn-success">Post comment</button>
 </form>
+@endif
 <script>
     ClassicEditor
         .create(document.querySelector('.ckeditor'), {
