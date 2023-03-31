@@ -125,7 +125,7 @@
     }
 
     .card:hover {
-        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+        box-shadow: 10px 10px 5px rgb(0, 0, 0, 0.15);
         transition: box-shadow 0.5s;
     }
 </style>
