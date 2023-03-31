@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Idea;
+use App\Models\likeAndDislike;
 use Auth;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;

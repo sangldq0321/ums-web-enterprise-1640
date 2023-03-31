@@ -4,6 +4,7 @@ use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LikeDislikeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,7 +34,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/ideas/edit/{id}', [IdeaController::class, 'getEditIdea']);
             Route::post('/ideas/edit/{id}', [IdeaController::class, 'postEditIdea']);
             Route::get('/ideas/delete/{id}', [IdeaController::class, 'deleteIdea']);
-            Route::post('/ideas/comment', [IdeaController::class, 'postComment']);
+            Route::post('/ideas/comment', [CommentController::class, 'postComment']);
             Route::get('/comments/edit/{id}', [CommentController::class, 'getEditComment']);
             Route::post('/comments/edit/{id}', [CommentController::class, 'postEditComment']);
             Route::get('/comments/delete/{id}', [CommentController::class, 'deleteComment']);

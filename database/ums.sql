@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: sql207.epizy.com
--- Generation Time: Mar 31, 2023 at 05:20 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.2.22
+-- Host: 127.0.0.1
+-- Generation Time: Apr 01, 2023 at 01:26 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `epiz_33912338_umsystem`
+-- Database: `ums`
 --
 
 -- --------------------------------------------------------
@@ -30,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categories` (
   `categoryID` bigint(20) UNSIGNED NOT NULL,
-  `categoryName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `categoryDesc` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `categoryName` varchar(255) NOT NULL,
+  `categoryDesc` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -52,7 +51,7 @@ INSERT INTO `categories` (`categoryID`, `categoryName`, `categoryDesc`, `created
 CREATE TABLE `comments` (
   `commentID` bigint(20) UNSIGNED NOT NULL,
   `userID` bigint(20) UNSIGNED NOT NULL,
-  `commentContent` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `commentContent` text NOT NULL,
   `ideaID` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -64,7 +63,13 @@ CREATE TABLE `comments` (
 
 INSERT INTO `comments` (`commentID`, `userID`, `commentContent`, `ideaID`, `created_at`, `updated_at`) VALUES
 (11, 2, 'Good idea !', 4, '2023-03-30 18:08:54', '2023-03-31 19:45:36'),
-(12, 5, 'Pending request', 8, '2023-03-31 20:00:23', '2023-03-31 20:01:12');
+(12, 5, 'Pending request', 8, '2023-03-31 20:00:23', '2023-03-31 20:01:12'),
+(13, 4, '123', 8, '2023-03-31 10:56:15', '2023-03-31 10:56:15'),
+(14, 4, '123', 8, '2023-03-31 10:56:19', '2023-03-31 10:56:19'),
+(15, 4, '123', 8, '2023-03-31 13:02:05', '2023-03-31 13:02:05'),
+(16, 4, '123', 8, '2023-03-31 13:09:22', '2023-03-31 13:09:22'),
+(17, 4, '123', 8, '2023-03-31 13:15:23', '2023-03-31 13:15:23'),
+(18, 4, '123', 8, '2023-03-31 21:29:52', '2023-03-31 21:29:52');
 
 -- --------------------------------------------------------
 
@@ -74,10 +79,12 @@ INSERT INTO `comments` (`commentID`, `userID`, `commentContent`, `ideaID`, `crea
 
 CREATE TABLE `ideas` (
   `ideaID` bigint(20) UNSIGNED NOT NULL,
-  `ideaName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ideaName` varchar(255) NOT NULL,
   `categoryID` bigint(20) UNSIGNED NOT NULL,
-  `ideaContent` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ideaContent` text DEFAULT NULL,
   `uploader` bigint(20) UNSIGNED NOT NULL,
+  `view` bigint(11) NOT NULL DEFAULT 0,
+  `document` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -86,13 +93,13 @@ CREATE TABLE `ideas` (
 -- Dumping data for table `ideas`
 --
 
-INSERT INTO `ideas` (`ideaID`, `ideaName`, `categoryID`, `ideaContent`, `uploader`, `created_at`, `updated_at`) VALUES
-(1, 'Add closure date for ideas', 1, '<p>Please add <strong>closure date</strong> for ideas</p>', 2, '2023-03-30 04:13:09', '2023-03-31 19:46:27'),
-(4, 'Add dashboard', 1, '<p>Please add <strong>dashboard</strong></p>', 2, '2023-03-30 16:40:20', '2023-03-30 16:40:20'),
-(5, 'Add report system', 1, '<p>Please add <strong>report system</strong></p>', 5, '2023-03-31 19:47:13', '2023-03-31 19:47:13'),
-(6, 'Add like function', 1, '<p>Please add <strong>like function</strong></p>', 5, '2023-03-31 19:47:48', '2023-03-31 19:47:48'),
-(7, 'Add dislike function', 1, '<p>Please add <strong>dislike function</strong></p>', 5, '2023-03-31 19:48:10', '2023-03-31 19:48:10'),
-(8, 'Add chatbox', 1, '<p>Please add <strong>chatbox</strong></p>', 5, '2023-03-31 19:48:39', '2023-03-31 19:48:39');
+INSERT INTO `ideas` (`ideaID`, `ideaName`, `categoryID`, `ideaContent`, `uploader`, `view`, `document`, `created_at`, `updated_at`) VALUES
+(1, 'Add closure date for ideas', 1, '<p>Please add <strong>closure date</strong> for ideas</p>', 2, 6, NULL, '2023-03-30 04:13:09', '2023-03-31 19:46:27'),
+(4, 'Add dashboard', 1, '<p>Please add <strong>dashboard</strong></p>', 2, 0, NULL, '2023-03-30 16:40:20', '2023-03-30 16:40:20'),
+(5, 'Add report system', 1, '<p>Please add <strong>report system</strong></p>', 5, 15, NULL, '2023-03-31 19:47:13', '2023-03-31 19:47:13'),
+(6, 'Add like function', 1, '<p>Please add <strong>like function</strong></p>', 5, 1, NULL, '2023-03-31 19:47:48', '2023-03-31 13:24:38'),
+(7, 'Add dislike function', 1, '<p>Please add <strong>dislike function</strong></p>', 5, 1, NULL, '2023-03-31 19:48:10', '2023-03-31 13:24:34'),
+(8, 'Add chatbox', 1, '<p>Please add <strong>chatbox</strong></p>', 5, 6, NULL, '2023-03-31 19:48:39', '2023-03-31 21:26:51');
 
 -- --------------------------------------------------------
 
@@ -102,7 +109,7 @@ INSERT INTO `ideas` (`ideaID`, `ideaName`, `categoryID`, `ideaContent`, `uploade
 
 CREATE TABLE `roles` (
   `roleID` bigint(20) UNSIGNED NOT NULL,
-  `roleName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `roleName` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -127,8 +134,8 @@ INSERT INTO `roles` (`roleID`, `roleName`, `created_at`, `updated_at`) VALUES
 CREATE TABLE `users` (
   `userID` bigint(20) UNSIGNED NOT NULL,
   `username` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
-  `fullname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fullname` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `roleID` bigint(20) UNSIGNED NOT NULL,
   `isPassReset` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -204,13 +211,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `commentID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `commentID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `ideas`
 --
 ALTER TABLE `ideas`
-  MODIFY `ideaID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ideaID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `roles`

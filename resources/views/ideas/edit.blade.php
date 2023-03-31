@@ -2,7 +2,7 @@
 @section('title','Edit idea')
 @section('content')
 <a href="/" type="button" class="btn btn-dark mb-3"><i class="fa-solid fa-chevron-left me-2"></i>Back</a>
-<form action="/ideas/edit/{{$idea->ideaID}}" method="POST">
+<form action="/ideas/edit/{{$idea->ideaID}}" method="POST" enctype="multipart/form-data">
     <h4 class="text-center fw-bold mb-3">Edit idea</h4>
     @csrf
     @if (count($errors) > 0)
@@ -24,6 +24,11 @@
             @endif>{{$category->categoryName}}</option>
         @endforeach
     </select>
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Document</label>
+        <input class="form-control" type="file" id="formFile" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
+        text/plain, application/pdf" name="document">
+    </div>
     <div class="mb-3">
         <label class="form-label">Idea content</label>
         <textarea class="form-control ckeditor" rows="3" name="ideaContent">{{$idea->ideaContent}}</textarea>

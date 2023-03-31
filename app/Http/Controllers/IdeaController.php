@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Idea;
+use App\Models\likeAndDislike;
 use Auth;
+use File;
 use Illuminate\Http\Request;
 use Session;
 
@@ -35,8 +37,15 @@ class IdeaController extends Controller
         $idea->categoryID = $request->input('categoryID');
         $idea->ideaContent = $request->input('ideaContent');
         $idea->uploader = Auth::user()->userID;
+        $request->except($idea->view);
+        if ($request->hasfile('document')) {
+            $file = $request->file('document');
+            $filename = time() . '.' . $file->extension();
+            $file->move('documents', $filename);
+            $idea->document = $filename;
+        }
         $idea->save();
-        return redirect()->back();
+        return redirect('/');
     }
     public function getEditIdea($id_idea)
     {
@@ -56,12 +65,22 @@ class IdeaController extends Controller
         $idea->ideaName = $request->input('ideaName');
         $idea->categoryID = $request->input('categoryID');
         $idea->ideaContent = $request->input('ideaContent');
+        if ($request->hasfile('document')) {
+            $des = 'documents/' . $idea->document;
+            File::delete($des);
+            $file = $request->file('document');
+            $filename = time() . '.' . $file->extension();
+            $file->move('documents', $filename);
+            $idea->document = $filename;
+        }
         $idea->update();
-        return redirect('/categories');
+        return redirect('/');
     }
     public function deleteIdea($id_idea)
     {
         $idea = Idea::findOrFail($id_idea);
+        $des = 'documents/' . $idea->document;
+        File::delete($des);
         $idea->delete();
         return redirect('/');
     }
