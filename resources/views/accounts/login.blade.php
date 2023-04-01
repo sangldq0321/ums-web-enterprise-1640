@@ -11,7 +11,7 @@
         integrity="sha256-+rLIGHyZHBDebNqckORMwB+/ueJuy2RqFcYAYlhjkCs=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/assets/img/logo.ico" type="image/x-icon">
     <style>
         body::before {
             content: "";
@@ -21,18 +21,16 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: url('/assets/img/login-bg.jpg');
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+            background: #2b3494;
         }
     </style>
 </head>
 
 <body class="h-100 d-flex align-items-center justify-content-center position-relative p-3" style="z-index: 1;">
-    <div class="w-100 rounded-3 bg-light text-dark p-3 shadow" style="max-width: 512px;">
+    <div class="w-100 rounded-3 bg-light text-dark p-3 shadow" style="max-width: 512px;border:4px solid #f27228;">
         <form action="/login" method="POST">
-            <h4 class="text-center fw-bold mb-3">Login</h4>
+            <img src="/assets/img/logo.svg" class="d-block mx-auto" width="64px">
+            <h4 class="text-center fw-bold mb-3">Welcome to UMS !</h4>
             @csrf
             @if (count($errors) > 0)
             <div class="d-flex justify-content-center mb-3">
@@ -59,18 +57,22 @@
             @endif
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
-                <label for="floatingInput">Username</label>
+                <label for="floatingInput"><i class="fa-solid fa-user me-2"></i>Username</label>
             </div>
             <div class="form-floating mb-3">
                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
                     name="password">
-                <label for="floatingPassword">Password</label>
+                <label for="floatingPassword"><i class="fa-solid fa-lock me-2"></i>Password</label>
             </div>
-            <button type="submit" class="btn btn-success d-block mx-auto">Login</button>
+            <button type="submit" class="btn btn-success d-block mx-auto"><i
+                    class="fa-solid fa-right-to-bracket me-2"></i>Login</button>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    </script>
+    <script>
+        $('input').attr('autocomplete', 'off')
     </script>
 </body>
 

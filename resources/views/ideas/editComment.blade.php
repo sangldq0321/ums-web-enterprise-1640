@@ -1,10 +1,11 @@
 @extends('layouts.main')
-@section('title','Change password')
+@section('title','Add idea')
 @section('content')
-<h4 class="text-center fw-bold mb-3">Change password</h4>
-<form action="/account/change-password" method="POST">
+<a href="/" type="button" class="btn btn-dark mb-3"><i class="fa-solid fa-chevron-left me-2"></i>Back</a>
+<form action="/comments/edit/{{$comment->commentID}}" method="POST">
+    <h4 class="text-center fw-bold mb-3">Edit comment</h4>
     @csrf
-    @if ($errors->any())
+    @if (count($errors) > 0)
     <div class="d-flex justify-content-center mb-3">
         <div class="alert alert-danger">
             @foreach ($errors->all() as $err)
@@ -13,21 +14,10 @@
         </div>
     </div>
     @endif
-    @if(Auth::user()->isPassReset==0)
-    <div class="d-flex justify-content-center mb-3">
-        <div class="alert alert-info">
-            <div>You must set up new password to use the system !</div>
-        </div>
-    </div>
-    @endif
     <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
-        <label for="floatingPassword">Password</label>
-    </div>
-    <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Confirm password"
-            name="password_confirmation">
-        <label for="floatingPassword">Confirm password</label>
+        <input type="text" class="form-control" placeholder="Comment" name="commentContent"
+            value="{{$comment->commentContent}}">
+        <label>Comment</label>
     </div>
     <button type="submit" class="btn btn-success d-block mx-auto edit_confirm" data-toggle="tooltip">Save</button>
 </form>
@@ -38,7 +28,7 @@
         event.preventDefault();
         Swal.fire({
             title: 'Are you sure ?',
-            text: 'Are you sure to update this password ?',
+            text: 'Are you sure to update this comment ?',
             icon: 'question',
             showCancelButton: true,
             scrollbarPadding: false,

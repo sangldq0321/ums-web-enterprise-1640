@@ -66,5 +66,8 @@ class Kernel extends HttpKernel
         'checkPass' => \App\Http\Middleware\checkPass::class,
         'checkAdmin' => \App\Http\Middleware\Admin::class,
         'checkQAManager' => \App\Http\Middleware\QAManager::class,
+        'checkStaff' => \App\Http\Middleware\Staff::class,
+        'viewIdea' => \App\Http\Middleware\viewIdea::class,
+        'viewIndexIdea' => \App\Http\Middleware\viewIndexIdea::class,
     ];
 }
