@@ -124,6 +124,9 @@
                     @if ($countComment == 0)
                 <div>There is no comment yet !</div>
                 @else
+                <div class="h5 fw-bold">
+                    <a href="/ideas/view/{{$latestComment->ideaID}}">Demo</a>
+                </div>
                 <div class="h6 mb-0 fw-bold">Anonymous:</div>
                 <div>{{ $latestComment->commentContent }}</div>
                 <div>
