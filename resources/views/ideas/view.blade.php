@@ -19,7 +19,9 @@
         <span><button type="submit" class="btn btn-success" title="Thumb up"><i
                     class="fa-solid fa-thumbs-up h5 mb-0"></i></button></span>
     </form>
-    <span class="mx-2"></span>
+    <span class="mx-2">@if($idea->likeCount>0)<span class="text-success fw-bold">+
+            {{$idea->likeCount}}</span>@elseif($idea->likeCount<0)<span class="text-danger fw-bold">
+            {{$idea->likeCount}}</span>@else <span class="fw-bold">0</span> @endif</span>
     <form action="/ideas/dislike/{{ $idea->ideaID }}" method="POST" class="d-inline-block">
         @csrf
         <span><button class="btn btn-danger" type="submit" title="Thump down"><i
@@ -33,7 +35,8 @@
     <form method="POST" action="/ideas/delete/{{ $idea->ideaID }}" class="d-inline-block">
         @csrf
         <input name="_method" type="hidden" value="GET">
-        <a type="button" class="show_delete m-2 delete" data-toggle="tooltip"><i class="fa-solid fa-trash me-2"></i>Delete</a>
+        <a type="button" class="show_delete m-2 delete" data-toggle="tooltip"><i
+                class="fa-solid fa-trash me-2"></i>Delete</a>
     </form>
 </div>
 @endif
