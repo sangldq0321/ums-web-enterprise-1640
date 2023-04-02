@@ -98,4 +98,18 @@ class IdeaController extends Controller
         $comments = Comment::orderByDesc('created_at')->get();
         return view('ideas.view', compact('idea', 'categoryName', 'comments'));
     }
+    public function likeIdea(Request $request, $id_idea)
+    {
+        $idea = Idea::findOrFail($id_idea);
+        $idea->likeCount = $idea->likeCount + 1;
+        $idea->update();
+        return redirect()->route('viewIdea', ['id' => $request->session()->get('ideaID')]);
+    }
+    public function dislikeIdea(Request $request, $id_idea)
+    {
+        $idea = Idea::findOrFail($id_idea);
+        $idea->likeCount = $idea->likeCount - 1;
+        $idea->update();
+        return redirect()->route('viewIdea', ['id' => $request->session()->get('ideaID')]);
+    }
 }

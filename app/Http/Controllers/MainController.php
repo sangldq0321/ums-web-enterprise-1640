@@ -25,8 +25,9 @@ class MainController extends Controller
             $latestIdea = Idea::latest('created_at')->first();
             $latestComment = Comment::latest('created_at')->first();
             $mostViewIdea = Idea::orderByDesc('view')->first();
+            $mostLikeIdea = Idea::orderByDesc('likeCount')->first();
             $countComment = Comment::count();
-            return view('index', compact('ideas', 'categoryName', 'users', 'latestIdea', 'latestComment', 'countComment', 'mostViewIdea'));
+            return view('index', compact('ideas', 'categoryName', 'users', 'latestIdea', 'latestComment', 'countComment', 'mostViewIdea', 'mostLikeIdea'));
         }
         return view('index');
     }
