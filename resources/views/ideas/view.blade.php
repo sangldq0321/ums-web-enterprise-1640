@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('title', 'View idea')
 @section('content')
+<a href="/" type="button" class="btn btn-dark mb-3"><i class="fa-solid fa-chevron-left me-2"></i>Back</a>
     <h1 class="fw-bold">{{ $idea->ideaName }}</h1>
     <div>Category: <b>{{ $categoryName }}</b></div>
     <div class="mb-3">Upload by: <b>Anonymous</b> at
