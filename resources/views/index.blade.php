@@ -43,7 +43,7 @@
                     </td>
                     @endif
                     <div>
-                        <a href="/ideas/view/{{ $idea->ideaID }}" class="btn btn-primary m-2">View more<i
+                        <a href="/ideas/view/{{ $idea->ideaID }}" class="btn btn-success m-2">View more<i
                                 class="fa-solid fa-angle-right ms-2"></i></a>
                     </div>
                 </div>
