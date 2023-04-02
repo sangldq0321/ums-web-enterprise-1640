@@ -16,10 +16,12 @@
                 <div class="card-text">Email: <b>{{ $user->email }}</b></div>
                 <div class="card-text">Fullname: <b>{{ $user->fullname }}</b></div>
             </div>
+            @if($user->userID == Auth::user()->userID)
             <div class="d-flex justify-content-center">
                 <a href="/account/edit-profile/{{ $user->userID }}" class="btn btn-warning mt-3"><i
                         class="fa-solid fa-user-pen me-2"></i>Edit profile</a>
             </div>
+            @endif
         </div>
     </div>
 </div>

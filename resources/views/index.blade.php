@@ -62,9 +62,10 @@
                 <p class="card-text">
                     @foreach ($users->where('roleID', Auth::user()->roleID) as $user)
                     @if ($user->fullname == Auth::user()->fullname)
-                <div><b>{{ $user->fullname }} (You)</b></div>
+                <div><a href="/account/view-profile/{{Auth::user()->userID}}"><b>{{ $user->fullname }}</a> (You)</b>
+                </div>
                 @else
-                <div>{{ $user->fullname }}</div>
+                <div><a href="/account/view-profile/{{$user->userID}}">{{ $user->fullname }}</a></div>
                 @endif
                 @endforeach
                 </p>
