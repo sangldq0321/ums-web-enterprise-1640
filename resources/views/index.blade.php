@@ -58,7 +58,7 @@
     <div class="col-12 col-lg-3 mt-3 mt-lg-0">
         <div class="card w-100 mb-3">
             <div class="card-body">
-                <h5 class="card-title fw-bold">User</h5>
+                <h5 class="card-title fw-bold text-decoration-underline">User:</h5>
                 <p class="card-text">
                     @foreach ($users->where('roleID', Auth::user()->roleID) as $user)
                     @if ($user->fullname == Auth::user()->fullname)
@@ -72,7 +72,7 @@
         </div>
         <div class="card w-100 mb-3">
             <div class="card-body">
-                <h5 class="card-title fw-bold">Most popular idea</h5>
+                <h5 class="card-title fw-bold text-decoration-underline">Most popular idea:</h5>
                 <p class="card-text">
                 <div class="fw-bold h5"><a href="/ideas/view/{{ $mostLikeIdea->ideaID }}">{{ $mostLikeIdea->ideaName
                         }}</a>
@@ -88,7 +88,7 @@
         </div>
         <div class="card w-100 mb-3">
             <div class="card-body">
-                <h5 class="card-title fw-bold">Most viewed idea</h5>
+                <h5 class="card-title fw-bold text-decoration-underline">Most viewed idea:</h5>
                 <p class="card-text">
                 <div class="fw-bold h5"><a href="/ideas/view/{{ $mostViewIdea->ideaID }}">{{ $mostViewIdea->ideaName
                         }}</a>
@@ -104,7 +104,7 @@
         </div>
         <div class="card w-100 mb-3">
             <div class="card-body">
-                <h5 class="card-title fw-bold">Latest idea</h5>
+                <h5 class="card-title fw-bold text-decoration-underline">Latest idea:</h5>
                 <p class="card-text">
                 <div class="fw-bold h5"><a href="/ideas/view/{{ $latestIdea->ideaID }}">{{ $latestIdea->ideaName }}</a>
                 </div>
@@ -119,7 +119,7 @@
         </div>
         <div class="card w-100">
             <div class="card-body">
-                <h5 class="card-title fw-bold">Latest comment</h5>
+                <h5 class="card-title fw-bold text-decoration-underline">Latest comment:</h5>
                 <p class="card-text">
                     @if ($countComment == 0)
                 <div>There is no comment yet !</div>

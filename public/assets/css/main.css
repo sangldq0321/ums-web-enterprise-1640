@@ -26,6 +26,7 @@ html.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
 
 a {
     color: inherit;
+    text-decoration: none;
     transition: .25s ease-in-out;
 }
 
