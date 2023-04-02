@@ -88,6 +88,7 @@
     </main>
     <footer class="mt-auto text-light" style="border-top:4px solid #f27228;">
         <div class="container py-3">
+            <img src="/assets/img/logo.svg" width="48px" class="mb-2 d-block mx-auto">
             <div class="text-center">&copy 2023 <b>UMS</b>. All rights reserved.</div>
         </div>
     </footer>

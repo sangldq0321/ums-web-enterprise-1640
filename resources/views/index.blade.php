@@ -30,14 +30,14 @@
                     </div>
                     </p>
                     @if ((Auth::check() && Auth::user()->roleID == 4) || Auth::user()->roleID == 5)
-                    <td><a href="/ideas/edit/{{ $idea->ideaID }}" class="m-2"><i
+                    <td><a href="/ideas/edit/{{ $idea->ideaID }}" class="m-2 edit"><i
                                 class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
                     </td>
                     <td>
                         <form method="POST" action="/ideas/delete/{{ $idea->ideaID }}" class="d-inline-block">
                             @csrf
                             <input name="_method" type="hidden" value="GET">
-                            <a type="button" class="show_delete m-2" data-toggle="tooltip"><i
+                            <a type="button" class="show_delete m-2 delete" data-toggle="tooltip"><i
                                     class="fa-solid fa-trash me-2"></i>Delete</a>
                         </form>
                     </td>
