@@ -57,4 +57,22 @@ class LoginController extends Controller
         $user->update();
         return redirect('/');
     }
+    public function viewProfile(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        return view('accounts.view', compact('user'));
+    }
+    public function editProfile(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        return view('accounts.edit', compact('user'));
+    }
+    public function updateProfile(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->fullname = $request->fullname;
+        $user->email = $request->email;
+        $user->update();
+        return redirect()->route('viewProfile', ['id' => Auth::user()->userID]);
+    }
 }

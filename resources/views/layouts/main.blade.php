@@ -63,7 +63,14 @@
                                 data-bs-toggle="dropdown" aria-expanded="false"><span class="me-2">{{
                                     Auth::user()->fullname }}</span></a>
                             <ul class="dropdown-menu dropdown-menu-lg-end">
-                                <li><a class="dropdown-item" href="/account/change-password">Change password</a>
+                                <li><a class="dropdown-item" href="/account/view-profile/{{Auth::user()->userID}}"><i
+                                            class="fa-solid fa-user me-2"></i>View profile</a>
+                                </li>
+                                <li><a class="dropdown-item" href="/account/edit-profile/{{Auth::user()->userID}}"><i
+                                            class="fa-solid fa-user-pen me-2"></i>Edit profile</a>
+                                </li>
+                                <li><a class="dropdown-item" href="/account/change-password"><i
+                                            class="fa-solid fa-lock me-2"></i>Change password</a>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider">
