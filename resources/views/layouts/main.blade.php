@@ -58,18 +58,25 @@
                                 data-bs-toggle="dropdown" aria-expanded="false"><span class="me-2">{{
                                     Auth::user()->fullname }}</span></a>
                             <ul class="dropdown-menu dropdown-menu-lg-end">
-                                <li><h6 class="dropdown-header fw-bold">Account</h6></li>
                                 <li><a class="dropdown-item" href="/account/view-profile/{{Auth::user()->userID}}"><i
-                                            class="fa-solid fa-user me-2"></i>View profile</a>
+                                            class="fa-solid fa-eye me-2"></i>View profile</a>
                                 </li>
-                                <li><h6 class="dropdown-header fw-bold">Setting</h6></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <h6 class="dropdown-header fw-bold"><i class="fa-solid fa-gear me-2"></i>Setting
+                                    </h6>
+                                </li>
                                 <li><a class="dropdown-item" href="/account/edit-profile/{{Auth::user()->userID}}"><i
                                             class="fa-solid fa-user-pen me-2"></i>Edit profile</a>
                                 </li>
                                 <li><a class="dropdown-item" href="/account/change-password"><i
                                             class="fa-solid fa-lock me-2"></i>Change password</a>
                                 </li>
-                                <li><h6 class="dropdown-header fw-bold">Log out</h6></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
                                 <li><a class="dropdown-item" href="/logout"><i
                                             class="fa-solid fa-right-from-bracket me-2"></i>Log out</a>
                                 </li>
