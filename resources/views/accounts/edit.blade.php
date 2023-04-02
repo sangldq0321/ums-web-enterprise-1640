@@ -30,7 +30,7 @@
         event.preventDefault();
         Swal.fire({
             title: 'Are you sure ?',
-            text: 'Are you sure to update this password ?',
+            text: 'Are you sure to update this account ?',
             icon: 'question',
             showCancelButton: true,
             scrollbarPadding: false,
