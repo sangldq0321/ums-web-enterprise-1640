@@ -57,11 +57,11 @@
         @else
         <div class="mt-2">
             <a href="/comments/edit/{{ $comment->commentID }}" class="m-2"><i
-                    class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
+                    class="fa-solid fa-pen-to-square me-2 edit"></i>Edit</a>
             <form method="POST" action="/comments/delete/{{ $comment->commentID }}" class="d-inline-block m-2">
                 @csrf
                 <input name="_method" type="hidden" value="GET">
-                <a type="button" class="show_delete_comment" data-toggle="tooltip"><i
+                <a type="button" class="show_delete_comment delete" data-toggle="tooltip"><i
                         class="fa-solid fa-trash me-2"></i>Delete</a>
             </form>
         </div>
