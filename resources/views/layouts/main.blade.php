@@ -53,11 +53,6 @@
                             <a class="nav-link" href="/categories">Categories</a>
                         </li>
                         @endif
-                        @if (Auth::user()->roleID!=1)
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)"><i class="fa-solid fa-bell"></i></a>
-                        </li>
-                        @endif
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle fw-bold" href="javascript:void(0)" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false"><span class="me-2">{{
