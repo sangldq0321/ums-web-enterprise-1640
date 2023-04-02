@@ -56,8 +56,8 @@
         @if (Auth::check() && Auth::user()->roleID != 4 && Auth::user()->roleID != 5)
         @else
         <div class="mt-2">
-            <a href="/comments/edit/{{ $comment->commentID }}" class="m-2"><i
-                    class="fa-solid fa-pen-to-square me-2 edit"></i>Edit</a>
+            <a href="/comments/edit/{{ $comment->commentID }}" class="m-2 edit"><i
+                    class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
             <form method="POST" action="/comments/delete/{{ $comment->commentID }}" class="d-inline-block m-2">
                 @csrf
                 <input name="_method" type="hidden" value="GET">
