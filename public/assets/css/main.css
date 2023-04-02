@@ -2,6 +2,10 @@
     font-family: Arial;
 }
 
+body {
+    padding-right: 0 !important;
+}
+
 .navbar {
     background-color: #2b3494;
     --bs-navbar-color: rgba(248, 249, 250, 0.75);
