@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th4 02, 2023 lúc 11:04 AM
+-- Thời gian đã tạo: Th4 02, 2023 lúc 01:31 PM
 -- Phiên bản máy phục vụ: 8.0.31
 -- Phiên bản PHP: 8.2.4
 
@@ -69,13 +69,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
 
 INSERT INTO `comments` (`commentID`, `userID`, `commentContent`, `ideaID`, `created_at`, `updated_at`) VALUES
 (11, 2, 'Good idea !', 4, '2023-03-30 18:08:54', '2023-03-31 19:45:36'),
-(12, 5, 'Pending request', 8, '2023-03-31 20:00:23', '2023-03-31 20:01:12'),
-(13, 4, '123', 8, '2023-03-31 10:56:15', '2023-03-31 10:56:15'),
-(14, 4, '123', 8, '2023-03-31 10:56:19', '2023-03-31 10:56:19'),
-(15, 4, '123', 8, '2023-03-31 13:02:05', '2023-03-31 13:02:05'),
-(16, 4, '123', 8, '2023-03-31 13:09:22', '2023-03-31 13:09:22'),
-(17, 4, '123', 8, '2023-03-31 13:15:23', '2023-03-31 13:15:23'),
-(18, 4, '123', 8, '2023-03-31 21:29:52', '2023-03-31 21:29:52');
+(12, 5, 'Pending request', 8, '2023-03-31 20:00:23', '2023-03-31 20:01:12');
 
 -- --------------------------------------------------------
 
@@ -105,12 +99,12 @@ CREATE TABLE IF NOT EXISTS `ideas` (
 --
 
 INSERT INTO `ideas` (`ideaID`, `ideaName`, `categoryID`, `ideaContent`, `uploader`, `view`, `document`, `likeCount`, `created_at`, `updated_at`) VALUES
-(1, 'Add closure date for ideas', 1, '<p>Please add <strong>closure date</strong> for ideas</p>', 2, 6, NULL, 0, '2023-03-30 04:13:09', '2023-03-31 19:46:27'),
-(4, 'Add dashboard', 1, '<p>Please add <strong>dashboard</strong></p>', 2, 0, NULL, 0, '2023-03-30 16:40:20', '2023-03-30 16:40:20'),
+(1, 'Add closure date for ideas', 1, '<p>Please add <strong>closure date</strong> for ideas</p>', 2, 7, NULL, 0, '2023-03-30 04:13:09', '2023-04-02 12:17:16'),
+(4, 'Add dashboard', 1, '<p>Please add <strong>dashboard</strong></p>', 2, 1, NULL, 0, '2023-03-30 16:40:20', '2023-04-02 12:31:49'),
 (5, 'Add report system', 1, '<p>Please add <strong>report system</strong></p>', 5, 15, NULL, 0, '2023-03-31 19:47:13', '2023-03-31 19:47:13'),
 (6, 'Add like function', 1, '<p>Please add <strong>like function</strong></p>', 5, 1, NULL, 0, '2023-03-31 19:47:48', '2023-03-31 13:24:38'),
-(7, 'Add dislike function', 1, '<p>Please add <strong>dislike function</strong></p>', 5, 2, NULL, 0, '2023-03-31 19:48:10', '2023-04-01 18:52:13'),
-(8, 'Add chatbox', 1, '<p>Please add <strong>chatbox</strong></p>', 5, 25, NULL, 0, '2023-03-31 19:48:39', '2023-04-02 10:54:39');
+(7, 'Add dislike function', 1, '<p>Please add <strong>dislike function</strong></p>', 5, 3, NULL, 0, '2023-03-31 19:48:10', '2023-04-02 12:51:20'),
+(8, 'Add chatbox', 1, '<p>Please add <strong>chatbox</strong></p>', 5, 25, NULL, 0, '2023-03-31 19:48:39', '2023-04-02 12:16:43');
 
 -- --------------------------------------------------------
 
@@ -150,6 +144,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `userID` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `username` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
   `fullname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `roleID` bigint UNSIGNED NOT NULL,
   `isPassReset` tinyint(1) NOT NULL,
@@ -164,15 +159,15 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `users` (`userID`, `username`, `fullname`, `password`, `roleID`, `isPassReset`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'Administrator', '$2y$10$Gh4v05aAC0hl7xtq4y3CQuUzTnd7iO5qc/lOvZCfrQujajhkoYQoS', 1, 1, '2023-03-26 07:42:54', '2023-03-26 00:52:49'),
-(2, 'qamanager', 'QA Manager', '$2y$10$W0cv3X.R3FeBtgJKi.nSZOQ0Z74x8mnwQz.q8r2f4l.GONqAg5FvW', 2, 1, '2023-03-26 07:46:46', '2023-03-26 00:48:33'),
-(3, 'qacoor1', 'QA Coordinator 1', '$2a$10$XFm43675iWjRe4ULhtb7iuASSCmbPjF45fBJH8TJSM5k0/kUVyhf6', 3, 1, '2023-03-30 20:48:47', '2023-03-30 20:48:47'),
-(4, 'acastaff1', 'Staff Academic 1', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 4, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17'),
-(5, 'acastaff2', 'Staff Academic 2', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 4, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17'),
-(6, 'qacoor2', 'QA Coordinator 2', '$2a$10$XFm43675iWjRe4ULhtb7iuASSCmbPjF45fBJH8TJSM5k0/kUVyhf6', 3, 1, '2023-03-30 20:48:47', '2023-03-30 20:48:47'),
-(7, 'supstaff1', 'Staff Support 1', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 5, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17'),
-(8, 'supstaff2', 'Staff Support 2', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 5, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17');
+INSERT INTO `users` (`userID`, `username`, `fullname`, `email`, `password`, `roleID`, `isPassReset`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'Administrator', 'admin@uns.com', '$2y$10$Gh4v05aAC0hl7xtq4y3CQuUzTnd7iO5qc/lOvZCfrQujajhkoYQoS', 1, 1, '2023-03-26 07:42:54', '2023-03-26 00:52:49'),
+(2, 'qamanager', 'QA Manager', 'qamanager@ums.com', '$2y$10$W0cv3X.R3FeBtgJKi.nSZOQ0Z74x8mnwQz.q8r2f4l.GONqAg5FvW', 2, 1, '2023-03-26 07:46:46', '2023-03-26 00:48:33'),
+(3, 'qacoor1', 'QA Coordinator 1', 'qacoor1@ums.com', '$2a$10$XFm43675iWjRe4ULhtb7iuASSCmbPjF45fBJH8TJSM5k0/kUVyhf6', 3, 1, '2023-03-30 20:48:47', '2023-03-30 20:48:47'),
+(4, 'acastaff1', 'Staff Academic 1', 'acastaff1@ums.com', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 4, 1, '2023-03-30 21:04:17', '2023-04-02 13:22:53'),
+(5, 'acastaff2', 'Staff Academic 2', 'acastaff2@ums.com', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 4, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17'),
+(6, 'qacoor2', 'QA Coordinator 2', 'qacoor2@ums.com', '$2a$10$XFm43675iWjRe4ULhtb7iuASSCmbPjF45fBJH8TJSM5k0/kUVyhf6', 3, 1, '2023-03-30 20:48:47', '2023-03-30 20:48:47'),
+(7, 'supstaff1', 'Staff Support 1', 'supstaff1@ums.com', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 5, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17'),
+(8, 'supstaff2', 'Staff Support 2', 'supstaff2@ums.com', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 5, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17');
 
 --
 -- Các ràng buộc cho các bảng đã đổ
