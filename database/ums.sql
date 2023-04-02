@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 01, 2023 at 01:26 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Máy chủ: 127.0.0.1:3306
+-- Thời gian đã tạo: Th4 02, 2023 lúc 11:04 AM
+-- Phiên bản máy phục vụ: 8.0.31
+-- Phiên bản PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,25 +18,27 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ums`
+-- Cơ sở dữ liệu: `ums`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Cấu trúc bảng cho bảng `categories`
 --
 
-CREATE TABLE `categories` (
-  `categoryID` bigint(20) UNSIGNED NOT NULL,
-  `categoryName` varchar(255) NOT NULL,
-  `categoryDesc` text DEFAULT NULL,
+DROP TABLE IF EXISTS `categories`;
+CREATE TABLE IF NOT EXISTS `categories` (
+  `categoryID` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `categoryName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `categoryDesc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`categoryID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `categories`
+-- Đang đổ dữ liệu cho bảng `categories`
 --
 
 INSERT INTO `categories` (`categoryID`, `categoryName`, `categoryDesc`, `created_at`, `updated_at`) VALUES
@@ -45,20 +47,24 @@ INSERT INTO `categories` (`categoryID`, `categoryName`, `categoryDesc`, `created
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- Cấu trúc bảng cho bảng `comments`
 --
 
-CREATE TABLE `comments` (
-  `commentID` bigint(20) UNSIGNED NOT NULL,
-  `userID` bigint(20) UNSIGNED NOT NULL,
-  `commentContent` text NOT NULL,
-  `ideaID` bigint(20) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `comments`;
+CREATE TABLE IF NOT EXISTS `comments` (
+  `commentID` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `userID` bigint UNSIGNED NOT NULL,
+  `commentContent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ideaID` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`commentID`),
+  KEY `ideaID` (`ideaID`),
+  KEY `userID` (`userID`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `comments`
+-- Đang đổ dữ liệu cho bảng `comments`
 --
 
 INSERT INTO `comments` (`commentID`, `userID`, `commentContent`, `ideaID`, `created_at`, `updated_at`) VALUES
@@ -74,48 +80,56 @@ INSERT INTO `comments` (`commentID`, `userID`, `commentContent`, `ideaID`, `crea
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ideas`
+-- Cấu trúc bảng cho bảng `ideas`
 --
 
-CREATE TABLE `ideas` (
-  `ideaID` bigint(20) UNSIGNED NOT NULL,
-  `ideaName` varchar(255) NOT NULL,
-  `categoryID` bigint(20) UNSIGNED NOT NULL,
-  `ideaContent` text DEFAULT NULL,
-  `uploader` bigint(20) UNSIGNED NOT NULL,
-  `view` bigint(11) NOT NULL DEFAULT 0,
-  `document` text DEFAULT NULL,
+DROP TABLE IF EXISTS `ideas`;
+CREATE TABLE IF NOT EXISTS `ideas` (
+  `ideaID` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ideaName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `categoryID` bigint UNSIGNED NOT NULL,
+  `ideaContent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `uploader` bigint UNSIGNED NOT NULL,
+  `view` bigint NOT NULL DEFAULT '0',
+  `document` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `likeCount` bigint NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`ideaID`),
+  KEY `categoryID` (`categoryID`),
+  KEY `uploader` (`uploader`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `ideas`
+-- Đang đổ dữ liệu cho bảng `ideas`
 --
 
-INSERT INTO `ideas` (`ideaID`, `ideaName`, `categoryID`, `ideaContent`, `uploader`, `view`, `document`, `created_at`, `updated_at`) VALUES
-(1, 'Add closure date for ideas', 1, '<p>Please add <strong>closure date</strong> for ideas</p>', 2, 6, NULL, '2023-03-30 04:13:09', '2023-03-31 19:46:27'),
-(4, 'Add dashboard', 1, '<p>Please add <strong>dashboard</strong></p>', 2, 0, NULL, '2023-03-30 16:40:20', '2023-03-30 16:40:20'),
-(5, 'Add report system', 1, '<p>Please add <strong>report system</strong></p>', 5, 15, NULL, '2023-03-31 19:47:13', '2023-03-31 19:47:13'),
-(6, 'Add like function', 1, '<p>Please add <strong>like function</strong></p>', 5, 1, NULL, '2023-03-31 19:47:48', '2023-03-31 13:24:38'),
-(7, 'Add dislike function', 1, '<p>Please add <strong>dislike function</strong></p>', 5, 1, NULL, '2023-03-31 19:48:10', '2023-03-31 13:24:34'),
-(8, 'Add chatbox', 1, '<p>Please add <strong>chatbox</strong></p>', 5, 6, NULL, '2023-03-31 19:48:39', '2023-03-31 21:26:51');
+INSERT INTO `ideas` (`ideaID`, `ideaName`, `categoryID`, `ideaContent`, `uploader`, `view`, `document`, `likeCount`, `created_at`, `updated_at`) VALUES
+(1, 'Add closure date for ideas', 1, '<p>Please add <strong>closure date</strong> for ideas</p>', 2, 6, NULL, 0, '2023-03-30 04:13:09', '2023-03-31 19:46:27'),
+(4, 'Add dashboard', 1, '<p>Please add <strong>dashboard</strong></p>', 2, 0, NULL, 0, '2023-03-30 16:40:20', '2023-03-30 16:40:20'),
+(5, 'Add report system', 1, '<p>Please add <strong>report system</strong></p>', 5, 15, NULL, 0, '2023-03-31 19:47:13', '2023-03-31 19:47:13'),
+(6, 'Add like function', 1, '<p>Please add <strong>like function</strong></p>', 5, 1, NULL, 0, '2023-03-31 19:47:48', '2023-03-31 13:24:38'),
+(7, 'Add dislike function', 1, '<p>Please add <strong>dislike function</strong></p>', 5, 2, NULL, 0, '2023-03-31 19:48:10', '2023-04-01 18:52:13'),
+(8, 'Add chatbox', 1, '<p>Please add <strong>chatbox</strong></p>', 5, 25, NULL, 0, '2023-03-31 19:48:39', '2023-04-02 10:54:39');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Cấu trúc bảng cho bảng `roles`
 --
 
-CREATE TABLE `roles` (
-  `roleID` bigint(20) UNSIGNED NOT NULL,
-  `roleName` varchar(255) NOT NULL,
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE IF NOT EXISTS `roles` (
+  `roleID` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `roleName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`roleID`),
+  UNIQUE KEY `roles_rolename_unique` (`roleName`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `roles`
+-- Đang đổ dữ liệu cho bảng `roles`
 --
 
 INSERT INTO `roles` (`roleID`, `roleName`, `created_at`, `updated_at`) VALUES
@@ -128,22 +142,26 @@ INSERT INTO `roles` (`roleID`, `roleName`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Cấu trúc bảng cho bảng `users`
 --
 
-CREATE TABLE `users` (
-  `userID` bigint(20) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `userID` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `username` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
-  `fullname` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `roleID` bigint(20) UNSIGNED NOT NULL,
+  `fullname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `roleID` bigint UNSIGNED NOT NULL,
   `isPassReset` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`userID`),
+  UNIQUE KEY `users_username_unique` (`username`),
+  KEY `users_roleid_foreign` (`roleID`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `users`
+-- Đang đổ dữ liệu cho bảng `users`
 --
 
 INSERT INTO `users` (`userID`, `username`, `fullname`, `password`, `roleID`, `isPassReset`, `created_at`, `updated_at`) VALUES
@@ -157,100 +175,25 @@ INSERT INTO `users` (`userID`, `username`, `fullname`, `password`, `roleID`, `is
 (8, 'supstaff2', 'Staff Support 2', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 5, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17');
 
 --
--- Indexes for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Indexes for table `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`categoryID`);
-
---
--- Indexes for table `comments`
---
-ALTER TABLE `comments`
-  ADD PRIMARY KEY (`commentID`),
-  ADD KEY `ideaID` (`ideaID`),
-  ADD KEY `userID` (`userID`);
-
---
--- Indexes for table `ideas`
---
-ALTER TABLE `ideas`
-  ADD PRIMARY KEY (`ideaID`),
-  ADD KEY `categoryID` (`categoryID`),
-  ADD KEY `uploader` (`uploader`);
-
---
--- Indexes for table `roles`
---
-ALTER TABLE `roles`
-  ADD PRIMARY KEY (`roleID`),
-  ADD UNIQUE KEY `roles_rolename_unique` (`roleName`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`userID`),
-  ADD UNIQUE KEY `users_username_unique` (`username`),
-  ADD KEY `users_roleid_foreign` (`roleID`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `categories`
---
-ALTER TABLE `categories`
-  MODIFY `categoryID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `comments`
---
-ALTER TABLE `comments`
-  MODIFY `commentID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT for table `ideas`
---
-ALTER TABLE `ideas`
-  MODIFY `ideaID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT for table `roles`
---
-ALTER TABLE `roles`
-  MODIFY `roleID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `userID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `comments`
+-- Các ràng buộc cho bảng `comments`
 --
 ALTER TABLE `comments`
   ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`ideaID`) REFERENCES `ideas` (`ideaID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `ideas`
+-- Các ràng buộc cho bảng `ideas`
 --
 ALTER TABLE `ideas`
   ADD CONSTRAINT `ideas_ibfk_1` FOREIGN KEY (`categoryID`) REFERENCES `categories` (`categoryID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ideas_ibfk_2` FOREIGN KEY (`uploader`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `users`
+-- Các ràng buộc cho bảng `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_roleid_foreign` FOREIGN KEY (`roleID`) REFERENCES `roles` (`roleID`) ON DELETE CASCADE ON UPDATE CASCADE;
