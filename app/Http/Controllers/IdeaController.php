@@ -89,6 +89,7 @@ class IdeaController extends Controller
         $idea = Idea::findOrFail($id_idea);
         $request->session()->put('ideaID', $id_idea);
         $getCategory = Idea::value('categoryID');
+        $document = Idea::where('ideaID', session()->get('ideaID'))->value('document');
         $viewIdea = 'idea_' . $id_idea;
         if (!Session::has($viewIdea)) {
             Idea::where('ideaID', $id_idea)->increment('view');
@@ -96,7 +97,7 @@ class IdeaController extends Controller
         }
         $categoryName = Category::where('categoryID', '=', $getCategory)->value('categoryName');
         $comments = Comment::orderByDesc('created_at')->get();
-        return view('ideas.view', compact('idea', 'categoryName', 'comments'));
+        return view('ideas.view', compact('idea', 'categoryName', 'comments', 'document'));
     }
     public function likeIdea(Request $request, $id_idea)
     {

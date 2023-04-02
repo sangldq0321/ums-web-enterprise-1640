@@ -11,27 +11,39 @@
         ?>
 </div>
 {!! $idea->ideaContent !!}
+@if(!is_null($document))
+<div class="mb-3">
+    <div class="border border-dark rounded-3 p-2 d-inline-flex">
+        <a href="/documents/{{$idea->document}}" download>{{$idea->document}}<i
+                class="fa-solid fa-download ms-2"></i></a>
+    </div>
+</div>
+@else
+@endif
 @if (Auth::check() && Auth::user()->roleID != 4 && Auth::user()->roleID != 5)
 @else
 <div class="text-start">
-    <form action="/ideas/like/{{ $idea->ideaID }}" method="POST" class="d-inline-block">
-        @csrf
-        <span><button type="submit" class="btn btn-success" title="Thumb up"><i
-                    class="fa-solid fa-thumbs-up h5 mb-0"></i></button></span>
-    </form>
-    <span class="mx-2">@if($idea->likeCount>0)<span class="text-success fw-bold">+
-            {{$idea->likeCount}}</span>@elseif($idea->likeCount<0)<span class="text-danger fw-bold">
-            {{$idea->likeCount}}</span>@else <span class="fw-bold">0</span> @endif</span>
-    <form action="/ideas/dislike/{{ $idea->ideaID }}" method="POST" class="d-inline-block">
-        @csrf
-        <span><button class="btn btn-danger" type="submit" title="Thump down"><i
-                    class="fa-solid fa-thumbs-down h5 mb-0"></i></button></span>
-    </form>
+    <div class="border rounded-3 p-3 d-inline-flex">
+        <form action="/ideas/like/{{ $idea->ideaID }}" method="POST" class="d-inline-block">
+            @csrf
+            <span><button type="submit" class="btn btn-success" title="Thumb up"><i
+                        class="fa-solid fa-thumbs-up h5 mb-0 me-2"></i>Like</button></span>
+        </form>
+        <span class="mx-2 d-flex align-items-center">@if($idea->likeCount>0)<span class="text-success fw-bold">+
+                {{$idea->likeCount}}</span>@elseif($idea->likeCount<0)<span class="text-danger fw-bold">
+                {{$idea->likeCount}}</span>@else <span class="fw-bold">0</span> @endif</span>
+        <form action="/ideas/dislike/{{ $idea->ideaID }}" method="POST" class="d-inline-block">
+            @csrf
+            <span><button class="btn btn-danger" type="submit" title="Thump down"><i
+                        class="fa-solid fa-thumbs-down h5 mb-0 me-2"></i>Dislike</button></span>
+        </form>
+    </div>
 </div>
 @endif
 @if ((Auth::check() && Auth::user()->roleID == 4) || Auth::user()->roleID == 5)
 <div class="mt-3">
-    <a href="/ideas/edit/{{ $idea->ideaID }}" class="m-2 edit btn btn-warning"><i class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
+    <a href="/ideas/edit/{{ $idea->ideaID }}" class="m-2 edit btn btn-warning"><i
+            class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
     <form method="POST" action="/ideas/delete/{{ $idea->ideaID }}" class="d-inline-block">
         @csrf
         <input name="_method" type="hidden" value="GET">

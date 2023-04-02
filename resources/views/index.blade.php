@@ -78,11 +78,8 @@
                 <div class="fw-bold h5"><a href="/ideas/view/{{ $mostLikeIdea->ideaID }}">{{ $mostLikeIdea->ideaName
                         }}</a>
                 </div>
-                <div>
-                    <?php
-                            $date = date_create($mostLikeIdea->created_at);
-                            echo date_format($date, 'h:i A d/m/Y');
-                            ?>
+                <div><i class="fa-solid fa-clock"></i>
+                    <?php $date = date_create($mostLikeIdea->created_at); echo date_format($date, 'h:i A d/m/Y');?>
                 </div>
                 </p>
             </div>
@@ -94,11 +91,8 @@
                 <div class="fw-bold h5"><a href="/ideas/view/{{ $mostViewIdea->ideaID }}">{{ $mostViewIdea->ideaName
                         }}</a>
                 </div>
-                <div>
-                    <?php
-                            $date = date_create($mostViewIdea->created_at);
-                            echo date_format($date, 'h:i A d/m/Y');
-                            ?>
+                <div><i class="fa-solid fa-clock"></i>
+                    <?php $date = date_create($mostViewIdea->created_at); echo date_format($date, 'h:i A d/m/Y');?>
                 </div>
                 </p>
             </div>
@@ -109,11 +103,8 @@
                 <p class="card-text">
                 <div class="fw-bold h5"><a href="/ideas/view/{{ $latestIdea->ideaID }}">{{ $latestIdea->ideaName }}</a>
                 </div>
-                <div>
-                    <?php
-                            $date = date_create($latestIdea->created_at);
-                            echo date_format($date, 'h:i A d/m/Y');
-                            ?>
+                <div><i class="fa-solid fa-clock"></i>
+                    <?php $date = date_create($latestIdea->created_at); echo date_format($date, 'h:i A d/m/Y');?>
                 </div>
                 </p>
             </div>
@@ -130,11 +121,8 @@
                 </div>
                 <div class="h6 mb-0 fw-bold">Anonymous:</div>
                 <div>{{ $latestComment->commentContent }}</div>
-                <div>
-                    <?php
-                                    $date = date_create($latestComment->created_at);
-                                    echo date_format($date, 'h:i A d/m/Y');
-                                    ?>
+                <div><i class="fa-solid fa-clock"></i>
+                    <?php $date = date_create($latestComment->created_at); echo date_format($date, 'h:i A d/m/Y');?>
                 </div>
                 @endif
                 </p>

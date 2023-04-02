@@ -26,8 +26,7 @@
         <div class="mb-3">
             <label for="formFile" class="form-label">Document</label>
             <input class="form-control" type="file" id="formFile"
-                accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
-        text/plain, application/pdf"
+                accept=".docx, .xlsx, .pdf, .txt, .pptx"
                 name="document">
         </div>
         <div class="mb-3">
