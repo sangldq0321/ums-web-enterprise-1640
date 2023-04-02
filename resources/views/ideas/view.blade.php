@@ -31,11 +31,11 @@
 @endif
 @if ((Auth::check() && Auth::user()->roleID == 4) || Auth::user()->roleID == 5)
 <div class="mt-3">
-    <a href="/ideas/edit/{{ $idea->ideaID }}" class="m-2 edit"><i class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
+    <a href="/ideas/edit/{{ $idea->ideaID }}" class="m-2 edit btn btn-warning"><i class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
     <form method="POST" action="/ideas/delete/{{ $idea->ideaID }}" class="d-inline-block">
         @csrf
         <input name="_method" type="hidden" value="GET">
-        <a type="button" class="show_delete m-2 delete" data-toggle="tooltip"><i
+        <a type="button" class="show_delete m-2 delete btn btn-danger" data-toggle="tooltip"><i
                 class="fa-solid fa-trash me-2"></i>Delete</a>
     </form>
 </div>
@@ -56,12 +56,12 @@
         @if (Auth::check() && Auth::user()->roleID != 4 && Auth::user()->roleID != 5)
         @else
         <div class="mt-2">
-            <a href="/comments/edit/{{ $comment->commentID }}" class="m-2 edit"><i
+            <a href="/comments/edit/{{ $comment->commentID }}" class="m-2 edit btn btn-warning"><i
                     class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
             <form method="POST" action="/comments/delete/{{ $comment->commentID }}" class="d-inline-block m-2">
                 @csrf
                 <input name="_method" type="hidden" value="GET">
-                <a type="button" class="show_delete_comment delete" data-toggle="tooltip"><i
+                <a type="button" class="show_delete_comment delete btn btn-danger" data-toggle="tooltip"><i
                         class="fa-solid fa-trash me-2"></i>Delete</a>
             </form>
         </div>
