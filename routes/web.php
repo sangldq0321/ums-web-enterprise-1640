@@ -32,9 +32,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/ideas/add', [IdeaController::class, 'getAddIdea']);
             Route::post('/ideas/add', [IdeaController::class, 'postAddIdea']);
             Route::get('/ideas/edit/{id}', [IdeaController::class, 'getEditIdea']);
-            Route::post('/ideas/edit/{id}', [IdeaController::class, 'postEditIdea']);
             Route::post('/ideas/like/{id}', [IdeaController::class, 'likeIdea']);
             Route::post('/ideas/dislike/{id}', [IdeaController::class, 'dislikeIdea']);
+            Route::post('/ideas/edit/{id}', [IdeaController::class, 'postEditIdea']);
             Route::get('/ideas/delete/{id}', [IdeaController::class, 'deleteIdea']);
             Route::get('/account/view-profile/{id}', [LoginController::class, 'viewProfile'])->name('viewProfile');
             Route::get('/account/edit-profile/{id}', [LoginController::class, 'editProfile']);

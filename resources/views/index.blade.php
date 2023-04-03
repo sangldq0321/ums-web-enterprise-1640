@@ -25,6 +25,7 @@
 <div class="row">
     <div class="col-12 col-lg-9">
         @if (Auth::user()->roleID !== 1)
+        @if($ideas->isNotEmpty())
         @foreach ($ideas as $idea)
         <div class="card mb-3">
             {{-- <img src="..." class="card-img-top" alt="..."> --}}
@@ -38,7 +39,7 @@
                                         ?>
                     </div>
                     </p>
-                    @if ((Auth::check() && Auth::user()->roleID == 4) || Auth::user()->roleID == 5)
+                    @if ($idea->uploader == Auth::user()->userID)
                     <td><a href="/ideas/edit/{{ $idea->ideaID }}" class="m-2 edit btn btn-warning"><i
                                 class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
                     </td>
@@ -59,9 +60,13 @@
             </div>
         </div>
         @endforeach
+        @else
+        <div class="text-center h4">There is no idea yet !</div>
+        @endif
         <div class="d-flex justify-content-center mt-3">
             {{ $ideas->links() }}
         </div>
+        @else
         @endif
     </div>
     <div class="col-12 col-lg-3 mt-3 mt-lg-0">
@@ -84,12 +89,16 @@
             <div class="card-body">
                 <h5 class="card-title fw-bold text-decoration-underline">Most popular idea:</h5>
                 <p class="card-text">
+                    @if($countIdea>0)
                 <div class="fw-bold h5"><a href="/ideas/view/{{ $mostLikeIdea->ideaID }}">{{ $mostLikeIdea->ideaName
                         }}</a>
                 </div>
                 <div><i class="fa-solid fa-clock"></i>
                     <?php $date = date_create($mostLikeIdea->created_at); echo date_format($date, 'h:i A d/m/Y');?>
                 </div>
+                @else
+                <div>There is no idea yet !</div>
+                @endif
                 </p>
             </div>
         </div>
@@ -97,12 +106,16 @@
             <div class="card-body">
                 <h5 class="card-title fw-bold text-decoration-underline">Most viewed idea:</h5>
                 <p class="card-text">
+                    @if($countIdea>0)
                 <div class="fw-bold h5"><a href="/ideas/view/{{ $mostViewIdea->ideaID }}">{{ $mostViewIdea->ideaName
                         }}</a>
                 </div>
                 <div><i class="fa-solid fa-clock"></i>
                     <?php $date = date_create($mostViewIdea->created_at); echo date_format($date, 'h:i A d/m/Y');?>
                 </div>
+                @else
+                <div>There is no idea yet !</div>
+                @endif
                 </p>
             </div>
         </div>
@@ -110,11 +123,15 @@
             <div class="card-body">
                 <h5 class="card-title fw-bold text-decoration-underline">Latest idea:</h5>
                 <p class="card-text">
+                    @if($countIdea>0)
                 <div class="fw-bold h5"><a href="/ideas/view/{{ $latestIdea->ideaID }}">{{ $latestIdea->ideaName }}</a>
                 </div>
                 <div><i class="fa-solid fa-clock"></i>
                     <?php $date = date_create($latestIdea->created_at); echo date_format($date, 'h:i A d/m/Y');?>
                 </div>
+                @else
+                <div>There is no idea yet !</div>
+                @endif
                 </p>
             </div>
         </div>
@@ -152,7 +169,7 @@
             </div>
         </div>
     </div>
-    <div>
+    <div class="col">
         <div class="card w-100">
             <div class="card-body">
                 <h5 class="card-title fw-bold text-center">Total idea(s) of Support department:</h5>
@@ -162,6 +179,26 @@
             </div>
         </div>
     </div>
+    {{-- <div class="col">
+        <div class="card w-100">
+            <div class="card-body">
+                <h5 class="card-title fw-bold text-center">Total document(s) of Academic department:</h5>
+                <p class="card-text">
+                <div class="h1 mb-0 fw-bold text-center">{{$countAcaDoc}}</div>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card w-100">
+            <div class="card-body">
+                <h5 class="card-title fw-bold text-center">Total document(s) of Support department:</h5>
+                <p class="card-text">
+                <div class="h1 mb-0 fw-bold text-center">{{$countSupDoc}}</div>
+                </p>
+            </div>
+        </div>
+    </div> --}}
 </div>
 <div class="row row-cols-1 row-cols-lg-2 g-3 mt-3">
     <div class="col">

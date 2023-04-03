@@ -50,18 +50,22 @@ class IdeaController extends Controller
     public function getEditIdea($id_idea)
     {
         $idea = Idea::findOrFail($id_idea);
-        $categories = Category::all();
-        return view('ideas.edit', compact('idea', 'categories'));
+        if ($idea->uploader == Auth::user()->userID) {
+
+            $categories = Category::all();
+            return view('ideas.edit', compact('idea', 'categories'));
+        }
+        return redirect()->back();
     }
     public function postEditIdea(Request $request, $id_idea)
     {
+        $idea = Idea::findOrFail($id_idea);
         $this->validate($request, [
             'ideaName' => 'required',
             'categoryID' => 'required',
             'ideaContent' => 'required'
 
         ]);
-        $idea = Idea::findOrFail($id_idea);
         $idea->ideaName = $request->input('ideaName');
         $idea->categoryID = $request->input('categoryID');
         $idea->ideaContent = $request->input('ideaContent');
@@ -79,10 +83,13 @@ class IdeaController extends Controller
     public function deleteIdea($id_idea)
     {
         $idea = Idea::findOrFail($id_idea);
-        $des = 'documents/' . $idea->document;
-        File::delete($des);
-        $idea->delete();
-        return redirect('/');
+        if ($idea->uploader == Auth::user()->userID) {
+            $des = 'documents/' . $idea->document;
+            File::delete($des);
+            $idea->delete();
+            return redirect('/');
+        }
+        return redirect()->back();
     }
     public function viewIdea(Request $request, $id_idea)
     {

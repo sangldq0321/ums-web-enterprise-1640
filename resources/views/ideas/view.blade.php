@@ -40,16 +40,18 @@
     </div>
 </div>
 @endif
-@if ((Auth::check() && Auth::user()->roleID == 4) || Auth::user()->roleID == 5)
+@if ($idea->uploader == Auth::user()->userID)
 <div class="mt-3">
-    <a href="/ideas/edit/{{ $idea->ideaID }}" class="m-2 edit btn btn-warning"><i
-            class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
-    <form method="POST" action="/ideas/delete/{{ $idea->ideaID }}" class="d-inline-block">
-        @csrf
-        <input name="_method" type="hidden" value="GET">
-        <a type="button" class="show_delete m-2 delete btn btn-danger" data-toggle="tooltip"><i
-                class="fa-solid fa-trash me-2"></i>Delete</a>
-    </form>
+    <div class="border rounded-3 p-3 d-inline-flex">
+        <a href="/ideas/edit/{{ $idea->ideaID }}" class="m-2 edit btn btn-warning"><i
+                class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
+        <form method="POST" action="/ideas/delete/{{ $idea->ideaID }}" class="d-inline-block">
+            @csrf
+            <input name="_method" type="hidden" value="GET">
+            <a type="button" class="show_delete m-2 delete btn btn-danger" data-toggle="tooltip"><i
+                    class="fa-solid fa-trash me-2"></i>Delete</a>
+        </form>
+    </div>
 </div>
 @endif
 <hr>
@@ -68,14 +70,18 @@
         @if (Auth::check() && Auth::user()->roleID != 4 && Auth::user()->roleID != 5)
         @else
         <div class="mt-2">
-            <a href="/comments/edit/{{ $comment->commentID }}" class="m-2 edit btn btn-warning"><i
-                    class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
-            <form method="POST" action="/comments/delete/{{ $comment->commentID }}" class="d-inline-block m-2">
-                @csrf
-                <input name="_method" type="hidden" value="GET">
-                <a type="button" class="show_delete_comment delete btn btn-danger" data-toggle="tooltip"><i
-                        class="fa-solid fa-trash me-2"></i>Delete</a>
-            </form>
+            @if ($comment->userID == Auth::user()->userID)
+            <div class="border rounded-3 p-3 d-inline-flex">
+                <a href="/comments/edit/{{ $comment->commentID }}" class="m-2 edit btn btn-warning"><i
+                        class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
+                <form method="POST" action="/comments/delete/{{ $comment->commentID }}" class="d-inline-block m-2">
+                    @csrf
+                    <input name="_method" type="hidden" value="GET">
+                    <a type="button" class="show_delete_comment delete btn btn-danger" data-toggle="tooltip"><i
+                            class="fa-solid fa-trash me-2"></i>Delete</a>
+                </form>
+            </div>
+            @endif
         </div>
         @endif
     </div>

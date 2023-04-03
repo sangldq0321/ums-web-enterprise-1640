@@ -24,7 +24,7 @@ class LoginController extends Controller
                 'password.required' => 'Please enter password'
             ]);
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
-            return redirect()->route('viewProfile', ['id' => Auth::user()->userID]);
+            return redirect('/')->with('notify', 'loginsuccess');
         } else {
             return redirect('/login')->with('notify', 'loginfailed');
         }
@@ -59,12 +59,18 @@ class LoginController extends Controller
     public function viewProfile(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        return view('accounts.view', compact('user'));
+        if ($user->roleID == Auth::user()->roleID) {
+            return view('accounts.view', compact('user'));
+        }
+        return redirect()->back();
     }
     public function editProfile(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        return view('accounts.edit', compact('user'));
+        if ($user->userID == Auth::user()->userID) {
+            return view('accounts.edit', compact('user'));
+        }
+        return redirect()->back();
     }
     public function updateProfile(Request $request, $id)
     {

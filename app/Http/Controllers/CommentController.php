@@ -23,7 +23,10 @@ class CommentController extends Controller
     public function getEditComment($id_comment)
     {
         $comment = Comment::findOrFail($id_comment);
-        return view('ideas.editComment', compact('comment'));
+        if ($comment->userID == Auth::user()->userID) {
+            return view('ideas.editComment', compact('comment'));
+        }
+        return redirect()->back();
     }
     public function postEditComment(Request $request, $id_comment)
     {
@@ -35,7 +38,10 @@ class CommentController extends Controller
     public function deleteComment(Request $request, $id_comment)
     {
         $comment = Comment::findOrFail($id_comment);
-        $comment->delete();
-        return redirect()->route('viewIdea', ['id' => $request->session()->get('ideaID')]);
+        if ($comment->userID == Auth::user()->userID) {
+            $comment->delete();
+            return redirect()->route('viewIdea', ['id' => $request->session()->get('ideaID')]);
+        }
+        return redirect()->back();
     }
 }
