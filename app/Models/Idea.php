@@ -16,6 +16,7 @@ class Idea extends Model
         'ideaContent',
         'uploader',
         'view',
-        'document'
+        'document',
+        'likeCount'
     ];
 }

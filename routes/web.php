@@ -33,7 +33,12 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/ideas/add', [IdeaController::class, 'postAddIdea']);
             Route::get('/ideas/edit/{id}', [IdeaController::class, 'getEditIdea']);
             Route::post('/ideas/edit/{id}', [IdeaController::class, 'postEditIdea']);
+            Route::post('/ideas/like/{id}', [IdeaController::class, 'likeIdea']);
+            Route::post('/ideas/dislike/{id}', [IdeaController::class, 'dislikeIdea']);
             Route::get('/ideas/delete/{id}', [IdeaController::class, 'deleteIdea']);
+            Route::get('/account/view-profile/{id}', [LoginController::class, 'viewProfile'])->name('viewProfile');
+            Route::get('/account/edit-profile/{id}', [LoginController::class, 'editProfile']);
+            Route::post('/account/edit-profile/{id}', [LoginController::class, 'updateProfile']);
             Route::post('/ideas/comment', [CommentController::class, 'postComment']);
             Route::get('/comments/edit/{id}', [CommentController::class, 'getEditComment']);
             Route::post('/comments/edit/{id}', [CommentController::class, 'postEditComment']);
@@ -48,6 +53,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/categories/edit/{id}', [CategoryController::class, 'getEditCategory']);
             Route::post('/categories/edit/{id}', [CategoryController::class, 'postEditCategory']);
             Route::get('/categories/delete/{id}', [CategoryController::class, 'deleteCategory']);
+            Route::get('/document/download', [IdeaController::class, 'downloadAllDoc']);
         });
     });
     Route::get('/account/change-password', [LoginController::class, 'getChangePassword']);

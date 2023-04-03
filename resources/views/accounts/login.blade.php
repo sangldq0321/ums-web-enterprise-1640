@@ -11,6 +11,10 @@
         integrity="sha256-+rLIGHyZHBDebNqckORMwB+/ueJuy2RqFcYAYlhjkCs=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css"
+        integrity="sha256-sWZjHQiY9fvheUAOoxrszw9Wphl3zqfVaz1kZKEvot8=" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"
+        integrity="sha256-t0FDfwj/WoMHIBbmFfuOtZv1wtA977QCfsFR3p1K4No=" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="/assets/img/logo.ico" type="image/x-icon">
     <style>
         body::before {
@@ -22,6 +26,12 @@
             left: 0;
             right: 0;
             background: #2b3494;
+        }
+
+        body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown),
+        html.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
+            height: 100% !important;
+            overflow-y: visible !important;
         }
     </style>
 </head>
@@ -41,20 +51,7 @@
                 </div>
             </div>
             @endif
-            @if(session('notify')=='logoutsuccess')
-            <div class="d-flex justify-content-center mb-3">
-                <div class="alert alert-success">
-                    <span>Log out success</span>
-                </div>
-            </div>
-            @endif
-            @if(session('notify')=='loginfailed')
-            <div class="d-flex justify-content-center mb-3">
-                <div class="alert alert-danger">
-                    <span>Log in failed</span>
-                </div>
-            </div>
-            @endif
+
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
                 <label for="floatingInput"><i class="fa-solid fa-user me-2"></i>Username</label>
@@ -68,6 +65,27 @@
                     class="fa-solid fa-right-to-bracket me-2"></i>Login</button>
         </form>
     </div>
+    @if (session('notify') == 'logoutsuccess')
+    <script>
+        Swal.fire({
+                title: 'Logout success',
+                icon: 'success',
+                timer: 2000,
+                showConfirmButton: false,
+                allowOutsideClick: false,
+            })
+    </script>
+    @endif
+    @if (session('notify') == 'loginfailed')
+    <script>
+        Swal.fire({
+            title: 'Login failed',
+            icon: 'error',
+            scrollbarPadding: false,
+            allowOutsideClick: false,
+        })
+    </script>
+    @endif
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>

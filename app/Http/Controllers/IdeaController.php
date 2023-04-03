@@ -10,6 +10,7 @@ use Auth;
 use File;
 use Illuminate\Http\Request;
 use Session;
+use ZipArchive;
 
 class IdeaController extends Controller
 {
@@ -37,7 +38,6 @@ class IdeaController extends Controller
         $idea->categoryID = $request->input('categoryID');
         $idea->ideaContent = $request->input('ideaContent');
         $idea->uploader = Auth::user()->userID;
-        $request->except($idea->view);
         if ($request->hasfile('document')) {
             $file = $request->file('document');
             $filename = time() . '.' . $file->extension();
@@ -89,6 +89,7 @@ class IdeaController extends Controller
         $idea = Idea::findOrFail($id_idea);
         $request->session()->put('ideaID', $id_idea);
         $getCategory = Idea::value('categoryID');
+        $document = Idea::where('ideaID', session()->get('ideaID'))->value('document');
         $viewIdea = 'idea_' . $id_idea;
         if (!Session::has($viewIdea)) {
             Idea::where('ideaID', $id_idea)->increment('view');
@@ -96,6 +97,44 @@ class IdeaController extends Controller
         }
         $categoryName = Category::where('categoryID', '=', $getCategory)->value('categoryName');
         $comments = Comment::orderByDesc('created_at')->get();
-        return view('ideas.view', compact('idea', 'categoryName', 'comments'));
+        return view('ideas.view', compact('idea', 'categoryName', 'comments', 'document'));
+    }
+    public function likeIdea(Request $request, $id_idea)
+    {
+        $idea = Idea::findOrFail($id_idea);
+        $idea->likeCount = $idea->likeCount + 1;
+        $idea->update();
+        return redirect()->route('viewIdea', ['id' => $request->session()->get('ideaID')]);
+    }
+    public function dislikeIdea(Request $request, $id_idea)
+    {
+        $idea = Idea::findOrFail($id_idea);
+        $idea->likeCount = $idea->likeCount - 1;
+        $idea->update();
+        return redirect()->route('viewIdea', ['id' => $request->session()->get('ideaID')]);
+    }
+    public function downloadAllDoc(Request $request)
+    {
+        $countDoc = Idea::count('document');
+        if ($countDoc > 0) {
+            if ($request->session()->get('zipName')) {
+                $des = 'temp/' . $request->session()->get('zipName');
+                File::delete($des);
+            }
+            $zip = new ZipArchive();
+            $fileName = time() . '.' . 'zip';
+            if ($zip->open(public_path('temp/' . $fileName), ZipArchive::CREATE) == TRUE) {
+                $files = File::files(public_path('documents'));
+                foreach ($files as $key => $value) {
+                    $relativeName = basename($value);
+                    $zip->addFile($value, $relativeName);
+                }
+                $zip->close();
+            }
+            $request->session()->put('zipName', $fileName);
+            return response()->download(public_path('temp/' . $fileName));
+        } else {
+            return redirect()->back();
+        }
     }
 }

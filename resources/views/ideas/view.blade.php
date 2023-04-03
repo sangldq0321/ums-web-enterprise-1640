@@ -1,47 +1,79 @@
 @extends('layouts.main')
-@section('title','View idea')
+@section('title', 'View idea')
 @section('content')
-<h1 class="fw-bold">{{$idea->ideaName}}</h1>
-<div>Category: <b>{{$categoryName}}</b></div>
+<a href="/" type="button" class="btn btn-dark mb-3"><i class="fa-solid fa-chevron-left me-2"></i>Back</a>
+<h1 class="fw-bold">{{ $idea->ideaName }}</h1>
+<div>Category: <b>{{ $categoryName }}</b></div>
 <div class="mb-3">Upload by: <b>Anonymous</b> at
     <?php
-    $date=date_create($idea->created_at);
-    echo date_format($date,"h:i A d/m/Y");
-    ?>
+        $date = date_create($idea->created_at);
+        echo date_format($date, 'h:i A d/m/Y');
+        ?>
 </div>
-{!!$idea->ideaContent!!}
-@if (Auth::check() && Auth::user()->roleID !=4 && Auth::user()->roleID !=5)
+{!! $idea->ideaContent !!}
+@if(!is_null($document))
+<div class="mb-3">
+    <div class="border border-dark rounded-3 p-2 d-inline-flex">
+        <a href="/documents/{{$idea->document}}" download>{{$idea->document}}<i
+                class="fa-solid fa-download ms-2"></i></a>
+    </div>
+</div>
+@else
+@endif
+@if (Auth::check() && Auth::user()->roleID != 4 && Auth::user()->roleID != 5)
 @else
 <div class="text-start">
-    <span class="h3"><a href="" type="button" title="Thumb up"><i
-                class="fa-solid fa-thumbs-up text-primary"></i></a></span>
-    <span class="mx-2"></span>
-    <span class="h3"><a href="" type="button" title="Thump down"><i
-                class="fa-solid fa-thumbs-down text-danger"></i></a></span>
+    <div class="border rounded-3 p-3 d-inline-flex">
+        <form action="/ideas/like/{{ $idea->ideaID }}" method="POST" class="d-inline-block">
+            @csrf
+            <span><button type="submit" class="btn btn-success" title="Thumb up"><i
+                        class="fa-solid fa-thumbs-up h5 mb-0 me-2"></i>Like</button></span>
+        </form>
+        <span class="mx-2 d-flex align-items-center">@if($idea->likeCount>0)<span class="text-success fw-bold">+
+                {{$idea->likeCount}}</span>@elseif($idea->likeCount<0)<span class="text-danger fw-bold">
+                {{$idea->likeCount}}</span>@else <span class="fw-bold">0</span> @endif</span>
+        <form action="/ideas/dislike/{{ $idea->ideaID }}" method="POST" class="d-inline-block">
+            @csrf
+            <span><button class="btn btn-danger" type="submit" title="Thump down"><i
+                        class="fa-solid fa-thumbs-down h5 mb-0 me-2"></i>Dislike</button></span>
+        </form>
+    </div>
+</div>
+@endif
+@if ((Auth::check() && Auth::user()->roleID == 4) || Auth::user()->roleID == 5)
+<div class="mt-3">
+    <a href="/ideas/edit/{{ $idea->ideaID }}" class="m-2 edit btn btn-warning"><i
+            class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
+    <form method="POST" action="/ideas/delete/{{ $idea->ideaID }}" class="d-inline-block">
+        @csrf
+        <input name="_method" type="hidden" value="GET">
+        <a type="button" class="show_delete m-2 delete btn btn-danger" data-toggle="tooltip"><i
+                class="fa-solid fa-trash me-2"></i>Delete</a>
+    </form>
 </div>
 @endif
 <hr>
 <h3 class="fw-bold">Comment</h3>
-@if($comments->isNotEmpty())
-@foreach ($comments->where('ideaID',$idea->ideaID) as $comment)
+@if ($comments->isNotEmpty())
+@foreach ($comments->where('ideaID', $idea->ideaID) as $comment)
 <div class="card mb-3">
     <div class="card-body">
         <div class="card-title"><b>Anonymous:</b></div>
-        <div class="card-text">{{$comment->commentContent}}</div>
+        <div class="card-text">{{ $comment->commentContent }}</div>
         <div class="mt-2">Comment at
-            <?php $date=date_create($comment->created_at);
-        echo date_format($date," h:i A d/m/Y");
-        ?>
+            <?php $date = date_create($comment->created_at);
+                        echo date_format($date, ' h:i A d/m/Y');
+                        ?>
         </div>
-        @if (Auth::check() && Auth::user()->roleID !=4 && Auth::user()->roleID !=5)
+        @if (Auth::check() && Auth::user()->roleID != 4 && Auth::user()->roleID != 5)
         @else
         <div class="mt-2">
-            <a href="/comments/edit/{{$comment->commentID}}" class="m-2"><i
+            <a href="/comments/edit/{{ $comment->commentID }}" class="m-2 edit btn btn-warning"><i
                     class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
-            <form method="POST" action="/comments/delete/{{$comment->commentID}}" class="d-inline-block m-2">
+            <form method="POST" action="/comments/delete/{{ $comment->commentID }}" class="d-inline-block m-2">
                 @csrf
                 <input name="_method" type="hidden" value="GET">
-                <a type="button" class="show_delete_comment" data-toggle="tooltip"><i
+                <a type="button" class="show_delete_comment delete btn btn-danger" data-toggle="tooltip"><i
                         class="fa-solid fa-trash me-2"></i>Delete</a>
             </form>
         </div>
@@ -52,7 +84,7 @@
 @else
 <div class="h5 text-center">This idea not have any comment !</div>
 @endif
-@if (Auth::check() && Auth::user()->roleID !=4 && Auth::user()->roleID !=5)
+@if (Auth::check() && Auth::user()->roleID != 4 && Auth::user()->roleID != 5)
 @else
 <form action="/ideas/comment" method="post">
     @csrf
@@ -74,46 +106,46 @@
 @endif
 <script script type="text/javascript">
     $('.show_delete').click(function(event) {
-        var form = $(this).closest("form");
-        var name = $(this).data("name");
-        event.preventDefault();
-        Swal.fire({
-            title: 'Are you sure ?',
-            text: 'Are you sure to delete this idea ?',
-            icon: 'question',
-            showCancelButton: true,
-            scrollbarPadding: false,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes',
-            cancelButtonText: 'No',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                form.submit();
-            }
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            Swal.fire({
+                title: 'Are you sure ?',
+                text: 'Are you sure to delete this idea ?',
+                icon: 'question',
+                showCancelButton: true,
+                scrollbarPadding: false,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
         });
-    });
 </script>
 <script script type="text/javascript">
     $('.show_delete_comment').click(function(event) {
-        var form = $(this).closest("form");
-        var name = $(this).data("name");
-        event.preventDefault();
-        Swal.fire({
-            title: 'Are you sure ?',
-            text: 'Are you sure to delete this comment ?',
-            icon: 'question',
-            showCancelButton: true,
-            scrollbarPadding: false,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes',
-            cancelButtonText: 'No',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                form.submit();
-            }
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            Swal.fire({
+                title: 'Are you sure ?',
+                text: 'Are you sure to delete this comment ?',
+                icon: 'question',
+                showCancelButton: true,
+                scrollbarPadding: false,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
         });
-    });
 </script>
 @endsection

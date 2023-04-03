@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Idea;
 use App\Models\likeAndDislike;
 use Auth;
+use DB;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Session;
@@ -16,6 +17,7 @@ class MainController extends Controller
     public function index()
     {
         if (Auth::user()->roleID != 1) {
+            $countDoc = Idea::count('document');
             $ideas = Idea::orderByDesc('created_at')->paginate(5);
             $users = User::all();
             $getCategory = Idea::value('categoryID');
@@ -25,9 +27,14 @@ class MainController extends Controller
             $latestIdea = Idea::latest('created_at')->first();
             $latestComment = Comment::latest('created_at')->first();
             $mostViewIdea = Idea::orderByDesc('view')->first();
+            $mostLikeIdea = Idea::orderByDesc('likeCount')->first();
             $countComment = Comment::count();
-            return view('index', compact('ideas', 'categoryName', 'users', 'latestIdea', 'latestComment', 'countComment', 'mostViewIdea'));
+            return view('index', compact('ideas', 'categoryName', 'users', 'latestIdea', 'latestComment', 'countComment', 'mostViewIdea', 'mostLikeIdea', 'countDoc'));
         }
-        return view('index');
+        $getRoleUploader = DB::table('users')->join('ideas', 'uploader', '=', 'userID')->get('roleID');
+        $countAllIdea = $getRoleUploader->count();
+        $countAcaIdea = $getRoleUploader->where('roleID', 4)->count();
+        $countSupIdea = $getRoleUploader->where('roleID', 5)->count();
+        return view('index', compact('countAllIdea', 'countAcaIdea', 'countSupIdea'));
     }
 }
