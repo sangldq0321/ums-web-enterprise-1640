@@ -58,6 +58,7 @@
                                 data-bs-toggle="dropdown" aria-expanded="false"><span class="me-2">{{
                                     Auth::user()->fullname }}</span></a>
                             <ul class="dropdown-menu dropdown-menu-lg-end">
+                                @if (Auth::user()->roleID!=1 )
                                 <li>
                                     <h6 class="dropdown-header fw-bold">Account</h6>
                                 </li>
@@ -73,6 +74,7 @@
                                 <li><a class="dropdown-item" href="/account/change-password"><i
                                             class="fa-solid fa-lock me-2"></i>Change password</a>
                                 </li>
+                                @endif
                                 <li>
                                     <h6 class="dropdown-header fw-bold">Log out</h6>
                                 </li>

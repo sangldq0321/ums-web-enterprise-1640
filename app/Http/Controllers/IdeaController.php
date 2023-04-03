@@ -10,6 +10,7 @@ use Auth;
 use File;
 use Illuminate\Http\Request;
 use Session;
+use ZipArchive;
 
 class IdeaController extends Controller
 {
@@ -37,7 +38,6 @@ class IdeaController extends Controller
         $idea->categoryID = $request->input('categoryID');
         $idea->ideaContent = $request->input('ideaContent');
         $idea->uploader = Auth::user()->userID;
-        $request->except($idea->view);
         if ($request->hasfile('document')) {
             $file = $request->file('document');
             $filename = time() . '.' . $file->extension();
@@ -112,5 +112,29 @@ class IdeaController extends Controller
         $idea->likeCount = $idea->likeCount - 1;
         $idea->update();
         return redirect()->route('viewIdea', ['id' => $request->session()->get('ideaID')]);
+    }
+    public function downloadAllDoc(Request $request)
+    {
+        $countDoc = Idea::count('document');
+        if ($countDoc > 0) {
+            if ($request->session()->get('zipName')) {
+                $des = 'temp/' . $request->session()->get('zipName');
+                File::delete($des);
+            }
+            $zip = new ZipArchive();
+            $fileName = time() . '.' . 'zip';
+            if ($zip->open(public_path('temp/' . $fileName), ZipArchive::CREATE) == TRUE) {
+                $files = File::files(public_path('documents'));
+                foreach ($files as $key => $value) {
+                    $relativeName = basename($value);
+                    $zip->addFile($value, $relativeName);
+                }
+                $zip->close();
+            }
+            $request->session()->put('zipName', $fileName);
+            return response()->download(public_path('temp/' . $fileName));
+        } else {
+            return redirect()->back();
+        }
     }
 }

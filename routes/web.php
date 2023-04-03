@@ -53,6 +53,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/categories/edit/{id}', [CategoryController::class, 'getEditCategory']);
             Route::post('/categories/edit/{id}', [CategoryController::class, 'postEditCategory']);
             Route::get('/categories/delete/{id}', [CategoryController::class, 'deleteCategory']);
+            Route::get('/document/download', [IdeaController::class, 'downloadAllDoc']);
         });
     });
     Route::get('/account/change-password', [LoginController::class, 'getChangePassword']);

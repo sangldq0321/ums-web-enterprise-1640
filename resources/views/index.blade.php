@@ -13,6 +13,15 @@
     <a href="/ideas/add" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Add</a>
 </div>
 @endif
+@if($countDoc>0)
+@if ((Auth::check() && Auth::user()->roleID == 2))
+<div class="d-flex justify-content-center mb-3">
+    <a href="/document/download" class="btn btn-success"><i class="fa-solid fa-download me-2"></i>Download all
+        documents</a>
+</div>
+@endif
+@else
+@endif
 <div class="row">
     <div class="col-12 col-lg-9">
         @if (Auth::user()->roleID !== 1)
@@ -130,6 +139,65 @@
         </div>
     </div>
 </div>
+@endif
+@if (Auth::user()->roleID == 1)
+<div class="row row-cols-1 row-cols-lg-2 g-3">
+    <div class="col">
+        <div class="card w-100">
+            <div class="card-body">
+                <h5 class="card-title fw-bold text-center">Total idea(s) of Academic department:</h5>
+                <p class="card-text">
+                <div class="h1 mb-0 fw-bold text-center">{{$countAcaIdea}}</div>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="card w-100">
+            <div class="card-body">
+                <h5 class="card-title fw-bold text-center">Total idea(s) of Support department:</h5>
+                <p class="card-text">
+                <div class="h1 mb-0 fw-bold text-center">{{$countSupIdea}}</div>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row row-cols-1 row-cols-lg-2 g-3 mt-3">
+    <div class="col">
+        <div class="text-center card p-3">
+            <h4 class="fw-bold mb-3">Idea(s) per department</h4>
+            <canvas id="pieChart" class="mb-3 w-25 h-25 mx-auto"></canvas>
+            <div>Total ideas: <b>{{ $countAllIdea }}</b> idea(s)</div>
+            <div>Academic ideas: <b>{{ $countAcaIdea }}</b> idea(s)</div>
+            <div>Support ideas: <b>{{ $countSupIdea }}</b> idea(s)</div>
+        </div>
+    </div>
+</div>
+@endif
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+@if (Auth::user()->roleID == 1)
+<script type="text/javascript">
+    var ctx = document.getElementById("pieChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Academic idea', 'Support idea'],
+            datasets: [{
+                data: [{{ $countAcaIdea }}, {{ $countSupIdea }}],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                resposive: true,
+                legend: {
+                    display: false,
+                }
+            }
+        }
+    });
+</script>
 @endif
 <script script type="text/javascript">
     $('.show_delete').click(function(event) {

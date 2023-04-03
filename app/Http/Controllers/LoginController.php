@@ -24,8 +24,7 @@ class LoginController extends Controller
                 'password.required' => 'Please enter password'
             ]);
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
-            return redirect('/')->with('notify', 'loginsuccess');
-
+            return redirect()->route('viewProfile', ['id' => Auth::user()->userID]);
         } else {
             return redirect('/login')->with('notify', 'loginfailed');
         }
