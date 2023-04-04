@@ -7,12 +7,12 @@
     <a href="/ideas/acayear/add" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Add</a>
 </div>
 @endif
-<table class="table table-hover" id="datatable">
-    <thead class="table-dark">
+<table id="datatable">
+    <thead>
         <tr>
-            <th scope="col">Academic year name</th>
-            <th scope="col">Open date</th>
-            <th scope="col">Close date</th>
+            <th scope="col">Academic Year Name</th>
+            <th scope="col">Open Date</th>
+            <th scope="col">Close Date</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
         </tr>
@@ -20,13 +20,15 @@
     <tbody>
         @foreach ($acayears as $acayear)
         <tr>
-            <th scope="row">{{$acayear->academicYearName}}</th>
+            <td scope="row">{{$acayear->academicYearName}}</td>
             <td>{{$acayear->open_date}}</td>
             <td>{{$acayear->close_date}}</td>
-            <td><a href="/ideas/acayear/edit/{{$acayear->academicYearID}}" class="btn btn-warning"><i
-                        class="fa-solid fa-pen-to-square me-2"></i>Edit</a></td>
-            <td>
-                <form method="POST" action="/ideas/acayear/delete/{{$acayear->academicYearID}}">
+            <td class="text-center">
+                <a href="/ideas/acayear/edit/{{$acayear->academicYearName}}" class="btn btn-warning"><i
+                        class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
+            </td>
+            <td class="text-center">
+                <form method="POST" action="/ideas/acayear/delete/{{$acayear->academicYearName}}">
                     @csrf
                     <input name="_method" type="hidden" value="GET">
                     <button type="button" class="show_delete btn btn-danger" data-toggle="tooltip"><i

@@ -38,7 +38,7 @@
                             <a class="nav-link" href="/"><i class="fa-solid fa-chart-line me-2"></i>Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/ideas/acayear"><i class="fa-solid fa-clock me-2"></i></i>Academic year</a>
+                            <a class="nav-link" href="/ideas/acayear"><i class="fa-solid fa-clock me-2"></i></i>Academic Year</a>
                         </li>
                         @elseif(Auth::user()->roleID!==1)
                             <a class="nav-link" href="/"><i class="fa-solid fa-building-columns me-2"></i>Home</a>
