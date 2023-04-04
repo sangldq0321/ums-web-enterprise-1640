@@ -210,6 +210,12 @@
             <div>Support ideas: <b>{{ $countSupIdea }}</b> idea(s)</div>
         </div>
     </div>
+    <div class="col">
+        <div class="text-center card p-3">
+            <h4 class="fw-bold mb-0">Idea(s) per month</h4>
+            <canvas id="lineChart" class="mb-3 w-100 h-100 mx-auto"></canvas>
+        </div>
+    </div>
 </div>
 @endif
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -230,6 +236,33 @@
                 resposive: true,
                 legend: {
                     display: false,
+                }
+            }
+        }
+    });
+</script>
+<script type="text/javascript">
+    var ctx = document.getElementById("lineChart").getContext('2d');
+    var lineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+                'October', 'November', 'December'
+            ],
+            datasets: [{
+                label: 'Ideas',
+                data: [{{ $countAcaIdeaMonth1 }}, {{ $countAcaIdeaMonth2 }}, {{ $countAcaIdeaMonth3 }},
+                    {{ $countAcaIdeaMonth4 }}, {{ $countAcaIdeaMonth5 }}, {{ $countAcaIdeaMonth6 }},
+                    {{ $countAcaIdeaMonth7 }}, {{ $countAcaIdeaMonth8 }}, {{ $countAcaIdeaMonth9 }},
+                    {{ $countAcaIdeaMonth10 }}, {{ $countAcaIdeaMonth11 }}, {{ $countAcaIdeaMonth12 }}
+                ],
+            }],
+        },
+        options: {
+            plugins: {
+                resposive: true,
+                legend: {
+                    display: true,
                 }
             }
         }
