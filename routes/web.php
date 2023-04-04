@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\IdeatimeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\CommentController;
@@ -55,6 +56,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/categories/delete/{id}', [CategoryController::class, 'deleteCategory']);
             Route::get('/document/download', [IdeaController::class, 'downloadAllDoc']);
         });
+    });
+    Route::middleware(['Admin'])->group(function () {
+        Route::get('/idea/time', [IdeatimeController::class, 'IdeaTime']);
     });
     Route::get('/account/change-password', [LoginController::class, 'getChangePassword']);
     Route::post('/account/change-password', [LoginController::class, 'postChangePassword']);
