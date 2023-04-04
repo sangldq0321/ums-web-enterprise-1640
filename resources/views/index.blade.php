@@ -200,7 +200,7 @@
         </div>
     </div> --}}
 </div>
-<div class="row row-cols-1 row-cols-lg-2 g-3 mt-3">
+<div class="row row-cols-1 row-cols-lg-2 g-3 mt-auto">
     <div class="col">
         <div class="text-center card p-3">
             <h4 class="fw-bold mb-3">Idea(s) per department</h4>
