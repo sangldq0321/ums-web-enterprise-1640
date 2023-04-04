@@ -136,9 +136,6 @@ class IdeaController extends Controller
                     $relativeName = basename($value);
                     $zip->addFile($value, $relativeName);
                 }
-                if ($zip->count() == 0) {
-                    exit("No files were added to the ZIP file");
-                }
                 $zip->close();
             }
             $request->session()->put('zipName', $fileName);
