@@ -251,10 +251,10 @@
             ],
             datasets: [{
                 label: 'Ideas',
-                data: [{{ $countAcaIdeaMonth1 }}, {{ $countAcaIdeaMonth2 }}, {{ $countAcaIdeaMonth3 }},
-                    {{ $countAcaIdeaMonth4 }}, {{ $countAcaIdeaMonth5 }}, {{ $countAcaIdeaMonth6 }},
-                    {{ $countAcaIdeaMonth7 }}, {{ $countAcaIdeaMonth8 }}, {{ $countAcaIdeaMonth9 }},
-                    {{ $countAcaIdeaMonth10 }}, {{ $countAcaIdeaMonth11 }}, {{ $countAcaIdeaMonth12 }}
+                data: [{{ $countIdeaMonth1 }}, {{ $countIdeaMonth2 }}, {{ $countIdeaMonth3 }},
+                    {{ $countIdeaMonth4 }}, {{ $countIdeaMonth5 }}, {{ $countIdeaMonth6 }},
+                    {{ $countIdeaMonth7 }}, {{ $countIdeaMonth8 }}, {{ $countIdeaMonth9 }},
+                    {{ $countIdeaMonth10 }}, {{ $countIdeaMonth11 }}, {{ $countIdeaMonth12 }}
                 ],
             }],
         },
