@@ -38,21 +38,20 @@ class MainController extends Controller
             ->get();
         $countAllIdea = $getRoleID->count();
         $countAcaIdea = $getRoleID->where('roleID', '=', 4)->count();
-
-        $countAcaIdeaMonth1 = Idea::whereMonth('created_at', '=', '1')->count();
-        $countAcaIdeaMonth2 = Idea::whereMonth('created_at', '=', '2')->count();
-        $countAcaIdeaMonth3 = Idea::whereMonth('created_at', '=', '3')->count();
-        $countAcaIdeaMonth4 = Idea::whereMonth('created_at', '=', '4')->count();
-        $countAcaIdeaMonth5 = Idea::whereMonth('created_at', '=', '5')->count();
-        $countAcaIdeaMonth6 = Idea::whereMonth('created_at', '=', '6')->count();
-        $countAcaIdeaMonth7 = Idea::whereMonth('created_at', '=', '7')->count();
-        $countAcaIdeaMonth8 = Idea::whereMonth('created_at', '=', '8')->count();
-        $countAcaIdeaMonth9 = Idea::whereMonth('created_at', '=', '9')->count();
-        $countAcaIdeaMonth10 = Idea::whereMonth('created_at', '=', '10')->count();
-        $countAcaIdeaMonth11 = Idea::whereMonth('created_at', '=', '11')->count();
-        $countAcaIdeaMonth12 = Idea::whereMonth('created_at', '=', '12')->count();
-
         $countSupIdea = $getRoleID->where('roleID', '=', 5)->count();
-        return view('index', compact('countAllIdea', 'countAcaIdea', 'countSupIdea', 'countAcaIdeaMonth1', 'countAcaIdeaMonth2', 'countAcaIdeaMonth3', 'countAcaIdeaMonth4', 'countAcaIdeaMonth5', 'countAcaIdeaMonth6', 'countAcaIdeaMonth7', 'countAcaIdeaMonth8', 'countAcaIdeaMonth9', 'countAcaIdeaMonth10', 'countAcaIdeaMonth11', 'countAcaIdeaMonth12'));
+        $countIdeaMonth1 = Idea::whereMonth('created_at', '=', '1')->count();
+        $countIdeaMonth2 = Idea::whereMonth('created_at', '=', '2')->count();
+        $countIdeaMonth3 = Idea::whereMonth('created_at', '=', '3')->count();
+        $countIdeaMonth4 = Idea::whereMonth('created_at', '=', '4')->count();
+        $countIdeaMonth5 = Idea::whereMonth('created_at', '=', '5')->count();
+        $countIdeaMonth6 = Idea::whereMonth('created_at', '=', '6')->count();
+        $countIdeaMonth7 = Idea::whereMonth('created_at', '=', '7')->count();
+        $countIdeaMonth8 = Idea::whereMonth('created_at', '=', '8')->count();
+        $countIdeaMonth9 = Idea::whereMonth('created_at', '=', '9')->count();
+        $countIdeaMonth10 = Idea::whereMonth('created_at', '=', '10')->count();
+        $countIdeaMonth11 = Idea::whereMonth('created_at', '=', '11')->count();
+        $countIdeaMonth12 = Idea::whereMonth('created_at', '=', '12')->count();
+
+        return view('index', compact('countAllIdea', 'countAcaIdea', 'countSupIdea', 'countIdeaMonth1', 'countIdeaMonth2', 'countIdeaMonth3', 'countIdeaMonth4', 'countIdeaMonth5', 'countIdeaMonth6', 'countIdeaMonth7', 'countIdeaMonth8', 'countIdeaMonth9', 'countIdeaMonth10', 'countIdeaMonth11', 'countIdeaMonth12'));
     }
 }
