@@ -22,7 +22,7 @@
 
 <body class="d-flex flex-column h-100">
     <header>
-        <nav class="navbar navbar-expand-lg" style="border-bottom:4px solid #f27228;">
+        <nav class="navbar navbar-expand-lg fixed-top shadow" style="border-bottom:4px solid #f27228;">
             <div class="container-fluid">
                 <a class="navbar-brand fw-bold" href="/"><span class="d-flex align-items-center"><img
                             src="/assets/img/logo.svg" width="32px" class="me-2"><span>UMS</span></span></a>
