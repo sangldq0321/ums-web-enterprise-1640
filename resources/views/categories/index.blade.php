@@ -5,7 +5,7 @@
 <div class="d-flex justify-content-center mb-3">
     <a href="/categories/add" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Add</a>
 </div>
-<table class="table" id="datatable">
+<table class="table w-100" id="datatable">
     <thead class="table-dark">
         <tr>
             <th scope="col">ID</th>

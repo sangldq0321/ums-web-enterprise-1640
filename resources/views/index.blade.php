@@ -9,9 +9,17 @@
 <h3 class="text-center fw-bold">Dashboard</h3>
 @else
 @if ((Auth::check() && Auth::user()->roleID == 4) || Auth::user()->roleID == 5)
+@if($passDate!=1)
 <div class="d-flex justify-content-center mb-3">
     <a href="/ideas/add" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Add</a>
 </div>
+@else
+<div class="d-flex justify-content-center mb-3">
+    <div class="alert alert-danger">
+        <div><i class="fa-solid fa-triangle-exclamation me-2"></i>Can't <b>add idea</b>.</div>
+    </div>
+</div>
+@endif
 @endif
 @if($countDoc>0)
 @if ((Auth::check() && Auth::user()->roleID == 2))

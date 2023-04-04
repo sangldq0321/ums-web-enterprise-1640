@@ -24,12 +24,6 @@
         <option value="{{ $category->categoryID }}">{{ $category->categoryName }}</option>
         @endforeach
     </select>
-    <label class="mb-2">Academic name:</label>
-    <select class="form-select mb-3" name="academicYearID">
-        @foreach ($getAcaYears as $getAcaYear)
-        <option value="{{ $getAcaYear->academicYearID }}">{{ $getAcaYear->academicYearName }}</option>
-        @endforeach
-    </select>
     <div class="mb-3">
         <label for="formFile" class="form-label">Document:</label>
         <input class="form-control" type="file" id="formFile" accept=".docx, .xlsx, .pdf, .txt, .pptx" name="document">

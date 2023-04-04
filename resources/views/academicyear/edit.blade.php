@@ -5,11 +5,6 @@
 <form action="/ideas/acayear/edit/{{$acayear->academicYearID}}" method="post">
     @csrf
     <h3 class="text-center">Edit academic year</h3>
-    <div class="form-floating mb-3">
-        <input type="text" class="form-control" placeholder="Academic year name" name="academicYearName"
-            value="{{$acayear->academicYearName}}">
-        <label>Academic year name</label>
-    </div>
     <div class="row">
         <div class="col">
             <div class="mb-3">

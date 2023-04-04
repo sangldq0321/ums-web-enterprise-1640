@@ -11,7 +11,6 @@ class academicyear extends Model
     protected $table = "academicyear";
     protected $primaryKey = "academicYearID";
     protected $fillable = [
-        'academicYearName',
         'open_date',
         'close_date',
     ];

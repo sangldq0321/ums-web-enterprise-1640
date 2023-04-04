@@ -37,7 +37,6 @@ class IdeaController extends Controller
         $idea = new Idea;
         $idea->ideaName = $request->input('ideaName');
         $idea->categoryID = $request->input('categoryID');
-        $idea->academicYearID = $request->input('academicYearID');
         $idea->ideaContent = $request->input('ideaContent');
         $idea->uploader = Auth::user()->userID;
         if ($request->hasfile('document')) {
@@ -72,7 +71,6 @@ class IdeaController extends Controller
         $idea->ideaName = $request->input('ideaName');
         $idea->categoryID = $request->input('categoryID');
         $idea->ideaContent = $request->input('ideaContent');
-        $idea->academicYearID = $request->input('academicYearID');
         if ($request->hasfile('document')) {
             $des = 'documents/' . $idea->document;
             File::delete($des);

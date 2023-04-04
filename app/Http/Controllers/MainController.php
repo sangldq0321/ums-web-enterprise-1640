@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Idea;
 use App\Models\likeAndDislike;
 use Auth;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
@@ -19,6 +20,15 @@ class MainController extends Controller
         if (Auth::user()->roleID != 1) {
             $countDoc = Idea::count('document');
             $countIdea = Idea::count();
+            $getAcaYears = DB::table('academicyear')->get();
+            $now = date("Y-m-d");
+            $start = DB::table('academicyear')->value('open_date');
+            $end = DB::table('academicyear')->value('close_date');
+            if ($now <= $end && $now >= $start) {
+                $passDate = 0;
+            } else {
+                $passDate = 1;
+            }
             $ideas = Idea::orderByDesc('created_at')->paginate(5);
             $users = User::all();
             $getCategory = Idea::value('categoryID');
@@ -30,7 +40,7 @@ class MainController extends Controller
             $mostViewIdea = Idea::orderByDesc('view')->first();
             $mostLikeIdea = Idea::orderByDesc('likeCount')->first();
             $countComment = Comment::count();
-            return view('index', compact('ideas', 'categoryName', 'users', 'latestIdea', 'latestComment', 'countComment', 'mostViewIdea', 'mostLikeIdea', 'countDoc', 'countIdea'));
+            return view('index', compact('ideas', 'categoryName', 'users', 'latestIdea', 'latestComment', 'countComment', 'mostViewIdea', 'mostLikeIdea', 'countDoc', 'countIdea', 'passDate'));
         }
         $getRoleID = DB::table('users')
             ->select('*')
