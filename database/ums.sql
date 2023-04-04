@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 04, 2023 at 05:58 PM
+-- Generation Time: Apr 04, 2023 at 08:14 PM
 -- Server version: 8.0.32
 -- PHP Version: 8.2.4
 
@@ -30,7 +30,6 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `academicyear`;
 CREATE TABLE IF NOT EXISTS `academicyear` (
   `academicYearID` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `academicYearName` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `open_date` date NOT NULL,
   `close_date` date NOT NULL,
   PRIMARY KEY (`academicYearID`)
@@ -40,10 +39,8 @@ CREATE TABLE IF NOT EXISTS `academicyear` (
 -- Dumping data for table `academicyear`
 --
 
-INSERT INTO `academicyear` (`academicYearID`, `academicYearName`, `open_date`, `close_date`) VALUES
-(1, 'Summer', '2023-04-04', '2023-04-04'),
-(2, 'Winter', '2023-04-05', '2023-04-05'),
-(3, 'Autumn', '2023-04-05', '2023-04-05');
+INSERT INTO `academicyear` (`academicYearID`, `open_date`, `close_date`) VALUES
+(1, '2023-04-05', '2023-04-08');
 
 -- --------------------------------------------------------
 
@@ -88,13 +85,6 @@ CREATE TABLE IF NOT EXISTS `comments` (
   KEY `userID` (`userID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`commentID`, `userID`, `commentContent`, `ideaID`, `created_at`, `updated_at`) VALUES
-(1, 4, 'Please add chatbox, please !', 23, '2023-04-03 22:30:52', '2023-04-03 22:30:52');
-
 -- --------------------------------------------------------
 
 --
@@ -119,14 +109,6 @@ CREATE TABLE IF NOT EXISTS `ideas` (
   KEY `uploader` (`uploader`),
   KEY `academicYearID` (`academicYearID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `ideas`
---
-
-INSERT INTO `ideas` (`ideaID`, `ideaName`, `categoryID`, `ideaContent`, `uploader`, `view`, `document`, `academicYearID`, `likeCount`, `created_at`, `updated_at`) VALUES
-(2, 'Please add report system', 1, '<p>Please add report system</p>', 7, 13, '', 1, 0, '2023-04-03 22:30:34', '2023-04-04 17:19:00'),
-(23, 'Please add chatbox', 1, '<p>Please add chatbox</p>', 4, 12, '1680567370.docx', 1, 0, '2023-04-03 22:30:34', '2023-04-04 17:29:09');
 
 -- --------------------------------------------------------
 
