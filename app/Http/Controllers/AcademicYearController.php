@@ -59,7 +59,7 @@ class AcademicYearController extends Controller
     }
     public function getDeleteAcaYear($id_acayear)
     {
-        $acayear = AcademicYear::findOrFail($id_acayear);
+        $acayear = AcademicYear::where('academicYearName', $id_acayear)->first();
         $acayear->delete();
         return redirect()->back();
     }
