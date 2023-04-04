@@ -18,10 +18,18 @@
         <input type="text" class="form-control" placeholder="Idea name" name="ideaName" value="{{$idea->ideaName}}">
         <label>Idea name</label>
     </div>
+    <label class="mb-2">Category name:</label>
     <select class="form-select mb-3" name="categoryID">
         @foreach ($categories as $category)
-        <option value={{$category->categoryID}} @if($category->categoryID == $category->categoryID) selected
+        <option value={{$category->categoryID}} @if($category->categoryID == $idea->categoryID) selected
             @endif>{{$category->categoryName}}</option>
+        @endforeach
+    </select>
+    <label class="mb-2">Academic name:</label>
+    <select class="form-select mb-3" name="academicYearID">
+        @foreach ($getAcaYears as $getAcaYear)
+        <option value={{$getAcaYear->academicYearID}} @if($getAcaYear->academicYearID == $idea->academicYearID) selected
+            @endif>{{$getAcaYear->academicYearName}}</option>
         @endforeach
     </select>
     <div class="mb-3">

@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Idea;
-use App\Models\likeAndDislike;
 use Auth;
+use DB;
 use File;
 use Illuminate\Http\Request;
 use Session;
@@ -24,7 +24,8 @@ class IdeaController extends Controller
     public function getAddIdea()
     {
         $categories = Category::all();
-        return view('ideas.add', compact('categories'));
+        $getAcaYears = DB::table('academicyear')->get();
+        return view('ideas.add', compact('categories', 'getAcaYears'));
     }
     public function postAddIdea(Request $request)
     {
@@ -36,6 +37,7 @@ class IdeaController extends Controller
         $idea = new Idea;
         $idea->ideaName = $request->input('ideaName');
         $idea->categoryID = $request->input('categoryID');
+        $idea->academicYearID = $request->input('academicYearID');
         $idea->ideaContent = $request->input('ideaContent');
         $idea->uploader = Auth::user()->userID;
         if ($request->hasfile('document')) {
@@ -50,10 +52,11 @@ class IdeaController extends Controller
     public function getEditIdea($id_idea)
     {
         $idea = Idea::findOrFail($id_idea);
+        $getAcaYears = DB::table('academicyear')->get();
         if ($idea->uploader == Auth::user()->userID) {
 
             $categories = Category::all();
-            return view('ideas.edit', compact('idea', 'categories'));
+            return view('ideas.edit', compact('idea', 'categories', 'getAcaYears'));
         }
         return redirect()->back();
     }
@@ -69,6 +72,7 @@ class IdeaController extends Controller
         $idea->ideaName = $request->input('ideaName');
         $idea->categoryID = $request->input('categoryID');
         $idea->ideaContent = $request->input('ideaContent');
+        $idea->academicYearID = $request->input('academicYearID');
         if ($request->hasfile('document')) {
             $des = 'documents/' . $idea->document;
             File::delete($des);

@@ -1,11 +1,10 @@
 <?php
-use App\Http\Controllers\IdeatimeController;
+use App\Http\Controllers\AcademicYearController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\LikeDislikeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,7 +57,12 @@ Route::middleware(['auth'])->group(function () {
         });
     });
     Route::middleware(['Admin'])->group(function () {
-        Route::get('/idea/time', [IdeatimeController::class, 'IdeaTime']);
+        Route::get('/ideas/acayear', [AcademicYearController::class, 'index']);
+        Route::get('/ideas/acayear/add', [AcademicYearController::class, 'getAddAcaYear']);
+        Route::post('/ideas/acayear/add', [AcademicYearController::class, 'postAddAcaYear']);
+        Route::get('/ideas/acayear/edit/{id}', [AcademicYearController::class, 'getEditAcaYear']);
+        Route::post('/ideas/acayear/edit/{id}', [AcademicYearController::class, 'postEditAcaYear']);
+        Route::get('/ideas/acayear/delete/{id}', [AcademicYearController::class, 'getDeleteAcaYear']);
     });
     Route::get('/account/change-password', [LoginController::class, 'getChangePassword']);
     Route::post('/account/change-password', [LoginController::class, 'postChangePassword']);

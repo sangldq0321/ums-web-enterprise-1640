@@ -1,43 +1,38 @@
 @extends('layouts.main')
-@section('title','Category')
+@section('title', 'Academic year')
 @section('content')
-<h3 class="text-center">Ideas</h3>
-@if (Auth::check() && Auth::user()->roleID !=3)
+<h3 class="text-center">Academic year</h3>
+@if (Auth::check() && Auth::user()->roleID =1)
 <div class="d-flex justify-content-center mb-3">
-    <a href="/ideas/add" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Add</a>
+    <a href="/ideas/acayear/add" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Add</a>
 </div>
 @endif
 <table class="table table-hover" id="datatable">
     <thead class="table-dark">
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Ideas category</th>
-            <th scope="col">Ideas name</th>
-            <th scope="col">Uploader</th>
-            @if (Auth::check() && Auth::user()->roleID !=3)
+            <th scope="col">Academic year name</th>
+            <th scope="col">Open date</th>
+            <th scope="col">Close date</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
-            @endif
         </tr>
     </thead>
     <tbody>
-        @foreach ($ideas as $idea)
+        @foreach ($acayears as $acayear)
         <tr>
-            <th scope="row">{{$idea->ideaID}}</th>
-            <td>{{$categoryName}}</td>
-            <td>{{$idea->ideaName}}</td>
-            <td>Anonymous</td>
-            @if (Auth::check() && Auth::user()->roleID !=3)
-            <td><a href="/ideas/edit/{{$idea->ideaID}}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square me-2"></i>Edit</a></td>
+            <th scope="row">{{$acayear->academicYearName}}</th>
+            <td>{{$acayear->open_date}}</td>
+            <td>{{$acayear->close_date}}</td>
+            <td><a href="/ideas/acayear/edit/{{$acayear->academicYearID}}" class="btn btn-warning"><i
+                        class="fa-solid fa-pen-to-square me-2"></i>Edit</a></td>
             <td>
-                <form method="POST" action="/ideas/delete/{{ $idea->ideaID }}">
+                <form method="POST" action="/ideas/acayear/delete/{{$acayear->academicYearID}}">
                     @csrf
                     <input name="_method" type="hidden" value="GET">
-                    <a type="button" class="show_delete btn btn-danger" data-toggle="tooltip"><i
-                            class="fa-solid fa-trash me-2"></i>Delete</a>
+                    <button type="button" class="show_delete btn btn-danger" data-toggle="tooltip"><i
+                            class="fa-solid fa-trash me-2"></i>Delete</button>
                 </form>
             </td>
-            @endif
         </tr>
         @endforeach
     </tbody>
@@ -67,7 +62,7 @@
         event.preventDefault();
         Swal.fire({
             title: 'Are you sure ?',
-            text: 'Are you sure to delete this idea ?',
+            text: 'Are you sure to delete this academic year ?',
             icon: 'question',
             showCancelButton: true,
             scrollbarPadding: false,
