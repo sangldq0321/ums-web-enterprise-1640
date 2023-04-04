@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\AcademicYearController;
 use App\Http\Controllers\IdeatimeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\IdeaController;
@@ -58,7 +59,11 @@ Route::middleware(['auth'])->group(function () {
         });
     });
     Route::middleware(['Admin'])->group(function () {
-        Route::get('/idea/time', [IdeatimeController::class, 'IdeaTime']);
+        Route::get('/idea/academicyear', [AcademicYearController::class, 'index']);
+        Route::get('/idea/academicyear/add', [AcademicYearController::class, 'addAcaYear']);
+        Route::post('/idea/academicyear/add/save', [AcademicYearController::class, 'saveAcaYear']);
+        Route::get('/idea/academicyear/edit/{id}', [AcademicYearController::class, 'getEditAcaYear']);
+        Route::get('/idea/academicyear/delete/{id}', [AcademicYearController::class, 'delAcaYear']);
     });
     Route::get('/account/change-password', [LoginController::class, 'getChangePassword']);
     Route::post('/account/change-password', [LoginController::class, 'postChangePassword']);

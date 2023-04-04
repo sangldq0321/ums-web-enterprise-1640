@@ -163,3 +163,24 @@ main {
 header+main {
     padding-top: 70px;
 }
+
+
+/* Format Table to view Data - Update by Khai */
+table, th, td {
+    border: 1px solid black;
+
+}
+
+table {
+    display: table;
+    width: 100%;
+    border-collapse: separate;
+    box-sizing: border-box;
+    border-spacing: 2px;
+}
+
+th {
+    background-color: rgb(41, 48, 100);
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
