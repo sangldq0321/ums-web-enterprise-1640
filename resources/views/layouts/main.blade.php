@@ -33,13 +33,16 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        @if(Auth::user()->roleID===1)
                         <li class="nav-item">
-                            @if(Auth::user()->roleID===1)
                             <a class="nav-link" href="/"><i class="fa-solid fa-chart-line me-2"></i>Dashboard</a>
-                            @elseif(Auth::user()->roleID!==1)
-                            <a class="nav-link" href="/"><i class="fa-solid fa-building-columns me-2"></i>Home</a>
-                            @endif
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/ideas/acayear"><i class="fa-solid fa-clock me-2"></i></i>Academic year</a>
+                        </li>
+                        @elseif(Auth::user()->roleID!==1)
+                            <a class="nav-link" href="/"><i class="fa-solid fa-building-columns me-2"></i>Home</a>
+                        @endif
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         @auth

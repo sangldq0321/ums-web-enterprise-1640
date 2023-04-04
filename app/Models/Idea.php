@@ -17,6 +17,7 @@ class Idea extends Model
         'uploader',
         'view',
         'document',
-        'likeCount'
+        'likeCount',
+        'academicYearID'
     ];
 }

@@ -21,13 +21,13 @@
             <th scope="row">{{$category->categoryID}}</th>
             <td>{{$category->categoryName}}</td>
             <td>{!!$category->categoryDesc!!}</td>
-            <td><a href="/categories/edit/{{$category->categoryID}}"><i
+            <td><a href="/categories/edit/{{$category->categoryID}}" class="btn btn-warning"><i
                         class="fa-solid fa-pen-to-square me-2"></i>Edit</a></td>
             <td>
                 <form method="POST" action="/categories/delete/{{ $category->categoryID }}">
                     @csrf
                     <input name="_method" type="hidden" value="GET">
-                    <a type="button" class="show_delete" data-toggle="tooltip"><i
+                    <a type="button" class="show_delete btn btn-danger" data-toggle="tooltip"><i
                             class="fa-solid fa-trash me-2"></i>Delete</a>
                 </form>
             </td>

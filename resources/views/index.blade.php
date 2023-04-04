@@ -262,7 +262,7 @@
             plugins: {
                 resposive: true,
                 legend: {
-                    display: true,
+                    display: false,
                 }
             }
         }
