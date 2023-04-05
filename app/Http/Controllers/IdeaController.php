@@ -19,13 +19,29 @@ class IdeaController extends Controller
         $ideas = Idea::all();
         $getCategory = Idea::value('categoryID');
         $categoryName = Category::where('categoryID', '=', $getCategory)->value('categoryName');
-        return view('ideas.index', compact('ideas', 'categoryName'));
+        $now = date("Y-m-d");
+        $start = DB::table('academicyear')->value('open_date');
+        $end = DB::table('academicyear')->value('close_date');
+        if ($now <= $end && $now >= $start) {
+            $passDate = 0;
+        } else {
+            $passDate = 1;
+        }
+        return view('ideas.index', compact('ideas', 'categoryName', 'passDate'));
     }
     public function getAddIdea()
     {
-        $categories = Category::all();
-        $getAcaYears = DB::table('academicyear')->get();
-        return view('ideas.add', compact('categories', 'getAcaYears'));
+        $now = date("Y-m-d");
+        $start = DB::table('academicyear')->value('open_date');
+        $end = DB::table('academicyear')->value('close_date');
+        if ($now <= $end && $now >= $start) {
+            $categories = Category::all();
+            $getAcaYears = DB::table('academicyear')->get();
+            return view('ideas.add', compact('categories', 'getAcaYears'));
+        } else {
+            return redirect()->back();
+        }
+
     }
     public function postAddIdea(Request $request)
     {
@@ -50,10 +66,12 @@ class IdeaController extends Controller
     }
     public function getEditIdea($id_idea)
     {
+        $now = date("Y-m-d");
+        $start = DB::table('academicyear')->value('open_date');
+        $end = DB::table('academicyear')->value('close_date');
         $idea = Idea::findOrFail($id_idea);
         $getAcaYears = DB::table('academicyear')->get();
-        if ($idea->uploader == Auth::user()->userID) {
-
+        if ($idea->uploader == Auth::user()->userID && $now <= $end && $now >= $start) {
             $categories = Category::all();
             return view('ideas.edit', compact('idea', 'categories', 'getAcaYears'));
         }
@@ -85,7 +103,10 @@ class IdeaController extends Controller
     public function deleteIdea($id_idea)
     {
         $idea = Idea::findOrFail($id_idea);
-        if ($idea->uploader == Auth::user()->userID) {
+        $now = date("Y-m-d");
+        $start = DB::table('academicyear')->value('open_date');
+        $end = DB::table('academicyear')->value('close_date');
+        if ($idea->uploader == Auth::user()->userID || $now <= $end && $now >= $start) {
             $des = 'documents/' . $idea->document;
             File::delete($des);
             $idea->delete();
@@ -104,9 +125,17 @@ class IdeaController extends Controller
             Idea::where('ideaID', $id_idea)->increment('view');
             Session::put($viewIdea, 1);
         }
+        $now = date("Y-m-d");
+        $start = DB::table('academicyear')->value('open_date');
+        $end = DB::table('academicyear')->value('close_date');
+        if ($now <= $end && $now >= $start) {
+            $passDate = 0;
+        } else {
+            $passDate = 1;
+        }
         $categoryName = Category::where('categoryID', '=', $getCategory)->value('categoryName');
         $comments = Comment::orderByDesc('created_at')->get();
-        return view('ideas.view', compact('idea', 'categoryName', 'comments', 'document'));
+        return view('ideas.view', compact('idea', 'categoryName', 'comments', 'document', 'passDate'));
     }
     public function likeIdea(Request $request, $id_idea)
     {

@@ -4,26 +4,36 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use Auth;
+use DB;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
     public function postComment(Request $request)
     {
-        $this->validate($request, [
-            'commentContent' => 'required',
-        ]);
-        $comment = new Comment;
-        $comment->userID = Auth::user()->userID;
-        $comment->commentContent = $request->input('commentContent');
-        $comment->ideaID = $request->session()->get('ideaID');
-        $comment->save();
-        return redirect()->route('viewIdea', ['id' => $request->session()->get('ideaID')]);
+        $now = date("Y-m-d");
+        $start = DB::table('academicyear')->value('open_date');
+        $end = DB::table('academicyear')->value('close_date');
+        if ($now <= $end && $now >= $start) {
+            $this->validate($request, [
+                'commentContent' => 'required',
+            ]);
+            $comment = new Comment;
+            $comment->userID = Auth::user()->userID;
+            $comment->commentContent = $request->input('commentContent');
+            $comment->ideaID = $request->session()->get('ideaID');
+            $comment->save();
+            return redirect()->route('viewIdea', ['id' => $request->session()->get('ideaID')]);
+        }
+        return redirect()->back();
     }
     public function getEditComment($id_comment)
     {
+        $now = date("Y-m-d");
+        $start = DB::table('academicyear')->value('open_date');
+        $end = DB::table('academicyear')->value('close_date');
         $comment = Comment::findOrFail($id_comment);
-        if ($comment->userID == Auth::user()->userID) {
+        if ($comment->userID == Auth::user()->userID || $now <= $end && $now >= $start) {
             return view('ideas.editComment', compact('comment'));
         }
         return redirect()->back();
@@ -37,8 +47,11 @@ class CommentController extends Controller
     }
     public function deleteComment(Request $request, $id_comment)
     {
+        $now = date("Y-m-d");
+        $start = DB::table('academicyear')->value('open_date');
+        $end = DB::table('academicyear')->value('close_date');
         $comment = Comment::findOrFail($id_comment);
-        if ($comment->userID == Auth::user()->userID) {
+        if ($comment->userID == Auth::user()->userID || $now <= $end && $now >= $start) {
             $comment->delete();
             return redirect()->route('viewIdea', ['id' => $request->session()->get('ideaID')]);
         }

@@ -92,6 +92,7 @@
 @endif
 @if (Auth::check() && Auth::user()->roleID != 4 && Auth::user()->roleID != 5)
 @else
+@if($passDate!=1)
 <form action="/ideas/comment" method="post">
     @csrf
     @if (count($errors) > 0)
@@ -109,6 +110,13 @@
     </div>
     <button type="submit" class="btn btn-success">Post comment</button>
 </form>
+@else
+<div class="d-flex justify-content-center mb-3">
+    <div class="alert alert-danger">
+        <div><i class="fa-solid fa-triangle-exclamation me-2"></i>Can't <b>add comment</b>.</div>
+    </div>
+</div>
+@endif
 @endif
 <script script type="text/javascript">
     $('.show_delete').click(function(event) {
