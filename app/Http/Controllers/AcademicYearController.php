@@ -21,6 +21,8 @@ class AcademicYearController extends Controller
     {
         $this->validate($request, [
             'close_date' => 'after:open_date',
+        ],[
+            'close_date.after'=>'Close date must be after open date'
         ]);
         $acayear = AcademicYear::findOrFail($id_acayear);
         $acayear->open_date = $request->input('open_date');

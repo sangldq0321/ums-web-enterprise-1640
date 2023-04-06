@@ -64,4 +64,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/account/change-password', [LoginController::class, 'getChangePassword']);
     Route::post('/account/change-password', [LoginController::class, 'postChangePassword']);
     Route::get('/logout', [LoginController::class, 'logOut']);
+    Route::get('/noti/read/{id}', [MainController::class, 'markNoti']);
 });

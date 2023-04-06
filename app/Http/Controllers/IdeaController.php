@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Idea;
+use App\Models\Notification;
 use Auth;
 use DB;
 use File;
@@ -62,6 +63,13 @@ class IdeaController extends Controller
             $idea->document = $filename;
         }
         $idea->save();
+        $noti = new Notification;
+        $noti->userID = Auth::user()->userID;
+        $noti->notiContent = "Someone is added new idea";
+        $noti->isRead = 0;
+        $noti->notiFor = 'idea';
+        $noti->ideaID = $request->session()->get('ideaID');
+        $noti->save();
         return redirect('/');
     }
     public function getEditIdea($id_idea)

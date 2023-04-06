@@ -5,13 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Idea;
-use App\Models\likeAndDislike;
 use Auth;
-use Carbon\Carbon;
 use DB;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
-use Session;
+use App\Models\Notification;
 
 class MainController extends Controller
 {
@@ -63,5 +61,12 @@ class MainController extends Controller
         $countIdeaMonth12 = Idea::whereMonth('created_at', '=', '12')->count();
 
         return view('index', compact('countAllIdea', 'countAcaIdea', 'countSupIdea', 'countIdeaMonth1', 'countIdeaMonth2', 'countIdeaMonth3', 'countIdeaMonth4', 'countIdeaMonth5', 'countIdeaMonth6', 'countIdeaMonth7', 'countIdeaMonth8', 'countIdeaMonth9', 'countIdeaMonth10', 'countIdeaMonth11', 'countIdeaMonth12'));
+    }
+    public function markNoti(Request $request, $id_noti)
+    {
+        $noti = Notification::findOrFail($id_noti);
+        $noti->isRead = 1;
+        $noti->update();
+        return redirect()->back();
     }
 }

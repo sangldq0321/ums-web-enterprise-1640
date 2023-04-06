@@ -38,10 +38,11 @@
                             <a class="nav-link" href="/"><i class="fa-solid fa-chart-line me-2"></i>Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/ideas/acayear"><i class="fa-solid fa-clock me-2"></i></i>Academic year</a>
+                            <a class="nav-link" href="/ideas/acayear"><i class="fa-solid fa-clock me-2"></i></i>Academic
+                                year</a>
                         </li>
                         @elseif(Auth::user()->roleID!==1)
-                            <a class="nav-link" href="/"><i class="fa-solid fa-building-columns me-2"></i>Home</a>
+                        <a class="nav-link" href="/"><i class="fa-solid fa-building-columns me-2"></i>Home</a>
                         @endif
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -56,6 +57,39 @@
                             <a class="nav-link" href="/categories">Categories</a>
                         </li>
                         @endif
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false"><i class="fa-solid fa-bell"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-lg-end">
+                                <li>
+                                    <h6 class="dropdown-header fw-bold">Notifications</h6>
+                                </li>
+                                @if($notis->isNotEmpty())
+                                @foreach ($notis as $noti)
+                                <li>
+                                    <a class="dropdown-item">
+                                        <div class="text-start">{{$noti->notiContent}}</div>
+                                        <div class="text-end">
+                                            <?php $date = date_create($noti->created_at);
+                                            echo date_format($date, 'h:i A d/m/Y');
+                                            ?>
+                                        </div>
+                                        <form method="POST" action="/noti/read/{{ $noti->notiID }}">
+                                            @csrf
+                                            <input name="_method" type="hidden" value="GET">
+                                            <div class="text-end"><button class="btn btn-success btn-sm">Mark as
+                                                    read</button></div>
+                                        </form>
+                                    </a>
+                                </li>
+                                @endforeach
+                                @else
+                                <a class="dropdown-item">
+                                    <div>Notification is empty !</div>
+                                </a>
+                                @endif
+                            </ul>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle fw-bold" href="javascript:void(0)" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false"><span class="me-2">{{

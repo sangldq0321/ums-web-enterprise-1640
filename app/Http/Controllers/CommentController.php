@@ -6,6 +6,7 @@ use App\Models\Comment;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
+use App\Models\Notification;
 
 class CommentController extends Controller
 {
@@ -23,6 +24,13 @@ class CommentController extends Controller
             $comment->commentContent = $request->input('commentContent');
             $comment->ideaID = $request->session()->get('ideaID');
             $comment->save();
+            $noti = new Notification;
+            $noti->userID = Auth::user()->userID;
+            $noti->notiContent = "Someone is commented your idea";
+            $noti->isRead = 0;
+            $noti->notiFor = 'comment';
+            $noti->ideaID = $request->session()->get('ideaID');
+            $noti->save();
             return redirect()->route('viewIdea', ['id' => $request->session()->get('ideaID')]);
         }
         return redirect()->back();
