@@ -188,26 +188,6 @@
             </div>
         </div>
     </div>
-    {{-- <div class="col">
-        <div class="card w-100">
-            <div class="card-body">
-                <h5 class="card-title fw-bold text-center">Total document(s) of Academic department:</h5>
-                <p class="card-text">
-                <div class="h1 mb-0 fw-bold text-center">{{$countAcaDoc}}</div>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card w-100">
-            <div class="card-body">
-                <h5 class="card-title fw-bold text-center">Total document(s) of Support department:</h5>
-                <p class="card-text">
-                <div class="h1 mb-0 fw-bold text-center">{{$countSupDoc}}</div>
-                </p>
-            </div>
-        </div>
-    </div> --}}
 </div>
 <div class="row row-cols-1 row-cols-lg-2 g-3 mt-auto">
     <div class="col">
