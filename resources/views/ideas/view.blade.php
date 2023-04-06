@@ -41,17 +41,21 @@
 </div>
 @endif
 @if ($idea->uploader == Auth::user()->userID)
-<div class="mt-3">
-    <div class="border rounded-3 p-3 d-inline-flex">
-        <a href="/ideas/edit/{{ $idea->ideaID }}" class="m-2 edit btn btn-warning"><i
-                class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
-        <form method="POST" action="/ideas/delete/{{ $idea->ideaID }}" class="d-inline-block">
-            @csrf
-            <input name="_method" type="hidden" value="GET">
-            <a type="button" class="show_delete m-2 delete btn btn-danger" data-toggle="tooltip"><i
-                    class="fa-solid fa-trash me-2"></i>Delete</a>
-        </form>
-    </div>
+<div class="dropdown mt-3">
+    <a type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">More
+    </a>
+    <ul class="dropdown-menu">
+        <li><a href="/ideas/edit/{{ $idea->ideaID }}" class="dropdown-item"><i
+                    class="fa-solid fa-pen-to-square me-2"></i>Edit</a></li>
+        <li>
+            <form method="POST" action="/ideas/delete/{{ $idea->ideaID }}">
+                @csrf
+                <input name="_method" type="hidden" value="GET">
+                <a type="button" class="show_delete dropdown-item" data-toggle="tooltip"><i
+                        class="fa-solid fa-trash me-2"></i>Delete</a>
+            </form>
+        </li>
+    </ul>
 </div>
 @endif
 <hr>
@@ -71,15 +75,21 @@
         @else
         <div class="mt-2">
             @if ($comment->userID == Auth::user()->userID)
-            <div class="border rounded-3 p-3 d-inline-flex">
-                <a href="/comments/edit/{{ $comment->commentID }}" class="m-2 edit btn btn-warning"><i
-                        class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
-                <form method="POST" action="/comments/delete/{{ $comment->commentID }}" class="d-inline-block m-2">
-                    @csrf
-                    <input name="_method" type="hidden" value="GET">
-                    <a type="button" class="show_delete_comment delete btn btn-danger" data-toggle="tooltip"><i
-                            class="fa-solid fa-trash me-2"></i>Delete</a>
-                </form>
+            <div class="dropdown mt-3">
+                <a type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">More
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/comments/edit/{{ $comment->commentID }}" class="dropdown-item"><i
+                                class="fa-solid fa-pen-to-square me-2"></i>Edit</a></li>
+                    <li>
+                        <form method="POST" action="/comments/delete/{{ $comment->commentID }}">
+                            @csrf
+                            <input name="_method" type="hidden" value="GET">
+                            <a type="button" class="show_delete dropdown-item" data-toggle="tooltip"><i
+                                    class="fa-solid fa-trash me-2"></i>Delete</a>
+                        </form>
+                    </li>
+                </ul>
             </div>
             @endif
         </div>

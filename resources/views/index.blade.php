@@ -48,22 +48,23 @@
                     </div>
                     </p>
                     @if ($idea->uploader == Auth::user()->userID)
-                    <td><a href="/ideas/edit/{{ $idea->ideaID }}" class="m-2 edit btn btn-warning"><i
-                                class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
-                    </td>
-                    <td>
-                        <form method="POST" action="/ideas/delete/{{ $idea->ideaID }}" class="d-inline-block">
-                            @csrf
-                            <input name="_method" type="hidden" value="GET">
-                            <a type="button" class="show_delete m-2 delete btn btn-danger" data-toggle="tooltip"><i
-                                    class="fa-solid fa-trash me-2"></i>Delete</a>
-                        </form>
-                    </td>
-                    @endif
-                    <div>
-                        <a href="/ideas/view/{{ $idea->ideaID }}" class="btn btn-success m-2">View more<i
-                                class="fa-solid fa-angle-right ms-2"></i></a>
+                    <div class="dropdown">
+                        <a type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">More
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/ideas/edit/{{ $idea->ideaID }}" class="dropdown-item"><i
+                                        class="fa-solid fa-pen-to-square me-2"></i>Edit</a></li>
+                            <li>
+                                <form method="POST" action="/ideas/delete/{{ $idea->ideaID }}">
+                                    @csrf
+                                    <input name="_method" type="hidden" value="GET">
+                                    <a type="button" class="show_delete dropdown-item" data-toggle="tooltip"><i
+                                            class="fa-solid fa-trash me-2"></i>Delete</a>
+                                </form>
+                            </li>
+                        </ul>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

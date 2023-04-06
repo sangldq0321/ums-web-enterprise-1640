@@ -77,7 +77,7 @@
                                         <form method="POST" action="/noti/read/{{ $noti->notiID }}">
                                             @csrf
                                             <input name="_method" type="hidden" value="GET">
-                                            <div class="text-end"><button class="btn btn-success btn-sm">Mark as
+                                            <div class="text-end mt-2"><button class="btn btn-success btn-sm">Mark as
                                                     read</button></div>
                                         </form>
                                     </a>
