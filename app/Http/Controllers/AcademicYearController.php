@@ -20,7 +20,6 @@ class AcademicYearController extends Controller
     public function postEditAcaYear(Request $request, $id_acayear)
     {
         $this->validate($request, [
-            'open_date' => 'before:close_date',
             'close_date' => 'after:open_date',
         ]);
         $acayear = AcademicYear::findOrFail($id_acayear);

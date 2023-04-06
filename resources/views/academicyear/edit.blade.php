@@ -4,6 +4,15 @@
 <a href="/ideas/acayear" type="button" class="btn btn-dark mb-3"><i class="fa-solid fa-chevron-left me-2"></i>Back</a>
 <form action="/ideas/acayear/edit/{{$acayear->academicYearID}}" method="post">
     @csrf
+    @if (count($errors) > 0)
+    <div class="d-flex justify-content-center mb-3">
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $err)
+            <div><i class="fa-solid fa-triangle-exclamation me-2"></i>{{ $err }}</div>
+            @endforeach
+        </div>
+    </div>
+    @endif
     <h3 class="text-center">Edit academic year</h3>
     <div class="row">
         <div class="col">
