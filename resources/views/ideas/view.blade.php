@@ -20,7 +20,7 @@
 </div>
 @else
 @endif
-@if (Auth::check() && Auth::user()->roleID != 4 && Auth::user()->roleID != 5)
+@if (Auth::check() && Auth::user()->roleID != 5 && Auth::user()->roleID != 6)
 @else
 <div class="text-start">
     <div class="border rounded-3 p-3 d-inline-flex">
