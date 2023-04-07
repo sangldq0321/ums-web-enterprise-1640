@@ -85,8 +85,8 @@
                                                     read</button></div>
                                         </form>
                                         @elseif($noti->isRead=1)
-                                        <div class="text-end mt-2"><button class="btn btn-success btn-sm disabled">Mark as
-                                                read</button></div>
+                                        <div class="text-end mt-2"><button
+                                                class="btn btn-success btn-sm disabled">Readed</button></div>
                                         @endif
                                     </a>
                                 </li>
@@ -131,7 +131,8 @@
                                                     read</button></div>
                                         </form>
                                         @elseif($noti->isRead=1)
-                                        <div class="text-end mt-2"><button class="btn btn-success btn-sm disabled">Readed</button></div>
+                                        <div class="text-end mt-2"><button
+                                                class="btn btn-success btn-sm disabled">Readed</button></div>
                                         @endif
                                     </a>
                                 </li>
