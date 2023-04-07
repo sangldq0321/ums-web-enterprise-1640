@@ -59,7 +59,7 @@
                         @endif
                         @if(Auth::user()->roleID!==1 && Auth::user()->roleID!==2)
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
+                            <a class="nav-link" href="javascript:void(0)" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false"><i class="fa-solid fa-bell"></i></a>
                             <ul class="dropdown-menu dropdown-menu-lg-end">
                                 <li>
