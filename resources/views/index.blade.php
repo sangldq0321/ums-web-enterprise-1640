@@ -8,7 +8,7 @@
 @if (Auth::user()->roleID == 1)
 <h3 class="text-center fw-bold">Dashboard</h3>
 @else
-@if ((Auth::check() && Auth::user()->roleID == 5) || Auth::user()->roleID == 6)
+@if ((Auth::check() && Auth::user()->roleID == 4) || Auth::user()->roleID == 5)
 @if($passDate!=1)
 <div class="d-flex justify-content-center mb-3">
     <a href="/ideas/add" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Add</a>

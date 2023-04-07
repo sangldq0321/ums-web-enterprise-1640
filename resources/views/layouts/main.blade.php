@@ -47,7 +47,7 @@
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         @auth
-                        @if (Auth::user()->roleID==3 ||Auth::user()->roleID==4 )
+                        @if (Auth::user()->roleID==3 )
                         <li class="nav-item">
                             <a class="nav-link" href="/ideas">Ideas</a>
                         </li>
@@ -57,9 +57,9 @@
                             <a class="nav-link" href="/categories">Categories</a>
                         </li>
                         @endif
-                        @if(Auth::user()->roleID!==1 && Auth::user()->roleID!==2)
+                        @if(Auth::user()->roleID==4 || Auth::user()->roleID==5)
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="javascript:void(0)" role="button" data-bs-toggle="dropdown"
+                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false"><i class="fa-solid fa-bell"></i></a>
                             <ul class="dropdown-menu dropdown-menu-lg-end">
                                 <li>
@@ -90,6 +90,42 @@
                                     <div>Notification is empty !</div>
                                 </a>
                                 @endif
+                                @endif
+                                @endforeach
+                                @else
+                                <a class="dropdown-item">
+                                    <div>Notification is empty !</div>
+                                </a>
+                                @endif
+                            </ul>
+                        </li>
+                        @elseif(Auth::user()->roleID==3)
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false"><i class="fa-solid fa-bell"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-lg-end">
+                                <li>
+                                    <h6 class="dropdown-header fw-bold">Notifications</h6>
+                                </li>
+                                @if($notis->isNotEmpty())
+                                @foreach ($notis as $noti)
+                                @if($noti->notiFor=='idea')
+                                <li>
+                                    <a class="dropdown-item">
+                                        <div class="text-start">{{$noti->notiContent}}</div>
+                                        <div class="text-end">
+                                            <?php $date = date_create($noti->created_at);
+                                            echo date_format($date, 'h:i A d/m/Y');
+                                            ?>
+                                        </div>
+                                        <form method="POST" action="/noti/read/{{ $noti->notiID }}">
+                                            @csrf
+                                            <input name="_method" type="hidden" value="GET">
+                                            <div class="text-end mt-2"><button class="btn btn-success btn-sm">Mark as
+                                                    read</button></div>
+                                        </form>
+                                    </a>
+                                </li>
                                 @endif
                                 @endforeach
                                 @else

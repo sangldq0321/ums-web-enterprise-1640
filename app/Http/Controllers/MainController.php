@@ -45,8 +45,8 @@ class MainController extends Controller
             ->join('ideas', 'users.userID', '=', 'ideas.uploader')
             ->get();
         $countAllIdea = $getRoleID->count();
-        $countAcaIdea = $getRoleID->where('roleID', '=', 5)->count();
-        $countSupIdea = $getRoleID->where('roleID', '=', 6)->count();
+        $countAcaIdea = $getRoleID->where('roleID', '=', 4)->count();
+        $countSupIdea = $getRoleID->where('roleID', '=', 5)->count();
         $countIdeaMonth1 = Idea::whereMonth('created_at', '=', '1')->count();
         $countIdeaMonth2 = Idea::whereMonth('created_at', '=', '2')->count();
         $countIdeaMonth3 = Idea::whereMonth('created_at', '=', '3')->count();

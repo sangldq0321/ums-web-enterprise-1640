@@ -9,7 +9,7 @@
             <th scope="col">Ideas category</th>
             <th scope="col">Ideas name</th>
             <th scope="col">Uploader</th>
-            @if (Auth::check() && Auth::user()->roleID !=3||Auth::user()->roleID !=4)
+            @if (Auth::check() && Auth::user()->roleID !=3)
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
             @endif
@@ -22,7 +22,7 @@
             <td>{{$categoryName}}</td>
             <td>{{$idea->ideaName}}</td>
             <td>Anonymous</td>
-            @if (Auth::check() && Auth::user()->roleID !=3||Auth::user()->roleID !=4)
+            @if (Auth::check() && Auth::user()->roleID !=3)
             <td><a href="/ideas/edit/{{$idea->ideaID}}" class="btn btn-warning"><i
                         class="fa-solid fa-pen-to-square me-2"></i>Edit</a></td>
             <td>

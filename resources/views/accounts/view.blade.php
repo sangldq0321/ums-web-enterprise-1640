@@ -8,6 +8,10 @@
         </div>
         <div class="card-body">
             <div class="text-center">
+                {{-- <div id="lightGallery">
+                    <img src="/assets/avatar/{{ $user->avatar }}" class="card-img-top mb-3 d-block mx-auto"
+                        style="width:50%;aspect-ratio: 1 / 1;" alt="Avatar" id="img-gallery">
+                </div> --}}
                 <div class="card-text">Username: <b>{{ $user->username }}</b></div>
                 <div class="card-text">Email: <b>{{ $user->email }}</b></div>
                 <div class="card-text">Fullname: <b>{{ $user->fullname }}</b></div>
