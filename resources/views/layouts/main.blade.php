@@ -57,6 +57,7 @@
                             <a class="nav-link" href="/categories">Categories</a>
                         </li>
                         @endif
+                        @if(Auth::user()->roleID!==1 && Auth::user()->roleID!==2)
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false"><i class="fa-solid fa-bell"></i></a>
@@ -66,6 +67,8 @@
                                 </li>
                                 @if($notis->isNotEmpty())
                                 @foreach ($notis as $noti)
+                                @if($noti->notiFor=='comment')
+                                @if($noti->userID == Auth::user()->userID)
                                 <li>
                                     <a class="dropdown-item">
                                         <div class="text-start">{{$noti->notiContent}}</div>
@@ -82,6 +85,12 @@
                                         </form>
                                     </a>
                                 </li>
+                                @else
+                                <a class="dropdown-item">
+                                    <div>Notification is empty !</div>
+                                </a>
+                                @endif
+                                @endif
                                 @endforeach
                                 @else
                                 <a class="dropdown-item">
@@ -90,6 +99,7 @@
                                 @endif
                             </ul>
                         </li>
+                        @endif
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle fw-bold" href="javascript:void(0)" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false"><span class="me-2">{{
