@@ -26,6 +26,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
-        view()->share('notis', Notification::where('isRead', 0)->get());
+        view()->share('notis', Notification::orderByDesc('created_at')->get());
     }
 }
