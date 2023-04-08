@@ -46,6 +46,7 @@
                                         echo date_format($date, 'h:i A m/d/Y');
                                         ?>
                     </div>
+                    <div><i class="fa-solid fa-eye me-2"></i>View: {{$idea->view}}</div>
                     </p>
                     @if ($idea->uploader == Auth::user()->userID)
                     <div class="dropdown">
