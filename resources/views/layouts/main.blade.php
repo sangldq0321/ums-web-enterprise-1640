@@ -42,7 +42,7 @@
                                 year</a>
                         </li>
                         @elseif(Auth::user()->roleID!==1)
-                        <a class="nav-link" href="/"><i class="fa-solid fa-building-columns me-2"></i>Home</a>
+                        <a class="nav-link" href="/"><i class="fa-solid fa-house me-2"></i>Home</a>
                         @endif
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
