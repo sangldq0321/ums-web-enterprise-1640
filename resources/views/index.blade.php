@@ -40,7 +40,7 @@
             <div class="card-body">
                 <h3 class="card-title fw-bold"><a href="/ideas/view/{{$idea->ideaID}}">{{ $idea->ideaName }}</a></h3>
                 <div class="card-text">
-                    <div>Category: <b>{{ $categoryName }}</b></div>
+                    <div>Category: <b>{{ $idea->category->categoryName }}</b></div>
                     <div>Upload by: <b>Anonymous</b> at
                         <?php $date = date_create($idea->created_at);
                                         echo date_format($date, 'h:i A m/d/Y');

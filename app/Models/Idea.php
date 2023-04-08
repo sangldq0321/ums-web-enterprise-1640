@@ -19,4 +19,8 @@ class Idea extends Model
         'document',
         'likeCount',
     ];
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'categoryID', 'categoryID');
+    }
 }

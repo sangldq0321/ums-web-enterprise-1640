@@ -29,15 +29,13 @@ class MainController extends Controller
             }
             $ideas = Idea::orderByDesc('created_at')->paginate(5);
             $users = User::all();
-            $getCategory = Idea::value('categoryID');
-            $categoryName = Category::where('categoryID', '=', $getCategory)->value('categoryName');
             $latestIdea = Idea::latest('created_at')->first();
             $latestComment = Comment::latest('created_at')->first();
             $latestCommentIdeaName = Idea::where('ideaID', $latestComment->ideaID ?? '')->value('ideaName');
             $mostViewIdea = Idea::orderByDesc('view')->first();
             $mostLikeIdea = Idea::orderByDesc('likeCount')->first();
             $countComment = Comment::count();
-            return view('index', compact('ideas', 'categoryName', 'users', 'latestIdea', 'latestComment', 'countComment', 'mostViewIdea', 'mostLikeIdea', 'countDoc', 'countIdea', 'passDate', 'latestCommentIdeaName'));
+            return view('index', compact('ideas', 'users', 'latestIdea', 'latestComment', 'countComment', 'mostViewIdea', 'mostLikeIdea', 'countDoc', 'countIdea', 'passDate', 'latestCommentIdeaName'));
         }
         $getRoleID = DB::table('users')
             ->select('*')
