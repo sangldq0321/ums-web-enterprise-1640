@@ -77,14 +77,15 @@
                                             echo date_format($date, 'h:i A d/m/Y');
                                             ?>
                                         </div>
-                                        @if($noti->isRead=0)
+                                        @if($noti->isRead==0)
                                         <form method="POST" action="/noti/read/{{ $noti->notiID }}">
                                             @csrf
                                             <input name="_method" type="hidden" value="GET">
                                             <div class="text-end mt-2"><button class="btn btn-success btn-sm">Mark as
                                                     read</button></div>
                                         </form>
-                                        @elseif($noti->isRead=1)
+                                        @endif
+                                        @if($noti->isRead==1)
                                         <div class="text-end mt-2"><button
                                                 class="btn btn-success btn-sm disabled">Readed</button></div>
                                         @endif
@@ -123,14 +124,15 @@
                                             echo date_format($date, 'h:i A d/m/Y');
                                             ?>
                                         </div>
-                                        @if($noti->isRead=0)
+                                        @if($noti->isRead==0)
                                         <form method="POST" action="/noti/read/{{ $noti->notiID }}">
                                             @csrf
                                             <input name="_method" type="hidden" value="GET">
                                             <div class="text-end mt-2"><button class="btn btn-success btn-sm">Mark as
                                                     read</button></div>
                                         </form>
-                                        @elseif($noti->isRead=1)
+                                        @endif
+                                        @if($noti->isRead==1)
                                         <div class="text-end mt-2"><button
                                                 class="btn btn-success btn-sm disabled">Readed</button></div>
                                         @endif
