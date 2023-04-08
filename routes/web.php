@@ -36,7 +36,6 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/ideas/dislike/{id}', [IdeaController::class, 'dislikeIdea']);
             Route::post('/ideas/edit/{id}', [IdeaController::class, 'postEditIdea']);
             Route::get('/ideas/delete/{id}', [IdeaController::class, 'deleteIdea']);
-            Route::get('/account/view-profile/{id}', [LoginController::class, 'viewProfile'])->name('viewProfile');
             Route::get('/account/edit-profile/{id}', [LoginController::class, 'editProfile']);
             Route::post('/account/edit-profile/{id}', [LoginController::class, 'updateProfile']);
             Route::post('/ideas/comment', [CommentController::class, 'postComment']);
@@ -61,6 +60,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/ideas/acayear/edit/{id}', [AcademicYearController::class, 'getEditAcaYear']);
         Route::post('/ideas/acayear/edit/{id}', [AcademicYearController::class, 'postEditAcaYear']);
     });
+    Route::get('/account/view-profile/{id}', [LoginController::class, 'viewProfile'])->name('viewProfile');
     Route::get('/account/change-password', [LoginController::class, 'getChangePassword']);
     Route::post('/account/change-password', [LoginController::class, 'postChangePassword']);
     Route::get('/logout', [LoginController::class, 'logOut']);
