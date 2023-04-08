@@ -31,8 +31,6 @@ class MainController extends Controller
             $users = User::all();
             $getCategory = Idea::value('categoryID');
             $categoryName = Category::where('categoryID', '=', $getCategory)->value('categoryName');
-            $getUploader = Idea::value('uploader');
-            $fullname = User::where('userID', '=', $getUploader)->value('fullname');
             $latestIdea = Idea::latest('created_at')->first();
             $latestComment = Comment::latest('created_at')->first();
             $latestCommentIdeaName = Idea::where('ideaID', $latestComment->ideaID ?? '')->value('ideaName');
