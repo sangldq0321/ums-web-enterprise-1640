@@ -68,7 +68,6 @@ class IdeaController extends Controller
         $noti->notiContent = "Someone is added new idea";
         $noti->isRead = 0;
         $noti->notiFor = 'idea';
-        $noti->ideaID = $request->session()->get('ideaID');
         $noti->save();
         return redirect('/');
     }
