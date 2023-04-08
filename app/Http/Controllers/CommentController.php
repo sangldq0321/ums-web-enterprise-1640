@@ -21,15 +21,14 @@ class CommentController extends Controller
             ]);
             $comment = new Comment;
             $comment->userID = Auth::user()->userID;
-            $comment->commentContent = $request->input('commentContent');
             $comment->ideaID = $request->session()->get('ideaID');
+            $comment->commentContent = $request->input('commentContent');
             $comment->save();
             $noti = new Notification;
             $noti->userID = Auth::user()->userID;
             $noti->notiContent = "Someone is commented your idea";
             $noti->isRead = 0;
             $noti->notiFor = 'comment';
-            $noti->ideaID = $request->session()->get('ideaID');
             $noti->save();
             return redirect()->route('viewIdea', ['id' => $request->session()->get('ideaID')]);
         }

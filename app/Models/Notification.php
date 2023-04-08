@@ -15,6 +15,5 @@ class Notification extends Model
         'notiContent',
         'isRead',
         'notiFor',
-        'ideaID'
     ];
 }
