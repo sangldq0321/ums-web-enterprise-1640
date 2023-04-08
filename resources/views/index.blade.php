@@ -201,7 +201,7 @@
     </div>
     <div class="col">
         <div class="text-center card p-3">
-            <h4 class="fw-bold mb-0">Idea(s) per month</h4>
+            <h4 class="fw-bold mb-0">Idea(s) per month per department</h4>
             <canvas id="lineChart" class="mb-3 w-100 h-100 mx-auto"></canvas>
         </div>
     </div>
@@ -235,17 +235,31 @@
     var lineChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
-                'October', 'November', 'December'
-            ],
             datasets: [{
-                label: 'Ideas',
-                data: [{{ $countIdeaMonth1 }}, {{ $countIdeaMonth2 }}, {{ $countIdeaMonth3 }},
-                    {{ $countIdeaMonth4 }}, {{ $countIdeaMonth5 }}, {{ $countIdeaMonth6 }},
-                    {{ $countIdeaMonth7 }}, {{ $countIdeaMonth8 }}, {{ $countIdeaMonth9 }},
-                    {{ $countIdeaMonth10 }}, {{ $countIdeaMonth11 }}, {{ $countIdeaMonth12 }}
+                label: 'Academic department',
+                type: 'line',
+                data: [{{ $countAcaIdeaMonth1 }}, {{ $countAcaIdeaMonth2 }}, {{ $countAcaIdeaMonth3 }},
+                    {{ $countAcaIdeaMonth4 }},
+                    {{ $countAcaIdeaMonth5 }}, {{ $countAcaIdeaMonth6 }}, {{ $countAcaIdeaMonth7 }},
+                    {{ $countAcaIdeaMonth8 }},
+                    {{ $countAcaIdeaMonth9 }}, {{ $countAcaIdeaMonth10 }}, {{ $countAcaIdeaMonth11 }},
+                    {{ $countAcaIdeaMonth12 }},
                 ],
+                order: 1,
+            }, {
+                label: 'Support department',
+                data: [{{ $countSupIdeaMonth1 }}, {{ $countSupIdeaMonth2 }}, {{ $countSupIdeaMonth3 }},
+                    {{ $countSupIdeaMonth4 }},
+                    {{ $countSupIdeaMonth5 }}, {{ $countSupIdeaMonth6 }}, {{ $countSupIdeaMonth7 }},
+                    {{ $countSupIdeaMonth8 }},
+                    {{ $countSupIdeaMonth9 }}, {{ $countSupIdeaMonth10 }}, {{ $countSupIdeaMonth11 }},
+                    {{ $countSupIdeaMonth12 }},
+                ],
+                type: 'line',
+                order: 1,
             }],
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+                'October', 'November', 'December']
         },
         options: {
             plugins: {

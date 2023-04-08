@@ -44,20 +44,152 @@ class MainController extends Controller
         $countAllIdea = $getRoleID->count();
         $countAcaIdea = $getRoleID->where('roleID', '=', 4)->count();
         $countSupIdea = $getRoleID->where('roleID', '=', 5)->count();
-        $countIdeaMonth1 = Idea::whereMonth('created_at', '=', '1')->count();
-        $countIdeaMonth2 = Idea::whereMonth('created_at', '=', '2')->count();
-        $countIdeaMonth3 = Idea::whereMonth('created_at', '=', '3')->count();
-        $countIdeaMonth4 = Idea::whereMonth('created_at', '=', '4')->count();
-        $countIdeaMonth5 = Idea::whereMonth('created_at', '=', '5')->count();
-        $countIdeaMonth6 = Idea::whereMonth('created_at', '=', '6')->count();
-        $countIdeaMonth7 = Idea::whereMonth('created_at', '=', '7')->count();
-        $countIdeaMonth8 = Idea::whereMonth('created_at', '=', '8')->count();
-        $countIdeaMonth9 = Idea::whereMonth('created_at', '=', '9')->count();
-        $countIdeaMonth10 = Idea::whereMonth('created_at', '=', '10')->count();
-        $countIdeaMonth11 = Idea::whereMonth('created_at', '=', '11')->count();
-        $countIdeaMonth12 = Idea::whereMonth('created_at', '=', '12')->count();
-
-        return view('index', compact('countAllIdea', 'countAcaIdea', 'countSupIdea', 'countIdeaMonth1', 'countIdeaMonth2', 'countIdeaMonth3', 'countIdeaMonth4', 'countIdeaMonth5', 'countIdeaMonth6', 'countIdeaMonth7', 'countIdeaMonth8', 'countIdeaMonth9', 'countIdeaMonth10', 'countIdeaMonth11', 'countIdeaMonth12'));
+        $currentYear = date("Y");
+        $countAcaIdeaMonth1 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '1')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 4)
+            ->count();
+        $countAcaIdeaMonth2 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '2')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 4)
+            ->count();
+        $countAcaIdeaMonth3 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '3')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 4)
+            ->count();
+        $countAcaIdeaMonth4 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '4')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 4)
+            ->count();
+        $countAcaIdeaMonth5 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '5')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 4)
+            ->count();
+        $countAcaIdeaMonth6 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '6')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 4)
+            ->count();
+        $countAcaIdeaMonth7 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '7')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 4)
+            ->count();
+        $countAcaIdeaMonth8 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '8')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 4)
+            ->count();
+        $countAcaIdeaMonth9 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '9')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 4)
+            ->count();
+        $countAcaIdeaMonth10 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '10')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 4)
+            ->count();
+        $countAcaIdeaMonth11 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '11')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 4)
+            ->count();
+        $countAcaIdeaMonth12 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '12')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 4)
+            ->count();
+        $countSupIdeaMonth1 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '1')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 5)
+            ->count();
+        $countSupIdeaMonth2 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '2')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 5)
+            ->count();
+        $countSupIdeaMonth3 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '3')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 5)
+            ->count();
+        $countSupIdeaMonth4 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '4')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 5)
+            ->count();
+        $countSupIdeaMonth5 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '5')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 5)
+            ->count();
+        $countSupIdeaMonth6 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '6')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 5)
+            ->count();
+        $countSupIdeaMonth7 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '7')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 5)
+            ->count();
+        $countSupIdeaMonth8 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '8')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 5)
+            ->count();
+        $countSupIdeaMonth9 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '9')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 5)
+            ->count();
+        $countSupIdeaMonth10 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '10')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 5)
+            ->count();
+        $countSupIdeaMonth11 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '11')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 5)
+            ->count();
+        $countSupIdeaMonth12 = DB::table('users')
+            ->join('ideas', 'users.userID', '=', 'ideas.uploader')
+            ->whereMonth('ideas.created_at', '=', '12')
+            ->whereYear('ideas.created_at', '=', $currentYear)
+            ->where('roleID', '=', 5)
+            ->count();
+        return view('index', compact('countAllIdea', 'countAcaIdea', 'countSupIdea', 'countAcaIdeaMonth1', 'countAcaIdeaMonth2', 'countAcaIdeaMonth3', 'countAcaIdeaMonth4', 'countAcaIdeaMonth5', 'countAcaIdeaMonth6', 'countAcaIdeaMonth7', 'countAcaIdeaMonth8', 'countAcaIdeaMonth9', 'countAcaIdeaMonth10', 'countAcaIdeaMonth11', 'countAcaIdeaMonth12', 'countSupIdeaMonth1', 'countSupIdeaMonth2', 'countSupIdeaMonth3', 'countSupIdeaMonth4', 'countSupIdeaMonth5', 'countSupIdeaMonth6', 'countSupIdeaMonth7', 'countSupIdeaMonth8', 'countSupIdeaMonth9', 'countSupIdeaMonth10', 'countSupIdeaMonth11', 'countSupIdeaMonth12'));
     }
     public function markNoti(Request $request, $id_noti)
     {

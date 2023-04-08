@@ -23,4 +23,8 @@ class Idea extends Model
     {
         return $this->belongsTo(Category::class, 'categoryID', 'categoryID');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'uploader', 'userID');
+    }
 }
