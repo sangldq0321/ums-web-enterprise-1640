@@ -35,7 +35,7 @@ class MainController extends Controller
             $fullname = User::where('userID', '=', $getUploader)->value('fullname');
             $latestIdea = Idea::latest('created_at')->first();
             $latestComment = Comment::latest('created_at')->first();
-            $latestCommentIdeaName = Idea::where('ideaID', $latestComment->ideaID)->value('ideaName');
+            $latestCommentIdeaName = Idea::where('ideaID', $latestComment->ideaID ?? '')->value('ideaName');
             $mostViewIdea = Idea::orderByDesc('view')->first();
             $mostLikeIdea = Idea::orderByDesc('likeCount')->first();
             $countComment = Comment::count();
