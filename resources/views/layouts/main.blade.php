@@ -91,17 +91,9 @@
                                         @endif
                                     </a>
                                 </li>
-                                @else
-                                <a class="dropdown-item">
-                                    <div>Notification is empty !</div>
-                                </a>
                                 @endif
                                 @endif
                                 @endforeach
-                                @else
-                                <a class="dropdown-item">
-                                    <div>Notification is empty !</div>
-                                </a>
                                 @endif
                             </ul>
                         </li>

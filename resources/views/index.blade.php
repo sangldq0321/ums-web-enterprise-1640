@@ -167,6 +167,20 @@
 </div>
 @endif
 @if (Auth::user()->roleID == 1)
+<div class="row row-cols-1 mb-3">
+    <div class="col">
+        <div class="card w-100">
+            <div class="card-body">
+                <h5 class="card-title fw-bold text-center">Closure date</h5>
+                <p class="card-text">
+                <div class="h1 mb-0 fw-bold text-center text-danger">
+                    <?php $date = date_create($end); echo date_format($date, 'd/m/Y');?>
+                </div>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row row-cols-1 row-cols-lg-2 g-3">
     <div class="col">
         <div class="card w-100">
