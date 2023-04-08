@@ -74,7 +74,7 @@
                                         <div class="text-start">{{$noti->notiContent}}</div>
                                         <div class="text-end">
                                             <?php $date = date_create($noti->created_at);
-                                            echo date_format($date, 'h:i A d/m/Y');
+                                            echo date_format($date, 'h:i A m/d/Y');
                                             ?>
                                         </div>
                                         @if($noti->isRead==0)
@@ -121,7 +121,7 @@
                                         <div class="text-start">{{$noti->notiContent}}</div>
                                         <div class="text-end">
                                             <?php $date = date_create($noti->created_at);
-                                            echo date_format($date, 'h:i A d/m/Y');
+                                            echo date_format($date, 'h:i A m/d/Y');
                                             ?>
                                         </div>
                                         @if($noti->isRead==0)

@@ -43,7 +43,7 @@
                     <div>Category: <b>{{ $categoryName }}</b></div>
                     <div>Upload by: <b>Anonymous</b> at
                         <?php $date = date_create($idea->created_at);
-                                        echo date_format($date, 'h:i A d/m/Y');
+                                        echo date_format($date, 'h:i A m/d/Y');
                                         ?>
                     </div>
                     </p>
