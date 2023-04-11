@@ -191,8 +191,15 @@ class MainController extends Controller
             ->whereYear('ideas.created_at', '=', $currentYear)
             ->where('roleID', '=', 5)
             ->count();
+        $now = date("Y-m-d");
+        $start = DB::table('academicyear')->value('open_date');
         $end = DB::table('academicyear')->value('close_date');
-        return view('index', compact('end', 'countAllIdea', 'countAcaIdea', 'countSupIdea', 'countAcaIdeaMonth1', 'countAcaIdeaMonth2', 'countAcaIdeaMonth3', 'countAcaIdeaMonth4', 'countAcaIdeaMonth5', 'countAcaIdeaMonth6', 'countAcaIdeaMonth7', 'countAcaIdeaMonth8', 'countAcaIdeaMonth9', 'countAcaIdeaMonth10', 'countAcaIdeaMonth11', 'countAcaIdeaMonth12', 'countSupIdeaMonth1', 'countSupIdeaMonth2', 'countSupIdeaMonth3', 'countSupIdeaMonth4', 'countSupIdeaMonth5', 'countSupIdeaMonth6', 'countSupIdeaMonth7', 'countSupIdeaMonth8', 'countSupIdeaMonth9', 'countSupIdeaMonth10', 'countSupIdeaMonth11', 'countSupIdeaMonth12'));
+        if ($now <= $end && $now >= $start) {
+            $passDate = 0;
+        } else {
+            $passDate = 1;
+        }
+        return view('index', compact('passDate', 'end', 'countAllIdea', 'countAcaIdea', 'countSupIdea', 'countAcaIdeaMonth1', 'countAcaIdeaMonth2', 'countAcaIdeaMonth3', 'countAcaIdeaMonth4', 'countAcaIdeaMonth5', 'countAcaIdeaMonth6', 'countAcaIdeaMonth7', 'countAcaIdeaMonth8', 'countAcaIdeaMonth9', 'countAcaIdeaMonth10', 'countAcaIdeaMonth11', 'countAcaIdeaMonth12', 'countSupIdeaMonth1', 'countSupIdeaMonth2', 'countSupIdeaMonth3', 'countSupIdeaMonth4', 'countSupIdeaMonth5', 'countSupIdeaMonth6', 'countSupIdeaMonth7', 'countSupIdeaMonth8', 'countSupIdeaMonth9', 'countSupIdeaMonth10', 'countSupIdeaMonth11', 'countSupIdeaMonth12'));
     }
     public function markNoti(Request $request, $id_noti)
     {

@@ -176,8 +176,13 @@
                 <p class="card-text">
                 <div class="h1 mb-0 fw-bold text-center text-danger">
                     <?php $date = date_create($end); echo date_format($date, 'd/m/Y');?>
+                    @if($passDate==1)
+                    <span class="h4">(Expired)</span>
+                    @elseif($passDate==0)
+                    @endif
                 </div>
                 </p>
+                <a href="/ideas/acayear" class="stretched-link"></a>
             </div>
         </div>
     </div>
