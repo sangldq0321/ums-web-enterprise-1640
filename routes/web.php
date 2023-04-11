@@ -59,6 +59,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/ideas/acayear', [AcademicYearController::class, 'index']);
         Route::get('/ideas/acayear/edit/{id}', [AcademicYearController::class, 'getEditAcaYear']);
         Route::post('/ideas/acayear/edit/{id}', [AcademicYearController::class, 'postEditAcaYear']);
+        Route::get('/manage/accounts', [MainController::class, 'manageAccount']);
     });
     Route::get('/account/view-profile/{id}', [LoginController::class, 'viewProfile'])->name('viewProfile');
     Route::get('/account/change-password', [LoginController::class, 'getChangePassword']);

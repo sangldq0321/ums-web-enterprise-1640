@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Idea;
+use App\Models\Role;
 use Auth;
 use DB;
+use Hash;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use App\Models\Notification;
@@ -198,5 +200,13 @@ class MainController extends Controller
         $noti->isRead = 1;
         $noti->update();
         return redirect()->back();
+    }
+    public function manageAccount()
+    {
+        $users = DB::table('users')
+            ->select('*')
+            ->join('roles', 'users.roleID', '=', 'roles.roleID')
+            ->get();
+        return view('accounts.accountIndex', compact('users'));
     }
 }
