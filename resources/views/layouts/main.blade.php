@@ -42,7 +42,8 @@
                                 year</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/manage/accounts"><i class="fa-solid fa-user me-2"></i>Accounts</a>
+                            <a class="nav-link" href="/manage/accounts"><i
+                                    class="fa-solid fa-user me-2"></i>Accounts</a>
                         </li>
                         @elseif(Auth::user()->roleID!==1)
                         <a class="nav-link" href="/"><i class="fa-solid fa-house me-2"></i>Home</a>
