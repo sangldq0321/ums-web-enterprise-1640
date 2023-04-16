@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Auth;
 use Hash;
@@ -79,5 +80,67 @@ class LoginController extends Controller
         $user->email = $request->email;
         $user->update();
         return redirect()->route('viewProfile', ['id' => Auth::user()->userID]);
+    }
+    public function resetPassword(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        if ($user->roleID == 1) {
+            $password = 'Admin@123';
+            $hashedPass = Hash::make($password);
+            $user->password = $hashedPass;
+        } elseif ($user->roleID == 2) {
+            $password = 'Qa@123';
+            $hashedPass = Hash::make($password);
+            $user->password = $hashedPass;
+
+        } elseif ($user->roleID == 3) {
+            $password = 'Qac@123';
+            $hashedPass = Hash::make($password);
+            $user->password = $hashedPass;
+        } elseif ($user->roleID == 4 || $user->roleID == 5) {
+            $password = 'Staff@123';
+            $hashedPass = Hash::make($password);
+            $user->password = $hashedPass;
+        }
+        $user->update();
+        return redirect('/manage/accounts');
+    }
+    public function getAddAccount()
+    {
+        $roles = Role::all();
+        return view('accounts.add', compact('roles'));
+    }
+    public function postAddAccount(Request $request)
+    {
+        $this->validate($request, [
+            'username' => 'required',
+            'fullname' => 'required',
+            'roleID' => 'required',
+        ]);
+        $user = new User;
+        $user->username = $request->username;
+        $user->fullname = $request->fullname;
+        $user->roleID = $request->roleID;
+        if ($user->roleID == 1) {
+            $password = 'Admin@123';
+            $hashedPass = Hash::make($password);
+            $user->password = $hashedPass;
+        } elseif ($user->roleID == 2) {
+            $password = 'Qa@123';
+            $hashedPass = Hash::make($password);
+            $user->password = $hashedPass;
+
+        } elseif ($user->roleID == 3) {
+            $password = 'Qac@123';
+            $hashedPass = Hash::make($password);
+            $user->password = $hashedPass;
+        } elseif ($user->roleID == 4 || $user->roleID == 5) {
+            $password = 'Staff@123';
+            $hashedPass = Hash::make($password);
+            $user->password = $hashedPass;
+        }
+        $user->isPassReset = 0;
+        $user->save();
+        return redirect('/manage/accounts');
     }
 }

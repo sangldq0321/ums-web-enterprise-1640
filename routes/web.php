@@ -52,12 +52,16 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/categories/delete/{id}', [CategoryController::class, 'deleteCategory']);
             Route::get('/document/download', [IdeaController::class, 'downloadAllDoc']);
         });
-    });
-    Route::middleware(['Admin'])->group(function () {
-        Route::get('/ideas/acayear', [AcademicYearController::class, 'index']);
-        Route::get('/ideas/acayear/edit/{id}', [AcademicYearController::class, 'getEditAcaYear']);
-        Route::post('/ideas/acayear/edit/{id}', [AcademicYearController::class, 'postEditAcaYear']);
-        Route::get('/manage/accounts', [MainController::class, 'manageAccount']);
+        Route::middleware(['Admin'])->group(function () {
+            Route::get('/ideas/acayear', [AcademicYearController::class, 'index']);
+            Route::get('/ideas/acayear/edit/{id}', [AcademicYearController::class, 'getEditAcaYear']);
+            Route::post('/ideas/acayear/edit/{id}', [AcademicYearController::class, 'postEditAcaYear']);
+            Route::get('/manage/accounts', [MainController::class, 'manageAccount']);
+            Route::get('/accounts/add', [LoginController::class, 'getAddAccount']);
+            Route::get('/accounts/reset/{id}', [LoginController::class, 'resetPassword']);
+            Route::post('/accounts/add', [LoginController::class, 'postAddAccount']);
+        });
+
     });
     Route::get('/account/view-profile/{id}', [LoginController::class, 'viewProfile'])->name('viewProfile');
     Route::get('/account/edit-profile/{id}', [LoginController::class, 'editProfile']);
