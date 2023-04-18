@@ -24,6 +24,9 @@ class LoginController extends Controller
                 'username.required' => 'Please enter username',
                 'password.required' => 'Please enter password'
             ]);
+        if (User::where('username', $request->username)->where('status', 0)->exists()) {
+            return redirect()->route('login')->with('notify', 'userdisable');
+        }
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             return redirect('/')->with('notify', 'loginsuccess');
         } else {
@@ -144,5 +147,19 @@ class LoginController extends Controller
         $user->isPassReset = 0;
         $user->save();
         return redirect('/manage/accounts');
+    }
+    public function enableAccount($id_user)
+    {
+        $user = User::findOrFail($id_user);
+        $user->status = 1;
+        $user->update();
+        return redirect()->back();
+    }
+    public function disableAccount($id_user)
+    {
+        $user = User::findOrFail($id_user);
+        $user->status = 0;
+        $user->update();
+        return redirect()->back();
     }
 }

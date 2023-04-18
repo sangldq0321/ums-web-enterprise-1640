@@ -26,7 +26,8 @@ class User extends Authenticatable
         'email',
         'password',
         'isPassReset',
-        'roleID'
+        'roleID',
+        'status'
     ];
 
     /**
