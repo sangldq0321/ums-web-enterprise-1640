@@ -8,7 +8,7 @@
     <div class="d-flex justify-content-center mb-3">
         <div class="alert alert-danger">
             @foreach ($errors->all() as $err)
-            <div><i class="fa-solid fa-triangle-exclamation me-2"></i>{{ $err }}</div>
+            <div><i class="fa-solid fa-triangle-exclamation me-2"></i>{!! $err !!}</div>
             @endforeach
         </div>
     </div>
@@ -16,7 +16,7 @@
     @if(Auth::user()->isPassReset==0)
     <div class="d-flex justify-content-center mb-3">
         <div class="alert alert-info">
-            <div>You must set up new password to use the system !</div>
+            <div>You must <b>set up new password</b> to use the system !</div>
         </div>
     </div>
     @endif

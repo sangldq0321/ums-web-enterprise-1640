@@ -17,7 +17,7 @@ class checkStaff
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->roleID == 4 || Auth::user()->roleID == 5) {
+        if (Auth::check() == true && Auth::user()->roleID == 4 || Auth::user()->roleID == 5) {
             return $next($request);
         } else {
             return redirect()->back();

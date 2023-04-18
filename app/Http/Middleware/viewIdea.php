@@ -17,7 +17,7 @@ class viewIdea
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->roleID === 3) {
+        if (Auth::check() == true && Auth::user()->roleID == 3) {
             return $next($request);
         } else {
             return redirect()->back();

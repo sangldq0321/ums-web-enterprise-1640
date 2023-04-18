@@ -17,8 +17,8 @@ class checkPass
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() === true) {
-            if (Auth::user()->isPassReset === 0) {
+        if (Auth::check() == true) {
+            if (Auth::user()->isPassReset == 0) {
                 return redirect('/account/change-password');
             }
         }

@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>UMS - @yield('title')</title>
     <meta name="google-site-verification" content="EuxK6cQuZWyf5q-LSH8fnxzJNWiwCzGwEOys8ZAOD-Q" />
+    <meta name="author" content="KSA">
+    <meta name="description" content="UMS - a university management system." />
+    <meta name="keywords" content="UMS, ums, idea, university" />
+    <link rel="preconnect" href="https://www.umsystem.azdigi.blog">
+    <link rel="dns-prefetch" href="https://www.umsystem.azdigi.blog">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdn.datatables.net">
+    <link rel="dns-prefetch" href="https://cdn.datatables.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.3.0/js/all.min.js"
@@ -218,11 +229,6 @@
         src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/fc-4.2.2/fh-3.3.2/r-2.4.1/sc-2.1.1/sp-2.1.2/datatables.min.js">
     </script>
     <script src="/assets/js/main.js"></script>
-    <script>
-        $(document).ready(function(){
-          $('body').find('img[src$="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"]').remove();
-        });
-    </script>
 </body>
 
 </html>

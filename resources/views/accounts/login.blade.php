@@ -5,6 +5,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>UMS - Login</title>
+    <meta name="author" content="KSA">
+    <meta name="description" content="UMS - a university management system." />
+    <meta name="keywords" content="UMS, ums, idea, university" />
+    <link rel="preconnect" href="https://www.umsystem.azdigi.blog">
+    <link rel="dns-prefetch" href="https://www.umsystem.azdigi.blog">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdn.datatables.net">
+    <link rel="dns-prefetch" href="https://cdn.datatables.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <meta name="google-site-verification" content="EuxK6cQuZWyf5q-LSH8fnxzJNWiwCzGwEOys8ZAOD-Q" />
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
