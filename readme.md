@@ -17,8 +17,8 @@
     <ul>
         <li>Programming language: PHP version 8.1.12 - <a href="https://www.php.net/">Link</a></li>
         <li>Framework: Laravel version 8.83.27 - <a href="https://github.com/laravel/laravel">Link</a></li>
-        <li>Database: MariaDB version 10.6.10</li>
-        <li>phpMyAdmin version 5.2.0</li>
+        <li>Database: MariaDB version 10.6.10 - <a href="https://www.thesaurus.com/browse/student">Link</a></li>
+        <li>phpMyAdmin version 5.2.0 - <a href="https://www.phpmyadmin.net/">Link</a></li>
         <li>Javascript plugin:</li>
         <ul>
             <li>JQuery version 3.6.3 - <a href="https://github.com/jquery/jquery">Link</a></li>
