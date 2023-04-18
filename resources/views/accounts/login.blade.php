@@ -40,7 +40,7 @@
     <div class="w-100 rounded-3 bg-light text-dark p-3"
         style="max-width: 512px;border:4px solid #f27228;box-shadow: 10px 10px 5px rgb(255, 255, 255, 0.15);">
         <form action="/login" method="POST">
-            <img src="/assets/img/logo.svg" class="d-block mx-auto" width="64px">
+            <img src="/assets/img/logo.svg" alt="logo" class="d-block mx-auto" width="64px">
             <h4 class="text-center fw-bold mb-3">Welcome to UMS !</h4>
             @csrf
             @if (count($errors) > 0)

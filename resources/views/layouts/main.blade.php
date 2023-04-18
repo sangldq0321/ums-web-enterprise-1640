@@ -25,7 +25,7 @@
         <nav class="navbar navbar-expand-lg fixed-top shadow" style="border-bottom:4px solid #f27228;">
             <div class="container-fluid">
                 <a class="navbar-brand fw-bold" href="/"><span class="d-flex align-items-center"><img
-                            src="/assets/img/logo.svg" width="32px" class="me-2"><span>UMS</span></span></a>
+                            src="/assets/img/logo.svg" alt="logo" width="32px" class="me-2"><span>UMS</span></span></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -189,7 +189,7 @@
     </main>
     <footer class="mt-auto text-light" style="border-top:4px solid #f27228;">
         <div class="container py-3">
-            <img src="/assets/img/logo.svg" width="48px" class="mb-2 d-block mx-auto">
+            <img src="/assets/img/logo.svg" width="48px" class="mb-2 d-block mx-auto" alt="logo">
             <div class="text-center">&copy 2023 <b>UMS</b>. All rights reserved.</div>
         </div>
     </footer>
@@ -217,6 +217,11 @@
         src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/fc-4.2.2/fh-3.3.2/r-2.4.1/sc-2.1.1/sp-2.1.2/datatables.min.js">
     </script>
     <script src="/assets/js/main.js"></script>
+    <script>
+        $(document).ready(function(){
+          $('body').find('img[src$="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"]').remove();
+        });
+    </script>
 </body>
 
 </html>

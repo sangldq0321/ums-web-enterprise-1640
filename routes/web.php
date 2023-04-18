@@ -61,11 +61,11 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/accounts/reset/{id}', [LoginController::class, 'resetPassword']);
             Route::post('/accounts/add', [LoginController::class, 'postAddAccount']);
         });
-
+        Route::get('/account/view-profile/{id}', [LoginController::class, 'viewProfile'])->name('viewProfile');
+        Route::get('/account/edit-profile/{id}', [LoginController::class, 'editProfile']);
+        Route::post('/account/edit-profile/{id}', [LoginController::class, 'updateProfile']);
     });
-    Route::get('/account/view-profile/{id}', [LoginController::class, 'viewProfile'])->name('viewProfile');
-    Route::get('/account/edit-profile/{id}', [LoginController::class, 'editProfile']);
-    Route::post('/account/edit-profile/{id}', [LoginController::class, 'updateProfile']);
+
     Route::get('/account/change-password', [LoginController::class, 'getChangePassword']);
     Route::post('/account/change-password', [LoginController::class, 'postChangePassword']);
     Route::get('/logout', [LoginController::class, 'logOut']);

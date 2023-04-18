@@ -55,6 +55,7 @@ class LoginController extends Controller
         $user->password = $afterHashPass;
         $user->isPassReset = 1;
         $user->update();
+        Auth::logout();
         return redirect('/');
     }
     public function viewProfile(Request $request, $id)
@@ -102,6 +103,7 @@ class LoginController extends Controller
             $hashedPass = Hash::make($password);
             $user->password = $hashedPass;
         }
+        $user->isPassReset = 0;
         $user->update();
         return redirect('/manage/accounts');
     }
