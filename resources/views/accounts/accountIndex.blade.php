@@ -14,7 +14,7 @@
         </thead>
         <tbody>
             @foreach ($users as $user)
-                @if ($user->roleID !== 1)
+                @if ($user->roleID != 1)
                     <tr>
                         <td>{{ $user->username }}</td>
                         <td>{{ $user->fullname }}</td>

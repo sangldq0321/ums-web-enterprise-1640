@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: sql207.epizy.com
--- Generation Time: Apr 08, 2023 at 05:36 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.2.22
+-- Host: localhost:3306
+-- Generation Time: Apr 18, 2023 at 09:57 PM
+-- Server version: 10.6.10-MariaDB-cll-lve-log
+-- PHP Version: 7.4.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `epiz_33912338_umsystem`
+-- Database: `wqsoditr_ums`
 --
 
 -- --------------------------------------------------------
@@ -32,14 +31,14 @@ CREATE TABLE `academicyear` (
   `academicYearID` bigint(20) UNSIGNED NOT NULL,
   `open_date` date NOT NULL,
   `close_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `academicyear`
 --
 
 INSERT INTO `academicyear` (`academicYearID`, `open_date`, `close_date`) VALUES
-(1, '2023-04-05', '2023-04-09');
+(1, '2023-04-05', '2023-04-18');
 
 -- --------------------------------------------------------
 
@@ -102,13 +101,13 @@ CREATE TABLE `ideas` (
 --
 
 INSERT INTO `ideas` (`ideaID`, `ideaName`, `categoryID`, `ideaContent`, `uploader`, `view`, `document`, `likeCount`, `created_at`, `updated_at`) VALUES
-(34, 'Please add chatbox', 2, '<p>Please add chatbox</p>', 5, 0, NULL, 0, '2023-03-08 03:40:23', '2023-04-09 02:42:08'),
-(35, 'Please update Windows to Windows 11', 1, '<p>Please update Windows to Windows 11</p>', 5, 1, NULL, 0, '2023-03-22 04:00:00', '2023-04-09 08:30:14'),
+(34, 'Please add chatbox', 2, '<p>Please add chatbox</p>', 5, 3, NULL, 0, '2023-03-08 03:40:23', '2023-04-18 09:28:31'),
+(35, 'Please update Term of Service', 1, '<p>Please update Term of Service</p>', 5, 11, 'document_Please update Windows to Windows 11_1681827996.docx', 0, '2023-03-22 04:00:00', '2023-04-18 14:53:05'),
 (36, 'Room need more chairs', 1, '<p>Room need more chairs</p>', 5, 0, NULL, 0, '2023-01-13 03:41:48', '2023-04-09 02:41:48'),
-(37, 'Please add document', 1, '<p>Please add document</p>', 7, 0, NULL, 0, '2023-04-03 05:01:02', '2023-04-09 05:01:02'),
-(38, 'Please add submission', 1, '<p>Please add submission</p>', 7, 1, NULL, 0, '2023-04-09 05:01:20', '2023-04-09 07:44:06'),
-(39, 'Please add grade system', 1, '<p>Please add grade system</p>', 7, 0, NULL, 0, '2023-02-28 06:01:36', '2023-04-09 05:01:36'),
-(40, 'Add attendance system', 1, '<p>Add attendance system</p>', 5, 1, NULL, 0, '2023-02-14 06:28:53', '2023-04-09 07:32:00');
+(37, 'Please add document', 1, '<p>Please add document</p>', 7, 4, NULL, 0, '2023-04-03 05:01:02', '2023-04-18 14:36:07'),
+(38, 'Please add submission', 1, '<p>Please add submission</p>', 7, 4, NULL, 0, '2023-04-09 05:01:20', '2023-04-18 10:19:48'),
+(39, 'Please add grade system', 1, '<p>Please add grade system</p>', 7, 1, NULL, 0, '2023-02-28 06:01:36', '2023-04-18 06:08:55'),
+(40, 'Add attendance system', 1, '<p>Add attendance system</p>', 5, 2, NULL, 0, '2023-02-14 06:28:53', '2023-04-18 09:10:26');
 
 -- --------------------------------------------------------
 
@@ -119,12 +118,12 @@ INSERT INTO `ideas` (`ideaID`, `ideaName`, `categoryID`, `ideaContent`, `uploade
 CREATE TABLE `notifications` (
   `notiID` bigint(20) UNSIGNED NOT NULL,
   `userID` bigint(20) UNSIGNED NOT NULL,
-  `notiContent` text DEFAULT NULL,
-  `notiFor` varchar(255) NOT NULL,
+  `notiContent` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `notiFor` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `isRead` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `notifications`
@@ -173,7 +172,6 @@ CREATE TABLE `users` (
   `userID` bigint(20) UNSIGNED NOT NULL,
   `username` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
   `fullname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `roleID` bigint(20) UNSIGNED NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -186,15 +184,15 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userID`, `username`, `fullname`, `email`, `password`, `roleID`, `remember_token`, `isPassReset`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'Administrator', 'admin@uns.com', '$2y$10$Gh4v05aAC0hl7xtq4y3CQuUzTnd7iO5qc/lOvZCfrQujajhkoYQoS', 1, NULL, 1, '2023-03-26 07:42:54', '2023-03-26 00:52:49'),
-(2, 'qamanager', 'QA Manager', 'qamanager@ums.com', '$2y$10$W0cv3X.R3FeBtgJKi.nSZOQ0Z74x8mnwQz.q8r2f4l.GONqAg5FvW', 2, NULL, 1, '2023-03-26 07:46:46', '2023-03-26 00:48:33'),
-(3, 'qacooraca', 'QA Coordinator Academic', 'qacoor1@ums.com', '$2a$10$XFm43675iWjRe4ULhtb7iuASSCmbPjF45fBJH8TJSM5k0/kUVyhf6', 3, NULL, 1, '2023-03-30 20:48:47', '2023-03-30 20:48:47'),
-(4, 'qacoorsup', 'QA Coordinator Support', 'qacoor2@ums.com', '$2a$10$XFm43675iWjRe4ULhtb7iuASSCmbPjF45fBJH8TJSM5k0/kUVyhf6', 3, NULL, 1, '2023-03-30 20:48:47', '2023-03-30 20:48:47'),
-(5, 'acastaff1', 'Staff Academic 1', 'acastaff1@ums.com', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 4, NULL, 1, '2023-03-30 21:04:17', '2023-04-02 13:22:53'),
-(6, 'acastaff2', 'Staff Academic 2', 'acastaff2@ums.com', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 4, NULL, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17'),
-(7, 'supstaff1', 'Staff Support 1', 'supstaff1@ums.com', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 5, NULL, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17'),
-(8, 'supstaff2', 'Staff Support 2', 'supstaff2@ums.com', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 5, NULL, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17');
+INSERT INTO `users` (`userID`, `username`, `fullname`, `password`, `roleID`, `remember_token`, `isPassReset`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'Administrator', '$2y$10$Gh4v05aAC0hl7xtq4y3CQuUzTnd7iO5qc/lOvZCfrQujajhkoYQoS', 1, NULL, 1, '2023-03-26 07:42:54', '2023-03-26 00:52:49'),
+(2, 'qamanager', 'QA Manager', '$2y$10$W0cv3X.R3FeBtgJKi.nSZOQ0Z74x8mnwQz.q8r2f4l.GONqAg5FvW', 2, NULL, 1, '2023-03-26 07:46:46', '2023-03-26 00:48:33'),
+(3, 'qacooraca', 'QA Coordinator Academic', '$2a$10$XFm43675iWjRe4ULhtb7iuASSCmbPjF45fBJH8TJSM5k0/kUVyhf6', 3, NULL, 1, '2023-03-30 20:48:47', '2023-03-30 20:48:47'),
+(4, 'qacoorsup', 'QA Coordinator Support', '$2a$10$XFm43675iWjRe4ULhtb7iuASSCmbPjF45fBJH8TJSM5k0/kUVyhf6', 3, NULL, 1, '2023-03-30 20:48:47', '2023-03-30 20:48:47'),
+(5, 'acastaff1', 'Staff Academic 1', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 4, NULL, 1, '2023-03-30 21:04:17', '2023-04-02 13:22:53'),
+(6, 'acastaff2', 'Staff Academic 2', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 4, NULL, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17'),
+(7, 'supstaff1', 'Staff Support 1', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 5, NULL, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17'),
+(8, 'supstaff2', 'Staff Support 2', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 5, NULL, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17');
 
 --
 -- Indexes for dumped tables
@@ -294,7 +292,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `userID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

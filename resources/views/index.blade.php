@@ -1,7 +1,7 @@
 @extends('layouts.main')
-@if (Auth::user()->roleID === 1)
+@if (Auth::user()->roleID == 1)
     @section('title', 'Dashboard')
-@elseif (Auth::user()->roleID !== 1)
+@elseif (Auth::user()->roleID != 1)
     @section('title', 'Home')
 @endif
 @section('content')
@@ -33,7 +33,7 @@
         @endif
         <div class="row">
             <div class="col-12 col-lg-9">
-                @if (Auth::user()->roleID !== 1)
+                @if (Auth::user()->roleID != 1)
                     @if ($ideas->isNotEmpty())
                         @foreach ($ideas as $idea)
                             <div class="card mb-3">

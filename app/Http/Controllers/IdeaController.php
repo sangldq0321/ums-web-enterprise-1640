@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Idea;
 use App\Models\Notification;
 use Auth;
+use Carbon\Carbon;
 use DB;
 use File;
 use Illuminate\Http\Request;
@@ -58,7 +59,7 @@ class IdeaController extends Controller
         $idea->uploader = Auth::user()->userID;
         if ($request->hasfile('document')) {
             $file = $request->file('document');
-            $filename = time() . '.' . $file->extension();
+            $filename = 'doc_' . $idea->ideaName . '_' . time() . '.' . $file->extension();
             $file->move('documents', $filename);
             $idea->document = $filename;
         }
@@ -100,7 +101,7 @@ class IdeaController extends Controller
             $des = 'documents/' . $idea->document;
             File::delete($des);
             $file = $request->file('document');
-            $filename = time() . '.' . $file->extension();
+            $filename = 'doc_' . $idea->ideaName . '_' . time() . '.' . $file->extension();
             $file->move('documents', $filename);
             $idea->document = $filename;
         }
@@ -167,9 +168,9 @@ class IdeaController extends Controller
                 File::delete($des);
             }
             $zip = new ZipArchive();
-            $fileName = time() . '.' . 'zip';
-            if ($zip->open(public_path('temp/' . $fileName), ZipArchive::CREATE) == TRUE) {
-                $files = File::files(public_path('documents'));
+            $fileName = 'ums_all_doc_' . Carbon::now() . '.' . 'zip';
+            if ($zip->open(('temp/' . $fileName), ZipArchive::CREATE) == TRUE) {
+                $files = File::files('documents');
                 foreach ($files as $key => $value) {
                     $relativeName = basename($value);
                     $zip->addFile($value, $relativeName);
@@ -177,7 +178,7 @@ class IdeaController extends Controller
                 $zip->close();
             }
             $request->session()->put('zipName', $fileName);
-            return response()->download(public_path('temp/' . $fileName));
+            return response()->download('temp/' . $fileName);
         } else {
             return redirect()->back();
         }

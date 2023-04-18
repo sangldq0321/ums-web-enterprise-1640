@@ -14,7 +14,7 @@
 @if(!is_null($document))
 <div class="mb-3">
     <div class="border border-dark rounded-3 p-2 d-inline-flex">
-        <a href="/documents/{{$idea->document}}" download>{{$idea->document}}<i
+        <a href="/documents/{{$idea->document}}" download>Doc_{{$idea->ideaName}}<i
                 class="fa-solid fa-download ms-2"></i></a>
     </div>
 </div>
