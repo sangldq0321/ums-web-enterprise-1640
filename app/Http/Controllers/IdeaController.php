@@ -159,6 +159,15 @@ class IdeaController extends Controller
         $idea->update();
         return redirect()->route('viewIdea', ['id' => $request->session()->get('ideaID')]);
     }
+    public function delDoc($id_doc)
+    {
+        $idea = Idea::findOrFail($id_doc);
+        $idea->document = null;
+        $des = 'documents/' . $idea->document;
+        File::delete($des);
+        $idea->update();
+        return redirect()->back();
+    }
     public function downloadAllDoc(Request $request)
     {
         $countDoc = Idea::count('document');

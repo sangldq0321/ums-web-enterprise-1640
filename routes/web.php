@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/comments/edit/{id}', [CommentController::class, 'getEditComment']);
             Route::post('/comments/edit/{id}', [CommentController::class, 'postEditComment']);
             Route::get('/comments/delete/{id}', [CommentController::class, 'deleteComment']);
+            Route::get('/docs/delete/{id}', [IdeaController::class, 'delDoc']);
         });
 
 
