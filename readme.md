@@ -9,8 +9,8 @@
 <h3>1. Members:</h3>
     <ul>
         <li>Le Chi Khai (Leader - Database Designer – Back-end Programmer)</li>
-        <li>Nguyen Dong Anh (Full-stack Programmer – Tester)</li>
-        <li>Le Do Quang Sang (Scrum Master – Product Owner)</li>
+        <li>Le Do Quang Sang (Full-stack Programmer – Tester)</li>
+        <li>Nguyen Dong Anh (Scrum Master – Product Owner)</li>
     </ul>
     
 <h3>2. Dependencies:</h3>
