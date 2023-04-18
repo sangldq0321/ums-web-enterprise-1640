@@ -15,7 +15,7 @@
     
 <h3>2. Dependencies:</h3>
     <ul>
-        <li>Programming language: PHP version 8.1.12 - <a href="https://www.php.net/" target="_blank" rel="noopener">Link</a></li>
+        <li>Programming language: PHP version 8.1.12 - <a href="https://www.php.net/">Link</a></li>
         <li>Framework: Laravel version 8.83.27 - <a href="https://github.com/laravel/laravel">Link</a></li>
         <li>Database: MariaDB version 10.6.10</li>
         <li>phpMyAdmin version 5.2.0</li>
