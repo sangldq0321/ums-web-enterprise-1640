@@ -14,4 +14,8 @@ class Category extends Model
         'categoryName',
         'categoryDesc'
     ];
+    public function idea()
+    {
+        return $this->hasMany(Idea::class, 'categoryID', 'categoryID');
+    }
 }

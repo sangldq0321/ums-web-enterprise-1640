@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Idea;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -20,7 +21,7 @@ class CategoryController extends Controller
     public function postAddCategory(Request $request)
     {
         $this->validate($request, [
-            'categoryName' => 'required',
+            'categoryName' => 'required|unique:categories,categoryName',
             'categoryDesc' => 'required',
         ]);
         $category = new Category;
@@ -36,11 +37,12 @@ class CategoryController extends Controller
     }
     public function postEditCategory(Request $request, $id_category)
     {
+
+        $category = Category::findOrFail($id_category);
         $this->validate($request, [
-            'categoryName' => 'required',
+            'categoryName' => "required|unique:categories,categoryName",
             'categoryDesc' => 'required',
         ]);
-        $category = Category::findOrFail($id_category);
         $category->categoryName = $request->input('categoryName');
         $category->categoryDesc = $request->input('categoryDesc');
         $category->update();
@@ -49,7 +51,11 @@ class CategoryController extends Controller
     public function deleteCategory($id_category)
     {
         $category = Category::findOrFail($id_category);
-        $category->delete();
-        return redirect('/categories');
+        if ($category->idea()->exists()) {
+            return redirect('/categories')->with('notify', 'catcannotdelete');
+        } else {
+            $category->delete();
+            return redirect('/categories');
+        }
     }
 }
