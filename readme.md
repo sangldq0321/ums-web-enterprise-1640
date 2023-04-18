@@ -7,11 +7,11 @@
 <h2 align="center">Group KSA (Knowledges - Skills - Abilities)</h2>
 
 <h3>1. Members:</h3>
-    <ol>
+    <ul>
         <li>Le Chi Khai (Leader - Database Designer – Back-end Programmer)</li>
         <li>Nguyen Dong Anh (Full-stack Programmer – Tester)</li>
         <li>Le Do Quang Sang (Scrum Master – Product Owner)</li>
-    </ol>
+    </ul>
     
 <h3>2. Dependencies:</h3>
     <ul>
