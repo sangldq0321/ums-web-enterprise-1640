@@ -59,6 +59,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/manage/accounts', [MainController::class, 'manageAccount']);
             Route::get('/accounts/add', [LoginController::class, 'getAddAccount']);
             Route::get('/accounts/reset/{id}', [LoginController::class, 'resetPassword']);
+            Route::get('/accounts/enable/{id}', [LoginController::class, 'enableAccount']);
+            Route::get('/accounts/disable/{id}', [LoginController::class, 'disableAccount']);
             Route::post('/accounts/add', [LoginController::class, 'postAddAccount']);
         });
         Route::get('/account/view-profile/{id}', [LoginController::class, 'viewProfile'])->name('viewProfile');

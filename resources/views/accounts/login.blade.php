@@ -64,7 +64,6 @@
                 </div>
             </div>
             @endif
-
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
                 <label for="floatingInput"><i class="fa-solid fa-user me-2"></i>Username</label>
@@ -93,6 +92,16 @@
     <script>
         Swal.fire({
             title: 'Login failed',
+            icon: 'error',
+            scrollbarPadding: false,
+            allowOutsideClick: false,
+        })
+    </script>
+    @endif
+    @if (session('notify') == 'userdisable')
+    <script>
+        Swal.fire({
+            title: 'User is disabled',
             icon: 'error',
             scrollbarPadding: false,
             allowOutsideClick: false,
