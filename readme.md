@@ -8,9 +8,9 @@
 
 <h3>1. Members:</h3>
     <ol>
-        <li>Le Chi Khai (Leader)</li>
-        <li>Nguyen Dong Anh (Tester)</li>
-        <li>Le Do Quang Sang (Full-stack developer)</li>
+        <li>Le Chi Khai (Leader - Database Designer – Back-end Programmer)</li>
+        <li>Nguyen Dong Anh (Full-stack Programmer – Tester)</li>
+        <li>Le Do Quang Sang (Scrum Master – Product Owner)</li>
     </ol>
     
 <h3>2. Dependencies:</h3>
