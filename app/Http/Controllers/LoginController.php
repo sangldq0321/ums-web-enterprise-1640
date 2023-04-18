@@ -24,10 +24,11 @@ class LoginController extends Controller
                 'username.required' => 'Please enter username',
                 'password.required' => 'Please enter password'
             ]);
+        $remember = $request->has('remember') ? true : false;
         if (User::where('username', $request->username)->where('status', 0)->exists()) {
             return redirect()->route('login')->with('notify', 'userdisable');
         }
-        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+        if (Auth::attempt(['username' => $request->username, 'password' => $request->password], $remember)) {
             return redirect('/')->with('notify', 'loginsuccess');
         } else {
             return redirect('/login')->with('notify', 'loginfailed');
