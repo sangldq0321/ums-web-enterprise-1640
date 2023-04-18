@@ -6,14 +6,14 @@
 
 <h2 align="center">Group KSA (Knowledges - Skills - Abilities)</h2>
 
-<h3>Members:</h3>
+<h3>1. Members:</h3>
     <ol>
         <li>Le Chi Khai (Leader)</li>
         <li>Nguyen Dong Anh (Tester)</li>
         <li>Le Do Quang Sang (Full-stack developer)</li>
     </ol>
     
-<h3>Dependencies:</h3>
+<h3>2. Dependencies:</h3>
     <ul>
         <li>Programming language: PHP version 8.1.12 - <a href="https://www.php.net/">Link</a></li>
         <li>Framework: Laravel version 8.83.27 - <a href="https://github.com/laravel/laravel">Link</a></li>
@@ -38,6 +38,6 @@
         <ul>        
             <li>Bootstrap version 5.2.3 - <a href="https://github.com/twbs/bootstrap">Link</a></li>
         </ul>
-
-### Screenshots:
+    </ul>
+    
 
