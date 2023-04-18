@@ -6,7 +6,7 @@ use Auth;
 use Closure;
 use Illuminate\Http\Request;
 
-class Staff
+class checkStaff
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class Staff
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->roleID === 4 || Auth::user()->roleID == 5) {
+        if (Auth::check() && Auth::user()->roleID == 4 || Auth::user()->roleID == 5) {
             return $next($request);
         } else {
             return redirect()->back();
