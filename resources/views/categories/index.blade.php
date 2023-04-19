@@ -76,4 +76,15 @@
         });
     });
 </script>
+@if (session('notify') == 'catcannotdelete')
+<script>
+    Swal.fire({
+            title: 'Cannot delete',
+            text:'Category already in use',
+            icon: 'error',
+            scrollbarPadding: false,
+            allowOutsideClick: false,
+        })
+</script>
+@endif
 @endsection

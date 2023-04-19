@@ -16,6 +16,14 @@
     <div class="border border-dark rounded-3 p-2 d-inline-flex">
         <a href="/documents/{{$idea->document}}" download>Doc_{{$idea->ideaName}}<i
                 class="fa-solid fa-download ms-2"></i></a>
+        <span>
+            <form method="POST" action="/docs/delete/{{ $idea->ideaID }}" class="ms-3">
+                @csrf
+                <input name="_method" type="hidden" value="GET">
+                <a type="button" class="doc_delete link-danger" data-toggle="tooltip"><i
+                        class="fa-solid fa-trash me-2"></i></a>
+            </form>
+        </span>
     </div>
 </div>
 @else
@@ -136,6 +144,28 @@
             Swal.fire({
                 title: 'Are you sure ?',
                 text: 'Are you sure to delete this idea ?',
+                icon: 'question',
+                showCancelButton: true,
+                scrollbarPadding: false,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+</script>
+<script script type="text/javascript">
+    $('.doc_delete').click(function(event) {
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            Swal.fire({
+                title: 'Are you sure ?',
+                text: 'Are you sure to delete this document ?',
                 icon: 'question',
                 showCancelButton: true,
                 scrollbarPadding: false,

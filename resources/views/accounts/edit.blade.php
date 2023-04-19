@@ -14,10 +14,6 @@
     </div>
     @endif
     <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingEmail" placeholder="Email" name="email" value="{{Auth::user()->email}}">
-        <label for="floatingEmail">Email</label>
-    </div>
-    <div class="form-floating mb-3">
         <input type="text" class="form-control" id="floatingFullname" placeholder="Fullname" name="fullname" value="{{Auth::user()->fullname}}">
         <label for="floatingFullname">Fullname</label>
     </div>

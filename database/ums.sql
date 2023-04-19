@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 18, 2023 at 09:57 PM
+-- Generation Time: Apr 19, 2023 at 01:20 AM
 -- Server version: 10.6.10-MariaDB-cll-lve-log
 -- PHP Version: 7.4.32
 
@@ -38,7 +38,7 @@ CREATE TABLE `academicyear` (
 --
 
 INSERT INTO `academicyear` (`academicYearID`, `open_date`, `close_date`) VALUES
-(1, '2023-04-05', '2023-04-18');
+(1, '2023-04-05', '2023-04-19');
 
 -- --------------------------------------------------------
 
@@ -107,7 +107,8 @@ INSERT INTO `ideas` (`ideaID`, `ideaName`, `categoryID`, `ideaContent`, `uploade
 (37, 'Please add document', 1, '<p>Please add document</p>', 7, 4, NULL, 0, '2023-04-03 05:01:02', '2023-04-18 14:36:07'),
 (38, 'Please add submission', 1, '<p>Please add submission</p>', 7, 4, NULL, 0, '2023-04-09 05:01:20', '2023-04-18 10:19:48'),
 (39, 'Please add grade system', 1, '<p>Please add grade system</p>', 7, 1, NULL, 0, '2023-02-28 06:01:36', '2023-04-18 06:08:55'),
-(40, 'Add attendance system', 1, '<p>Add attendance system</p>', 5, 2, NULL, 0, '2023-02-14 06:28:53', '2023-04-18 09:10:26');
+(40, 'Add attendance system', 1, '<p>Add attendance system</p>', 5, 2, NULL, 0, '2023-02-14 06:28:53', '2023-04-18 09:10:26'),
+(41, 'The University need to check its air conditioners!', 1, '<p>I have visited several classes and sometime they turn off suddenly while no one was noticing, since it was a hot day it\'s hard to keep track of it and turn them on every single time! We need a check up on those air conditioners for our students or possibly upgrade them as well since some of them seem to be quite old.</p>', 8, 2, NULL, 0, '2023-04-18 18:13:03', '2023-04-18 18:18:39');
 
 -- --------------------------------------------------------
 
@@ -136,7 +137,8 @@ INSERT INTO `notifications` (`notiID`, `userID`, `notiContent`, `notiFor`, `isRe
 (18, 7, 'Someone is added new idea', 'idea', 0, '2023-04-09 05:01:02', '2023-04-09 05:01:02'),
 (19, 7, 'Someone is added new idea', 'idea', 0, '2023-04-09 05:01:20', '2023-04-09 05:01:20'),
 (20, 7, 'Someone is added new idea', 'idea', 0, '2023-04-09 05:01:36', '2023-04-09 05:01:36'),
-(21, 5, 'Someone is added new idea', 'idea', 0, '2023-04-09 05:28:53', '2023-04-09 05:28:53');
+(21, 5, 'Someone is added new idea', 'idea', 0, '2023-04-09 05:28:53', '2023-04-09 05:28:53'),
+(22, 8, 'Someone is added new idea', 'idea', 0, '2023-04-18 18:13:03', '2023-04-18 18:13:03');
 
 -- --------------------------------------------------------
 
@@ -176,6 +178,7 @@ CREATE TABLE `users` (
   `roleID` bigint(20) UNSIGNED NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `isPassReset` tinyint(1) NOT NULL,
+  `status` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -184,15 +187,15 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userID`, `username`, `fullname`, `password`, `roleID`, `remember_token`, `isPassReset`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'Administrator', '$2y$10$Gh4v05aAC0hl7xtq4y3CQuUzTnd7iO5qc/lOvZCfrQujajhkoYQoS', 1, NULL, 1, '2023-03-26 07:42:54', '2023-03-26 00:52:49'),
-(2, 'qamanager', 'QA Manager', '$2y$10$W0cv3X.R3FeBtgJKi.nSZOQ0Z74x8mnwQz.q8r2f4l.GONqAg5FvW', 2, NULL, 1, '2023-03-26 07:46:46', '2023-03-26 00:48:33'),
-(3, 'qacooraca', 'QA Coordinator Academic', '$2a$10$XFm43675iWjRe4ULhtb7iuASSCmbPjF45fBJH8TJSM5k0/kUVyhf6', 3, NULL, 1, '2023-03-30 20:48:47', '2023-03-30 20:48:47'),
-(4, 'qacoorsup', 'QA Coordinator Support', '$2a$10$XFm43675iWjRe4ULhtb7iuASSCmbPjF45fBJH8TJSM5k0/kUVyhf6', 3, NULL, 1, '2023-03-30 20:48:47', '2023-03-30 20:48:47'),
-(5, 'acastaff1', 'Staff Academic 1', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 4, NULL, 1, '2023-03-30 21:04:17', '2023-04-02 13:22:53'),
-(6, 'acastaff2', 'Staff Academic 2', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 4, NULL, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17'),
-(7, 'supstaff1', 'Staff Support 1', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 5, NULL, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17'),
-(8, 'supstaff2', 'Staff Support 2', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 5, NULL, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17');
+INSERT INTO `users` (`userID`, `username`, `fullname`, `password`, `roleID`, `remember_token`, `isPassReset`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'Administrator', '$2y$10$Gh4v05aAC0hl7xtq4y3CQuUzTnd7iO5qc/lOvZCfrQujajhkoYQoS', 1, NULL, 1, 1, '2023-03-26 07:42:54', '2023-03-26 00:52:49'),
+(2, 'qamanager', 'QA Manager', '$2y$10$W0cv3X.R3FeBtgJKi.nSZOQ0Z74x8mnwQz.q8r2f4l.GONqAg5FvW', 2, NULL, 1, 1, '2023-03-26 07:46:46', '2023-03-26 00:48:33'),
+(3, 'qacooraca', 'QA Coordinator Academic', '$2a$10$XFm43675iWjRe4ULhtb7iuASSCmbPjF45fBJH8TJSM5k0/kUVyhf6', 3, NULL, 1, 1, '2023-03-30 20:48:47', '2023-03-30 20:48:47'),
+(4, 'qacoorsup', 'QA Coordinator Support', '$2a$10$XFm43675iWjRe4ULhtb7iuASSCmbPjF45fBJH8TJSM5k0/kUVyhf6', 3, NULL, 1, 1, '2023-03-30 20:48:47', '2023-03-30 20:48:47'),
+(5, 'acastaff1', 'Staff Academic 1', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 4, NULL, 1, 1, '2023-03-30 21:04:17', '2023-04-18 18:14:00'),
+(6, 'acastaff2', 'Staff Academic 2', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 4, NULL, 1, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17'),
+(7, 'supstaff1', 'Staff Support 1', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 5, NULL, 1, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17'),
+(8, 'supstaff2', 'Staff Support 2', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 5, NULL, 1, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17');
 
 --
 -- Indexes for dumped tables
@@ -274,13 +277,13 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `ideas`
 --
 ALTER TABLE `ideas`
-  MODIFY `ideaID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `ideaID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notiID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `notiID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `roles`

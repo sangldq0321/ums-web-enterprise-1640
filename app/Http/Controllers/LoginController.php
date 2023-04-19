@@ -24,10 +24,11 @@ class LoginController extends Controller
                 'username.required' => 'Please enter username',
                 'password.required' => 'Please enter password'
             ]);
+        $remember = $request->has('remember') ? true : false;
         if (User::where('username', $request->username)->where('status', 0)->exists()) {
             return redirect()->route('login')->with('notify', 'userdisable');
         }
-        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+        if (Auth::attempt(['username' => $request->username, 'password' => $request->password], $remember)) {
             return redirect('/')->with('notify', 'loginsuccess');
         } else {
             return redirect('/login')->with('notify', 'loginfailed');
@@ -81,7 +82,6 @@ class LoginController extends Controller
     {
         $user = User::findOrFail($id);
         $user->fullname = $request->fullname;
-        $user->email = $request->email;
         $user->update();
         return redirect()->route('viewProfile', ['id' => Auth::user()->userID]);
     }
@@ -118,7 +118,7 @@ class LoginController extends Controller
     public function postAddAccount(Request $request)
     {
         $this->validate($request, [
-            'username' => 'required',
+            'username' => 'required|unique:users,username',
             'fullname' => 'required',
             'roleID' => 'required',
         ]);
@@ -145,6 +145,7 @@ class LoginController extends Controller
             $user->password = $hashedPass;
         }
         $user->isPassReset = 0;
+        $user->status = 1;
         $user->save();
         return redirect('/manage/accounts');
     }

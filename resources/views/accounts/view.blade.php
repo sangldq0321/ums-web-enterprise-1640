@@ -13,7 +13,6 @@
                         style="width:50%;aspect-ratio: 1 / 1;" alt="Avatar" id="img-gallery">
                 </div> --}}
                 <div class="card-text">Username: <b>{{ $user->username }}</b></div>
-                <div class="card-text">Email: <b>{{ $user->email }}</b></div>
                 <div class="card-text">Fullname: <b>{{ $user->fullname }}</b></div>
             </div>
             @if($user->userID == Auth::user()->userID)

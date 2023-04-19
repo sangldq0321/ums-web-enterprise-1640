@@ -73,6 +73,10 @@
                     name="password">
                 <label for="floatingPassword"><i class="fa-solid fa-lock me-2"></i>Password</label>
             </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" id="rememberMe" type="checkbox" value="1" name="remember">
+                <label class="form-check-label" for="rememberMe">Remember me</label>
+            </div>
             <button type="submit" class="btn btn-success d-block mx-auto"><i
                     class="fa-solid fa-right-to-bracket me-2"></i>Login</button>
         </form>
