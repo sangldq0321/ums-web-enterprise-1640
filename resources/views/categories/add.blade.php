@@ -19,7 +19,7 @@
         <label>Category name</label>
     </div>
     <div class="mb-3">
-        <label class="form-label">Category desciption</label>
+        <label class="form-label">Category description</label>
         <textarea class="form-control ckeditor" rows="3" name="categoryDesc"></textarea>
     </div>
     <button type="submit" class="btn btn-success d-block mx-auto">Save</button>

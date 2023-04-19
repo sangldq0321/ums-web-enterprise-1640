@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Idea;
+use App\Models\User;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
@@ -25,7 +27,7 @@ class CommentController extends Controller
             $comment->commentContent = $request->input('commentContent');
             $comment->save();
             $noti = new Notification;
-            $noti->userID = Auth::user()->userID;
+            $noti->userID = Idea::where('ideaID', '=', $comment->ideaID)->value('uploader');
             $noti->notiContent = "Someone is commented your idea";
             $noti->isRead = 0;
             $noti->notiFor = 'comment';
