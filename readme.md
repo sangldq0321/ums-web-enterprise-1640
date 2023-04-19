@@ -39,5 +39,3 @@
             <li>Bootstrap version 5.2.3 - <a href="https://github.com/twbs/bootstrap">Link</a></li>
         </ul>
     </ul>
-    
-

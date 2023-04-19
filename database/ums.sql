@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 19, 2023 at 01:20 AM
+-- Generation Time: Apr 19, 2023 at 11:57 AM
 -- Server version: 10.6.10-MariaDB-cll-lve-log
 -- PHP Version: 7.4.32
 
@@ -38,7 +38,7 @@ CREATE TABLE `academicyear` (
 --
 
 INSERT INTO `academicyear` (`academicYearID`, `open_date`, `close_date`) VALUES
-(1, '2023-04-05', '2023-04-19');
+(1, '2023-04-05', '2023-04-10');
 
 -- --------------------------------------------------------
 
@@ -59,8 +59,9 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`categoryID`, `categoryName`, `categoryDesc`, `created_at`, `updated_at`) VALUES
-(1, 'Request', '<p>Request</p>', '2023-03-30 03:38:49', '2023-04-07 01:23:11'),
-(2, 'Feature', '<p>Feature</p>', '2023-03-30 03:38:49', '2023-04-08 01:47:31');
+(1, 'Request', '<p>Request is politely or formally ask for.</p>', '2023-03-30 03:38:49', '2023-04-18 20:28:21'),
+(2, 'Feature', '<p>Feature request is ask for new feature</p>', '2023-03-30 03:38:49', '2023-04-18 20:41:46'),
+(4, 'Feedback', '<p>Feedback is information about reactions to a product, a person\'s performance of a task, etc. which is used as a basis for improvement.</p>', '2023-04-18 21:15:42', '2023-04-18 21:15:42');
 
 -- --------------------------------------------------------
 
@@ -76,6 +77,13 @@ CREATE TABLE `comments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`commentID`, `userID`, `commentContent`, `ideaID`, `created_at`, `updated_at`) VALUES
+(3, 7, 'Thanks for requesting it! I was also about to post this idea!', 41, '2023-04-18 18:21:00', '2023-04-18 18:21:00');
 
 -- --------------------------------------------------------
 
@@ -102,13 +110,13 @@ CREATE TABLE `ideas` (
 
 INSERT INTO `ideas` (`ideaID`, `ideaName`, `categoryID`, `ideaContent`, `uploader`, `view`, `document`, `likeCount`, `created_at`, `updated_at`) VALUES
 (34, 'Please add chatbox', 2, '<p>Please add chatbox</p>', 5, 3, NULL, 0, '2023-03-08 03:40:23', '2023-04-18 09:28:31'),
-(35, 'Please update Term of Service', 1, '<p>Please update Term of Service</p>', 5, 11, 'document_Please update Windows to Windows 11_1681827996.docx', 0, '2023-03-22 04:00:00', '2023-04-18 14:53:05'),
+(35, 'Please update Term of Service', 1, '<p>Please update Term of Service</p>', 5, 12, 'document_Please update Windows to Windows 11_1681827996.docx', 0, '2023-03-22 04:00:00', '2023-04-18 20:46:16'),
 (36, 'Room need more chairs', 1, '<p>Room need more chairs</p>', 5, 0, NULL, 0, '2023-01-13 03:41:48', '2023-04-09 02:41:48'),
 (37, 'Please add document', 1, '<p>Please add document</p>', 7, 4, NULL, 0, '2023-04-03 05:01:02', '2023-04-18 14:36:07'),
 (38, 'Please add submission', 1, '<p>Please add submission</p>', 7, 4, NULL, 0, '2023-04-09 05:01:20', '2023-04-18 10:19:48'),
 (39, 'Please add grade system', 1, '<p>Please add grade system</p>', 7, 1, NULL, 0, '2023-02-28 06:01:36', '2023-04-18 06:08:55'),
-(40, 'Add attendance system', 1, '<p>Add attendance system</p>', 5, 2, NULL, 0, '2023-02-14 06:28:53', '2023-04-18 09:10:26'),
-(41, 'The University need to check its air conditioners!', 1, '<p>I have visited several classes and sometime they turn off suddenly while no one was noticing, since it was a hot day it\'s hard to keep track of it and turn them on every single time! We need a check up on those air conditioners for our students or possibly upgrade them as well since some of them seem to be quite old.</p>', 8, 2, NULL, 0, '2023-04-18 18:13:03', '2023-04-18 18:18:39');
+(40, 'Add attendance system', 1, '<p>Add attendance system</p>', 5, 3, NULL, 0, '2023-02-14 06:28:53', '2023-04-18 20:45:44'),
+(41, 'The University need to check its air conditioners!', 1, '<p>I have visited several classes and sometime they turn off suddenly while no one was noticing, since it was a hot day it\'s hard to keep track of it and turn them on every single time! We need a check up on those air conditioners for our students or possibly upgrade them as well since some of them seem to be quite old.</p>', 8, 3, NULL, 0, '2023-04-18 18:13:03', '2023-04-18 21:15:56');
 
 -- --------------------------------------------------------
 
@@ -138,7 +146,8 @@ INSERT INTO `notifications` (`notiID`, `userID`, `notiContent`, `notiFor`, `isRe
 (19, 7, 'Someone is added new idea', 'idea', 0, '2023-04-09 05:01:20', '2023-04-09 05:01:20'),
 (20, 7, 'Someone is added new idea', 'idea', 0, '2023-04-09 05:01:36', '2023-04-09 05:01:36'),
 (21, 5, 'Someone is added new idea', 'idea', 0, '2023-04-09 05:28:53', '2023-04-09 05:28:53'),
-(22, 8, 'Someone is added new idea', 'idea', 0, '2023-04-18 18:13:03', '2023-04-18 18:13:03');
+(22, 8, 'Someone is added new idea', 'idea', 0, '2023-04-18 18:13:03', '2023-04-18 18:13:03'),
+(23, 7, 'Someone is commented your idea', 'comment', 0, '2023-04-18 18:21:00', '2023-04-18 18:21:00');
 
 -- --------------------------------------------------------
 
@@ -188,14 +197,16 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userID`, `username`, `fullname`, `password`, `roleID`, `remember_token`, `isPassReset`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'Administrator', '$2y$10$Gh4v05aAC0hl7xtq4y3CQuUzTnd7iO5qc/lOvZCfrQujajhkoYQoS', 1, NULL, 1, 1, '2023-03-26 07:42:54', '2023-03-26 00:52:49'),
-(2, 'qamanager', 'QA Manager', '$2y$10$W0cv3X.R3FeBtgJKi.nSZOQ0Z74x8mnwQz.q8r2f4l.GONqAg5FvW', 2, NULL, 1, 1, '2023-03-26 07:46:46', '2023-03-26 00:48:33'),
+(1, 'admin', 'Administrator', '$2y$10$Gh4v05aAC0hl7xtq4y3CQuUzTnd7iO5qc/lOvZCfrQujajhkoYQoS', 1, 'pNt4wI9DiUZNYDeH4ff2Oy7aqcAp9Ckx7U22OQRFeylhaQYa07nieTzGwvOy', 1, 1, '2023-03-26 07:42:54', '2023-03-26 00:52:49'),
+(2, 'qamanager', 'qamanager', '$2y$10$W0cv3X.R3FeBtgJKi.nSZOQ0Z74x8mnwQz.q8r2f4l.GONqAg5FvW', 2, NULL, 1, 1, '2023-03-26 07:46:46', '2023-04-18 21:44:05'),
 (3, 'qacooraca', 'QA Coordinator Academic', '$2a$10$XFm43675iWjRe4ULhtb7iuASSCmbPjF45fBJH8TJSM5k0/kUVyhf6', 3, NULL, 1, 1, '2023-03-30 20:48:47', '2023-03-30 20:48:47'),
 (4, 'qacoorsup', 'QA Coordinator Support', '$2a$10$XFm43675iWjRe4ULhtb7iuASSCmbPjF45fBJH8TJSM5k0/kUVyhf6', 3, NULL, 1, 1, '2023-03-30 20:48:47', '2023-03-30 20:48:47'),
 (5, 'acastaff1', 'Staff Academic 1', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 4, NULL, 1, 1, '2023-03-30 21:04:17', '2023-04-18 18:14:00'),
 (6, 'acastaff2', 'Staff Academic 2', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 4, NULL, 1, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17'),
 (7, 'supstaff1', 'Staff Support 1', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 5, NULL, 1, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17'),
-(8, 'supstaff2', 'Staff Support 2', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 5, NULL, 1, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17');
+(8, 'supstaff2', 'Staff Support 2', '$2a$10$3y4hvQ0pIa1F3k.DR.eJQeLYirIvsHOhhQsG9DSl0H4Da1egyX/c2', 5, NULL, 1, 1, '2023-03-30 21:04:17', '2023-03-30 21:04:17'),
+(9, 'acastaff3', 'Academic staff 3', '$2y$10$kyPWPNqU/aFmx5xv0jwXxuY.dPXOAqY4DkeWfbUvfWxIUIc.ZyUx2', 4, NULL, 0, 0, '2023-04-18 20:23:14', '2023-04-18 20:23:20'),
+(10, 'supstaff3', 'Support staff 3', '$2y$10$2bdpS3k9fKVUihg6dJAnE.ZQBoCNBTvnpvGPhSujaL/YzEXtmF33m', 5, NULL, 0, 1, '2023-04-18 20:34:36', '2023-04-18 20:34:36');
 
 --
 -- Indexes for dumped tables
@@ -265,13 +276,13 @@ ALTER TABLE `academicyear`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `categoryID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `categoryID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `commentID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `commentID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `ideas`
@@ -283,7 +294,7 @@ ALTER TABLE `ideas`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notiID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `notiID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -295,7 +306,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `userID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
