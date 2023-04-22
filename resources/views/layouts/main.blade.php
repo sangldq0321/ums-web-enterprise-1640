@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>UMS - @yield('title')</title>
-    <meta name="google-site-verification" content="EuxK6cQuZWyf5q-LSH8fnxzJNWiwCzGwEOys8ZAOD-Q" />
     <meta name="author" content="KSA">
     <meta name="description" content="UMS - a university management system." />
     <meta name="keywords" content="UMS, ums, idea, university" />
@@ -205,7 +204,7 @@
             <div class="text-center">&copy 2023 <b>UMS</b>. All rights reserved.</div>
         </div>
     </footer>
-    <button class="top-btn shadow" onclick="topFunction()" id="topBtn"><i class="fa-solid fa-chevron-up"></i></button>
+    <button class="top-btn shadow px-0" onclick="topFunction()" id="topBtn"><i class="fa-solid fa-chevron-up"></i></button>
     @if (session('notify') == 'loginsuccess')
     <script>
         Swal.fire({
