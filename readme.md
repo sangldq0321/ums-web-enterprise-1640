@@ -1,6 +1,6 @@
 <h1 align="center">UMS (Web Enterprise - 1640)</h1>
 
-<h2 align="center">Group KSA (Knowledges - Skills - Abilities)</h2>
+<p align="center">Group KSA (Knowledges - Skills - Abilities)</p>
 
 <h3>1. Members:</h3>
     <ul>
