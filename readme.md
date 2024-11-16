@@ -1,37 +1,45 @@
-<h1 align="center">UMS (Web Enterprise - 1640)</h1>
+# UMS (Web Enterprise - 1640)
 
-<p align="center">Group KSA (Knowledges - Skills - Abilities)</p>
+### Group KSA (Knowledges - Skills - Abilities)
 
-<h3>1. Members:</h3>
-    <ul>
-        <li>Le Chi Khai (Leader - Database Designer – Back-end Programmer)</li>
-        <li>Le Do Quang Sang (Full-stack Programmer – Tester)</li>
-        <li>Nguyen Dong Anh (Scrum Master – Product Owner)</li>
-    </ul>
-    
-<h3>2. Dependencies:</h3>
-    <ul>
-        <li>Programming language: PHP version 8.1.12 - <a href="https://github.com/php/php-src">Link</a></li>
-        <li>Framework: Laravel version 8.83.27 - <a href="https://github.com/laravel/laravel">Link</a></li>
-        <li>Database: MariaDB version 10.6.10 - <a href="https://github.com/MariaDB/server">Link</a></li>
-        <li>phpMyAdmin version 5.2.0 - <a href="https://github.com/phpmyadmin/phpmyadmin">Link</a></li>
-        <li>Javascript plugin:</li>
-        <ul>
-            <li>JQuery version 3.6.3 - <a href="https://github.com/jquery/jquery">Link</a></li>
-            <li>DataTables version 1.13.4 - <a href="https://github.com/DataTables/DataTables">Link</a></li>
-            <li>SweetAlert2 version 11.7.3 - <a href="https://github.com/sweetalert2/sweetalert2">Link</a></li>
-            <li>Lodash version 4.17.21 - <a href="https://github.com/lodash/lodash">Link</a></li>
-        </ul>
-        <li>Javascript graphics:
-        <ul>        
-            <li>ChartJS version 4.2.1 - <a href="https://github.com/chartjs/Chart.js">Link</a></li>
-        </ul>
-        <li>Font scripts:</li>
-        <ul>
-            <li>Font Awesome version 6.4.0 - <a href="https://github.com/FortAwesome/Font-Awesome">Link</a></li>
-        </ul>
-        <li>UI frameworks:</li>
-        <ul>        
-            <li>Bootstrap version 5.2.3 - <a href="https://github.com/twbs/bootstrap">Link</a></li>
-        </ul>
-    </ul>
+### 1. Members:
+
+- **Le Chi Khai** (Leader - Database Designer - Back-end Programmer)
+- **Le Do Quang Sang** (Full-stack Programmer - Tester)
+- **Nguyen Dong Anh** (Scrum Master - Product Owner)
+
+### 2. Dependencies:
+
+- **Programming language:** PHP version 8.1.12  
+  [PHP GitHub Link](https://github.com/php/php-src)
+  
+- **Framework:** Laravel version 8.83.27  
+  [Laravel GitHub Link](https://github.com/laravel/laravel)
+  
+- **Database:** MariaDB version 10.6.10  
+  [MariaDB GitHub Link](https://github.com/MariaDB/server)
+  
+- **phpMyAdmin:** version 5.2.0  
+  [phpMyAdmin GitHub Link](https://github.com/phpmyadmin/phpmyadmin)
+
+- **Javascript plugins:**
+  - **JQuery** version 3.6.3  
+    [JQuery GitHub Link](https://github.com/jquery/jquery)
+  - **DataTables** version 1.13.4  
+    [DataTables GitHub Link](https://github.com/DataTables/DataTables)
+  - **SweetAlert2** version 11.7.3  
+    [SweetAlert2 GitHub Link](https://github.com/sweetalert2/sweetalert2)
+  - **Lodash** version 4.17.21  
+    [Lodash GitHub Link](https://github.com/lodash/lodash)
+
+- **Javascript graphics:**
+  - **ChartJS** version 4.2.1  
+    [ChartJS GitHub Link](https://github.com/chartjs/Chart.js)
+
+- **Font scripts:**
+  - **Font Awesome** version 6.4.0  
+    [Font Awesome GitHub Link](https://github.com/FortAwesome/Font-Awesome)
+
+- **UI frameworks:**
+  - **Bootstrap** version 5.2.3  
+    [Bootstrap GitHub Link](https://github.com/twbs/bootstrap)
